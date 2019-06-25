@@ -149,7 +149,6 @@
   </div>
 	
 	<div id="tree"></div>
-	
     <!-- ##### Footer Area Start ##### -->
    <?php include"include/footer.php"; ?>
     <!-- ##### Footer Area Start ##### -->
@@ -174,32 +173,40 @@
 		$("#myModal").modal(); 
 	  });
 		
-		/*var reloading = sessionStorage.getItem("reloading");
-		var urlreload = sessionStorage.getItem("urlreload");
-		if (reloading) {
-			sessionStorage.removeItem("reloading");
-			changpage(content,urlreload,'ผังครอบครัว');
-			//changepage(urlreload);
-			sessionStorage.removeItem("urlreload");
-		}*/
-		
-	});
-		$(function(){
 		var reloading = sessionStorage.getItem("reloading");
 		var urlreload = sessionStorage.getItem("urlreload");
 		if (reloading) {
+			//var	dataPoints = [];
+			setTimeout(function(){ changpage2(content,urlreload,'ผังครอบครัว'); }, 1000);
 			sessionStorage.removeItem("reloading");
-			changpage2('content',urlreload,'ผังครอบครัว');
-			//console.log(urlreload);
 			sessionStorage.removeItem("urlreload");
+			/*sessionStorage.removeItem("reloading");
+			changpage2(content,urlreload,'ผังครอบครัว');*/
+				/*$.ajax({
+				url: "orgchart.php",
+				type: "POST",
+				success: function(result)
+				{
+					//console.log(result);
+					$(content).html(result);
+					$("h2").text("ผังครอบครัว");
+
+					$(".hero-area").css("display","none");
+					$(".call-to-action-area").css("display","none");
+					$(".top-features-area").css("display","none");
+					$(".breadcumb-area").css("display","block");
+					//$(".breadcumb-area").css("display","none");
+				}
+			});*/
+			//console.log(urlreload);
+			//sessionStorage.removeItem("urlreload");
+			
 		}
 	});
+	
 		
-	</script>
-	<script>
-	$(function(){
 		
-	});
+		
 	</script>
 </body>
 
