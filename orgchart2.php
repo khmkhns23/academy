@@ -1,3 +1,6 @@
+<?php
+header("Cache-Control: no-cache, must-revalidate"); header("Pragma: no-cache"); 
+?>
 <!doctype html>
 <html>
 <head>
@@ -15,9 +18,8 @@
 	</style>
 
 <script>
-$( document ).ready(function() {
+$(document).ready(function() {
 		dashboard1();
-		//console.log('2');
 });
 </script>
 

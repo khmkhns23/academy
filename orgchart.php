@@ -18,7 +18,7 @@ header("Cache-Control: no-cache, must-revalidate"); header("Pragma: no-cache");
 	</style>
 
 <script>
-$( document ).ready(function() {
+$(document).ready(function() {
 		dashboard1();
 });
 </script>
@@ -26,7 +26,6 @@ $( document ).ready(function() {
 </head>
 
 <body>
-	 <li><a href="#" onClick="changpage(content,'orgchart.php',this)">Update Data</a></li>
 	<div id="tree"></div>
 	<?php
 		include "administrator/uploads.php";

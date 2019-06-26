@@ -149,6 +149,7 @@
   </div>
 	
 	<div id="tree"></div>
+	
     <!-- ##### Footer Area Start ##### -->
    <?php include"include/footer.php"; ?>
     <!-- ##### Footer Area Start ##### -->
@@ -175,9 +176,11 @@
 		
 		var reloading = sessionStorage.getItem("reloading");
 		var urlreload = sessionStorage.getItem("urlreload");
+		var objsess = sessionStorage.getItem("objsess");
 		if (reloading) {
-			//var	dataPoints = [];
-			setTimeout(function(){ changpage2(content,urlreload,'ผังครอบครัว'); }, 1000);
+			changpage('content','orgchart2.php',this);
+			
+			//setTimeout(function(){ changpage2(objsess); }, 1000);
 			sessionStorage.removeItem("reloading");
 			sessionStorage.removeItem("urlreload");
 			/*sessionStorage.removeItem("reloading");

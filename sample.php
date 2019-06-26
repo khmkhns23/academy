@@ -2,15 +2,15 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>Untitled Document</title>
+<title>Sample Pages</title>
 	<link href="https://fonts.googleapis.com/css?family=Gochi+Hand" rel="stylesheet">
 
-<script src="https://balkangraph.com/js/latest/OrgChart.js"></script>
+	<script src="https://balkangraph.com/js/latest/OrgChart.js"></script>
 
+	<div id="tree"></div>
 </head>
 
 <body>
-	<div id="tree"></div>
 <script>
 	window.onload = function () { 
     var chart = new OrgChart(document.getElementById("tree"), {
@@ -45,7 +45,7 @@
             { id: 7, pid: 3, name: "Fran Parsons", title: "Developer", img: "https://balkangraph.com/js/img/8.jpg" }
         ]
     });
-};
+}
 	</script>
 </body>
 </html>

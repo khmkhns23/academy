@@ -3,6 +3,10 @@ var randoms = Math.floor(Math.random() * 100);
 var dataPoints = [];
 $.getJSON("getdatatojson.php?ran="+randoms, addData);	
 
+var dataPoints2 = [];
+$.getJSON("getdatatojson.php", addData2);	
+
+
 
 function dashboard1() { 
 	//console.log(dataPoints);
@@ -104,7 +108,7 @@ function dashboard1() {
             var nodeData = chart.get(nodeId);
             var employeeName = nodeData["name"];
             window.open('https://webcall.me/' + employeeName, employeeName, 'width=340px, height=670px, top=50px, left=50px');
-			 console.log(nodeData["id"]);
+			// console.log(nodeData["id"]);
         }
 		function uploadpicss(nodeId){
 			var nodeData = chart.get(nodeId);
@@ -115,11 +119,13 @@ function dashboard1() {
 			
 			$('#myModal1').on('hidden.bs.modal', function (e) {
 				var random = Math.floor(Math.random() * 100);
-						changpage(content,'orgchart.php?ran='+random,'ผังครอบครัว');
+						//changpage(content,'orgchart.php?ran='+random,'ผังครอบครัว');
 				//console.log('model is closed');
-						/*sessionStorage.setItem("reloading", "true");
-						sessionStorage.setItem("urlreload",'orgchart.php');*/
-						//document.location.reload();
+						sessionStorage.setItem("reloading", "true");
+						sessionStorage.setItem("urlreload",'orgchart.php');
+						sessionStorage.setItem("objsess",dataPoints);
+						document.location.reload();
+						//dashboard1();
 			});
 		}
 		function profiless(nodeId){
@@ -145,6 +151,7 @@ function changpage(target,Url,txt){
 			type: "POST",
 			success: function(result)
 			{
+				//console.log(result);
 				$("#content").html(result);
 				$("h2").text(textshow);				
 				$(".hero-area").css("display","none");
@@ -155,15 +162,29 @@ function changpage(target,Url,txt){
 			}
 		});
 }
-function changpage2(target,Url,txt){
+function changpage2(){
+	/*var dataPoints2 = [
+						{ id: 1, name: "Denny Curtis", title: "CEO", img: "https://balkangraph.com/js/img/2.jpg" },
+						{ id: 2, pid: 1, name: "Ashley Barnett", title: "Sales Manager", img: "https://balkangraph.com/js/img/3.jpg" },
+						{ id: 3, pid: 1, name: "Caden Ellison", title: "Dev Manager", img: "https://balkangraph.com/js/img/4.jpg" },
+						{ id: 4, pid: 2, name: "Elliot Patel", title: "Sales", img: "https://balkangraph.com/js/img/5.jpg" },
+						{ id: 5, pid: 2, name: "Lynn Hussain", title: "Sales", img: "https://balkangraph.com/js/img/6.jpg" },
+						{ id: 6, pid: 3, name: "Tanner May", title: "Developer", img: "https://balkangraph.com/js/img/7.jpg" },
+						{ id: 7, pid: 3, name: "Fran Parsons", title: "Developer", img: "https://balkangraph.com/js/img/8.jpg" }
+					 ];*/
+	$.getJSON("getdatatojson.php", addData2);	
+	
+	console.log(dataPoints2[5]);
+	//$.getJSON("getdatatojson.php?ran="+randoms, addData);	
+	 chartorg(dataPoints2);
 	//var textshow = jQuery(txt).text();
 	//console.log(target+Url+txt);
-	$.ajax({
+	/*$.ajax({
 			url: Url,
 			type: "POST",
 			success: function(result)
 			{
-				//console.log(result);
+				console.log(result);
 				$("#content").html(result);
 				$("h2").text(txt);
 				$(".hero-area").css("display","none");
@@ -172,7 +193,7 @@ function changpage2(target,Url,txt){
 				$(".breadcumb-area").css("display","block");
 				//$(".breadcumb-area").css("display","none");
 			}
-		});
+		});*/
 }
 
 function addData(data) {
@@ -207,6 +228,73 @@ function addData(data) {
 		}
 		//chart.render();
 	}
+function addData2(data) {
+		var dps = data;
+
+		for (var i = 0; i < dps.length; i++) {
+			var vals1 = dps[i][0];
+			var vals2 = dps[i][1];
+			var vals3 = dps[i][2];
+			var vals4 = dps[i][3];
+			var vals5 = dps[i][4];
+			var vals6 = dps[i][5];
+			
+			if(vals2==null){
+				dataPoints2.push({
+				id:   vals1,
+				pid: vals3,
+				name:  vals4,
+				title: vals5,
+				img:  vals6
+			});
+			}else{
+				dataPoints2.push({
+				id:   vals1,
+				tags: vals2,	
+				pid: vals3,
+				name:  vals4,
+				title: vals5,
+				img:  vals6
+			});
+			}		
+		}
+		//chart.render();
+	}
+function chartorg(dataPoints2){
+    var chart = new OrgChart(document.getElementById("tree"), {
+        template: "derek",
+        enableDragDrop: true,
+        toolbar: true,
+        menu: {
+            pdf: { text: "Export PDF" },
+            png: { text: "Export PNG" },
+            svg: { text: "Export SVG" },
+            csv: { text: "Export CSV" }
+        },
+        nodeMenu: {
+            details: { text: "Details" },
+            add: { text: "Add New" },
+            edit: { text: "Edit" },
+            remove: { text: "Remove" },
+        },
+        nodeBinding: {
+            field_0: "name",
+            field_1: "title",
+            img_0: "img",
+            field_number_children: "field_number_children"
+        },
+        /*nodes: [
+            { id: 1, name: "Denny Curtis", title: "CEO", img: "https://balkangraph.com/js/img/2.jpg" },
+            { id: 2, pid: 1, name: "Ashley Barnett", title: "Sales Manager", img: "https://balkangraph.com/js/img/3.jpg" },
+            { id: 3, pid: 1, name: "Caden Ellison", title: "Dev Manager", img: "https://balkangraph.com/js/img/4.jpg" },
+            { id: 4, pid: 2, name: "Elliot Patel", title: "Sales", img: "https://balkangraph.com/js/img/5.jpg" },
+            { id: 5, pid: 2, name: "Lynn Hussain", title: "Sales", img: "https://balkangraph.com/js/img/6.jpg" },
+            { id: 6, pid: 3, name: "Tanner May", title: "Developer", img: "https://balkangraph.com/js/img/7.jpg" },
+            { id: 7, pid: 3, name: "Fran Parsons", title: "Developer", img: "https://balkangraph.com/js/img/8.jpg" }
+        ]*/
+		nodes: dataPoints2
+    });
+}
 
 //$.getJSON("getdatatojson.php", addData);
 

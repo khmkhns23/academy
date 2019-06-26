@@ -65,7 +65,7 @@
 
                                         </ul>
 									</li>
-                                    <li><a href="#" onClick="changpage(content,'sample.php',this)">คณะผู้บริหาร</a></li>
+                                    <li><a href="#" onClick="changpage2(content,'sample.php',this)">คณะผู้บริหาร</a></li>
                                     
                                 </ul>
                             </div>
