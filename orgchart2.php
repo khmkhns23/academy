@@ -5,7 +5,7 @@ header("Cache-Control: no-cache, must-revalidate"); header("Pragma: no-cache");
 <html>
 <head>
 <meta charset="utf-8">
-<title>Untitled Document</title>
+<title>orgchart2</title>
 	
 <link href="https://fonts.googleapis.com/css?family=Gochi+Hand" rel="stylesheet">
 	<style>
@@ -28,11 +28,11 @@ $(document).ready(function() {
 <body>
 	<div id="tree"></div>
 	<?php
-		include "administrator/uploads.php";
+		/*include "administrator/uploads.php";
 		include "administrator/profiles.php";
 		include "administrator/changpwds.php";
 		include "administrator/marrys.php";
-		include "administrator/babys.php";
+		include "administrator/babys.php";*/
 	?>
 </body>
 </html>

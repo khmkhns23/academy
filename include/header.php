@@ -56,7 +56,7 @@
                                     <li><a href="#" onClick="changpage(content,'sample.php',this)">ประวัติตระกูลแซ่</a></li>
                                     <li><a href="#" onClick="changpage(content,'sample.php',this)">ประเพณีวัฒนธรรม</a></li>
                                     <li><a href="#" onClick="changpage(content,'sample.php',this)">เหตุการณ์สำคัญ</a></li>
-									<li><a href="#" onClick="changpage(content,'sample.php',this)">กติกาข้อพิพาก</a></li>
+									<li><a href="#" onClick="changpage(content,'orgchart.php',this)">กติกาข้อพิพาก</a></li>
                                     <li><a href="#">รายงาน</a>
 										<ul class="dropdown">
                                             <li><a href="#">Admin จัดการหน้าเพจ</a></li>
@@ -65,7 +65,7 @@
 
                                         </ul>
 									</li>
-                                    <li><a href="#" onClick="changpage2(content,'sample.php',this)">คณะผู้บริหาร</a></li>
+                                    <li><a href="#" onClick="changpage(content,'orgchart.php',this)">คณะผู้บริหาร</a></li>
                                     
                                 </ul>
                             </div>

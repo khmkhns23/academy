@@ -31,6 +31,66 @@
 			background-color: #f9f9f9;
 		  }
   </style>
+	<script src="js/jquery/jquery-2.2.4.min.js"></script>
+	<script>
+	$(document).ready(function(){
+	  $("#myBtn").click(function(){
+		$("#myModal").modal(); 
+	  });
+		
+		//changpage2(content,'orgchart.php',this)
+		var reloading = sessionStorage.getItem("reloading");
+		var urlreload = sessionStorage.getItem("urlreload");
+		var objsessa = sessionStorage.getItem("objsess1");
+		//var resarray1 = isArray(dataPoints);
+		
+			
+		
+		//console.log(resarray.length);
+		//console.log(resarray1);
+		//dashboard2(resarray);
+		if (reloading) {
+			var resarray = [];
+			//function call_me(params) {
+			  for (i=0; i< objsessa.length; i++) {
+				console.log(objsessa[i]);
+			  }
+			//}
+			//dashboard2(objsessa);
+			
+			//changpage(content,'orgchart2.php',this)
+			//setTimeout(function(){ changpage2(objsess); }, 1000);
+			sessionStorage.removeItem("reloading");
+			sessionStorage.removeItem("urlreload");
+			sessionStorage.removeItem("reloading");
+					$(".hero-area").css("display","none");
+					$(".call-to-action-area").css("display","none");
+					$(".top-features-area").css("display","none");
+					$(".breadcumb-area").css("display","block");
+					//$(".breadcumb-area").css("display","none");
+			//changpage2(content,urlreload,'ผังครอบครัว');
+				/*$.ajax({
+				url: "orgchart.php",
+				type: "POST",
+				success: function(result)
+				{
+					//console.log(result);
+					$(content).html(result);
+					$("h2").text("ผังครอบครัว");
+
+					
+				}
+			});*/
+			//console.log(urlreload);
+			//sessionStorage.removeItem("urlreload");
+					
+		}
+	});
+	
+		
+		
+		
+	</script>
 </head>
 
 <body>
@@ -149,14 +209,14 @@
   </div>
 	
 	<div id="tree"></div>
-	
+	<div id="tree2"></div>
     <!-- ##### Footer Area Start ##### -->
    <?php include"include/footer.php"; ?>
     <!-- ##### Footer Area Start ##### -->
 
     <!-- ##### All Javascript Script ##### -->
     <!-- jQuery-2.2.4 js -->
-    <script src="js/jquery/jquery-2.2.4.min.js"></script>
+    
     <!-- Popper js -->
     <script src="js/bootstrap/popper.min.js"></script>
     <!-- Bootstrap js -->
@@ -166,51 +226,9 @@
     <!-- Active js -->
     <script src="js/active.js"></script>
 	<script src="include/newscript.js"></script>
-	
+	<script src="include/newscript2.js"></script>
 	<script src="https://balkangraph.com/js/latest/OrgChart.js"></script>
-	<script>
-	$(document).ready(function(){
-	  $("#myBtn").click(function(){
-		$("#myModal").modal(); 
-	  });
-		
-		var reloading = sessionStorage.getItem("reloading");
-		var urlreload = sessionStorage.getItem("urlreload");
-		var objsess = sessionStorage.getItem("objsess");
-		if (reloading) {
-			changpage('content','orgchart2.php',this);
-			
-			//setTimeout(function(){ changpage2(objsess); }, 1000);
-			sessionStorage.removeItem("reloading");
-			sessionStorage.removeItem("urlreload");
-			/*sessionStorage.removeItem("reloading");
-			changpage2(content,urlreload,'ผังครอบครัว');*/
-				/*$.ajax({
-				url: "orgchart.php",
-				type: "POST",
-				success: function(result)
-				{
-					//console.log(result);
-					$(content).html(result);
-					$("h2").text("ผังครอบครัว");
-
-					$(".hero-area").css("display","none");
-					$(".call-to-action-area").css("display","none");
-					$(".top-features-area").css("display","none");
-					$(".breadcumb-area").css("display","block");
-					//$(".breadcumb-area").css("display","none");
-				}
-			});*/
-			//console.log(urlreload);
-			//sessionStorage.removeItem("urlreload");
-			
-		}
-	});
 	
-		
-		
-		
-	</script>
 </body>
 
 </html>
