@@ -180,7 +180,8 @@
     <!-- Active js -->
     <script src="js/active.js"></script>
 	<script src="include/newscript.js"></script>
-	<script src="include/newscript2.js"></script>
+	
+	
 	<script src="https://balkangraph.com/js/latest/OrgChart.js"></script>
 	
 </body>

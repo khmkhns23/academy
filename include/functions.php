@@ -2,7 +2,7 @@
 date_default_timezone_set("Asia/Bangkok");
 
 function updatepicuser($id,$pathimg){
-	$sql = "UPDATE `tbfamiry` SET img = '$pathimg' WHERE id = $id";
+	$sql = "UPDATE `tableuserfamily` SET img = '$pathimg' WHERE ID = $id";
 	$results = $GLOBALS['conn']->query($sql);
 	if($results){
 		$rowcount = 1;
@@ -59,5 +59,35 @@ $i =0;
     }
  return $arr;
 $GLOBALS['conn']->close();  
+}
+
+function dashboards(){
+
+if ($GLOBALS['conn']->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+} 
+
+$sql = "SELECT * FROM tableuserfamily";
+$results = $GLOBALS['conn']->query($sql);
+$arr 	= array();
+$i =0;
+    // output data of each row
+    while($result = $results->fetch_assoc()) {
+        $arr[$i] = array(
+				'id' => $result['ID'],
+				'tags' => $result['tags'],
+				'pid' => $result['IDfather'],
+				'name' => $result['THFirstName'],
+				'title' => $result['THLastName'],
+				'img' => $result['img']
+			);
+		$i++;
+    }
+ return $arr;
+$GLOBALS['conn']->close();  
+}
+function changpwd($argpwd,$argnew1,$argnew2,$idnode){
+	$return = "$argpwd,$argnew1,$argnew2,$idnode";
+	return $return;
 }
 ?>

@@ -1,7 +1,8 @@
 <?php
 include "include/connect.php";
 include "include/functions.php";
-$arr = dashboard();
+//$arr = dashboard();
+$arr = dashboards();
 //print_r($arr);
 
 $array = array();

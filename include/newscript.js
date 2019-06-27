@@ -1,7 +1,7 @@
 var randoms = Math.floor(Math.random() * 100);
 var dataPoints = [];
 $.getJSON("getdatatojson.php?ran="+randoms, addData);
-
+//$.getJSON("getdatatojson.php?ran="+randoms, addData);
 function isObject (value) {
 	return value && typeof value === 'object' && value.constructor === Object;
 }
@@ -152,16 +152,22 @@ function dashboard1() {
 			$(".modal-title").html("อัพโหลดรูปภาพของ : "+employeeName);
 			$("#hiddeid").val(nodeData["id"]);
 			$('#myModal1').on('hidden.bs.modal', function (e) {
-						//changpage(content,'orgchart.php?ran='+random,'ผังครอบครัว');
 						//console.log(dataPoints);
 						sessionStorage.setItem("reloading", "true");
 						sessionStorage.setItem("urlreload",'orgchart.php');
 						document.location.reload();
-						//dashboard2(dataPoints);
 			});
 		}
 		function profiless(nodeId){
-			$("#myModal1").modal();
+			var nodeData = chart.get(nodeId);
+            var employeeName = nodeData["name"];
+			var img = nodeData["img"];
+			$("#myModal2").modal();
+			$("img").attr("src",img);
+			$(".modal-title").html("แก้ไขข้อมูลส่วนตัว : "+employeeName);
+			$("#thfirstname").val(employeeName);
+			$("#thlastname").val(nodeData["title"]);
+			
 		}
 		function changpasswdss(nodeId){
 			var nodeData = chart.get(nodeId);

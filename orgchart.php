@@ -34,7 +34,7 @@ $(document).ready(function() {
 	<div id="tree"></div>
 	<?php
 		include "administrator/uploads.php";
-		//include "administrator/profiles.php";
+		include "administrator/profiles.php";
 		include "administrator/changpwds.php";
 		//include "administrator/detail.php";
 		//include "administrator/marrys.php";

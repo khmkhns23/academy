@@ -61,26 +61,24 @@
 			var newpwd = $("#newpwd").val();
 			var cfnewpwd = $("#cfnewpwd").val();
 			
-			var data = "oldpwd="+oldpwd+"&newpwd="+newpwd+"&cfnewpwd="+cfnewpwd;
-			console.log(data);
+			//var data = "oldpwd="+oldpwd+"&newpwd="+newpwd+"&cfnewpwd="+cfnewpwd;
 			//var fd = new FormData();
-			//var idss = $("#hiddeid").val();
-
+			var idss = $("#hiddeid").val();
+			var data2 = $("#formchangepwd input").serialize();
+				data2 += "&idnode="+idss;
+				//console.log(data2);
 			$.ajax({
 				url: 'administrator/process.php?typeprocess=changpwd',
 				type: "POST",
-				data: data,
-				contentType: false,
-				processData: false,
+				data: data2,
 				success: function(response){
 					console.log(response);
-					/*if(response != 0){
-						$("#img").attr("src",response); 
-						$(".preview img").show(); // Display image element
-						//console.log(response);
+					if(response != 0){
+						echo 
+						"1";
 					}else{
 						alert('file not uploaded');
-					}*/
+					}
 				},
 			});
 		});
