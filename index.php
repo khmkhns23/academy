@@ -20,76 +20,30 @@
 
     <!-- Core Stylesheet -->
     <link rel="stylesheet" href="style.css">
-	<style>
-		  .modal-header,  .close {
-			background-color: #5cb85c;
-			color:white !important;
-			text-align: center;
-			font-size: 30px;
-		  }
-		  .modal-footer {
-			background-color: #f9f9f9;
-		  }
-  </style>
+    <link rel="stylesheet" href="css/newcss.css">
 	<script src="js/jquery/jquery-2.2.4.min.js"></script>
 	<script>
 	$(document).ready(function(){
 	  $("#myBtn").click(function(){
 		$("#myModal").modal(); 
 	  });
-		
-		//changpage2(content,'orgchart.php',this)
 		var reloading = sessionStorage.getItem("reloading");
 		var urlreload = sessionStorage.getItem("urlreload");
-		var objsessa = sessionStorage.getItem("objsess1");
-		//var resarray1 = isArray(dataPoints);
-		
 			
-		
-		//console.log(resarray.length);
-		//console.log(resarray1);
-		//dashboard2(resarray);
-		if (reloading) {
-			var resarray = [];
-			//function call_me(params) {
-			  for (i=0; i< objsessa.length; i++) {
-				console.log(objsessa[i]);
-			  }
-			//}
-			//dashboard2(objsessa);
-			
-			//changpage(content,'orgchart2.php',this)
-			//setTimeout(function(){ changpage2(objsess); }, 1000);
-			sessionStorage.removeItem("reloading");
-			sessionStorage.removeItem("urlreload");
-			sessionStorage.removeItem("reloading");
-					$(".hero-area").css("display","none");
+      if(reloading){
+          $(".hero-area").css("display","none");
 					$(".call-to-action-area").css("display","none");
 					$(".top-features-area").css("display","none");
 					$(".breadcumb-area").css("display","block");
-					//$(".breadcumb-area").css("display","none");
-			//changpage2(content,urlreload,'ผังครอบครัว');
-				/*$.ajax({
-				url: "orgchart.php",
-				type: "POST",
-				success: function(result)
-				{
-					//console.log(result);
-					$(content).html(result);
-					$("h2").text("ผังครอบครัว");
-
-					
-				}
-			});*/
-			//console.log(urlreload);
-			//sessionStorage.removeItem("urlreload");
-					
-		}
+          //$(".breadcumb-area").css("display","none");
+				  showanimation(1);
+				  setTimeout(function(){ changpage2(content,urlreload,'ผังครอบครัว'); },2000);
+      		}
+      		sessionStorage.removeItem("reloading");
+			sessionStorage.removeItem("urlreload");
+				
 	});
-	
-		
-		
-		
+
 	</script>
 </head>
 
@@ -209,7 +163,7 @@
   </div>
 	
 	<div id="tree"></div>
-	<div id="tree2"></div>
+	<div id="se-pre-con"></div>
     <!-- ##### Footer Area Start ##### -->
    <?php include"include/footer.php"; ?>
     <!-- ##### Footer Area Start ##### -->

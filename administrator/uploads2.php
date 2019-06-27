@@ -9,8 +9,8 @@
 
 				$imageFileType = pathinfo($filename,PATHINFO_EXTENSION);
 				$filename2 = time()."_".$idss;
-				$location3 = "../img/$filename2.$imageFileType";
-				$location31 = "img/$filename2.$imageFileType";
+				$location3 = "../img/upload/$filename2.$imageFileType";
+				$location31 = "img/upload/$filename2.$imageFileType";
 				$uploadOk = 1;
 					
 				$valid_extensions = array("jpg","jpeg","png");

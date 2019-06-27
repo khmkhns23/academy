@@ -19,7 +19,12 @@ header("Cache-Control: no-cache, must-revalidate"); header("Pragma: no-cache");
 
 <script>
 $(document).ready(function() {
-		dashboard1();
+	/*var randoms = Math.floor(Math.random() * 100);
+	var dataPoints = [];
+	$.getJSON("getdatatojson.php?ran="+randoms, addData);
+	console.log(dataPoints);*/
+	dashboard1();
+		
 });
 </script>
 
@@ -29,10 +34,11 @@ $(document).ready(function() {
 	<div id="tree"></div>
 	<?php
 		include "administrator/uploads.php";
-		include "administrator/profiles.php";
+		//include "administrator/profiles.php";
 		include "administrator/changpwds.php";
-		include "administrator/marrys.php";
-		include "administrator/babys.php";
+		//include "administrator/detail.php";
+		//include "administrator/marrys.php";
+		//include "administrator/babys.php";
 	?>
 </body>
 </html>

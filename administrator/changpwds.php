@@ -8,27 +8,36 @@
 <body>
 
 <!-- The Modal -->
-<div class="modal" id="myModal1">
+<div class="modal" id="myModal3">
   <div class="modal-dialog">
     <div class="modal-content">
 
       <!-- Modal Header -->
       <div class="modal-header">
-        <h4 class="modal-title">Modal Heading</h4>
+        <h4 class="modal-title">เปลี่ยนรหัสผ่าน</h4>
         <button type="button" class="close" data-dismiss="modal">&times;</button>
       </div>
 
       <!-- Modal body -->
       <div class="modal-body">
       
-		  <form action="/action_page.php">
-			<p>Custom file:</p>
-			<div class="custom-file mb-3">
-			  <input type="file" class="custom-file-input" id="customFile" name="filename">
-			  <label class="custom-file-label" for="customFile">Choose file</label>
+		   <form id="formchangepwd" method="post" action="" >
+			    <input type="hidden" id="hiddeid" value="0">
+
+			<div class="form-group">
+			  	<label for="pwd">รหัสผ่านเก่า :</label>
+    			<input type="password" class="form-control" id="oldpwd" name="oldpwd">
 			</div>
-			<div class="mt-3">
-			  <button type="submit" class="btn btn-primary">Submit</button>
+			<div class="form-group">
+			  	<label for="pwd">รหัสผ่านใหม่ :</label>
+    			<input type="password" class="form-control" id="newpwd" name="newpwd">
+			</div>
+			<div class="form-group">
+			  	<label for="pwd">ยืนยันรหัสผ่านใหม่ :</label>
+    			<input type="password" class="form-control" id="cfnewpwd" name="cfnewpwd">
+			</div>
+			<div class="form-group">
+			  <input type="button" class="btn btn-primary" id="chngpwd" name="chngpwd" value="Submit">
 			</div>
 		  </form>
 
@@ -43,12 +52,39 @@
   </div>
 </div>
 	
-<script>
-// Add the following code if you want the name of the file appear on select
-$(".custom-file-input").on("change", function() {
-  var fileName = $(this).val().split("\\").pop();
-  $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
-});
-</script>
+<script type="text/javascript">
+      $(document).ready(function(){
+
+		$("#chngpwd").click(function(){
+			//	console.log('click btn chngpwd');
+			var oldpwd = $("#oldpwd").val();
+			var newpwd = $("#newpwd").val();
+			var cfnewpwd = $("#cfnewpwd").val();
+			
+			var data = "oldpwd="+oldpwd+"&newpwd="+newpwd+"&cfnewpwd="+cfnewpwd;
+			console.log(data);
+			//var fd = new FormData();
+			//var idss = $("#hiddeid").val();
+
+			$.ajax({
+				url: 'administrator/process.php?typeprocess=changpwd',
+				type: "POST",
+				data: data,
+				contentType: false,
+				processData: false,
+				success: function(response){
+					console.log(response);
+					/*if(response != 0){
+						$("#img").attr("src",response); 
+						$(".preview img").show(); // Display image element
+						//console.log(response);
+					}else{
+						alert('file not uploaded');
+					}*/
+				},
+			});
+		});
+	});
+  </script>
 </body>
 </html>

@@ -1,6 +1,7 @@
+// JavaScript Document
 var randoms = Math.floor(Math.random() * 100);
 var dataPoints = [];
-$.getJSON("getdatatojson.php?ran="+randoms, addData);
+$.getJSON("getdatatojson.php?ran="+randoms, addData);	
 
 function isObject (value) {
 	return value && typeof value === 'object' && value.constructor === Object;
@@ -9,40 +10,8 @@ function isArray (value) {
 	return value && typeof value === 'object' && value.constructor === Array;
 }
 
-function addData(data) {
-		var dps = data;
 
-		for (var i = 0; i < dps.length; i++) {
-			var vals1 = dps[i][0];
-			var vals2 = dps[i][1];
-			var vals3 = dps[i][2];
-			var vals4 = dps[i][3];
-			var vals5 = dps[i][4];
-			var vals6 = dps[i][5];
-
-			if(vals2==null){
-				dataPoints.push({
-					id:   vals1,
-					pid: vals3,
-					name:  vals4,
-					title: vals5,
-					img:  vals6
-				});
-			}else{
-				dataPoints.push({
-					id:   vals1,
-					tags: vals2,
-					pid: vals3,
-					name:  vals4,
-					title: vals5,
-					img:  vals6
-				});
-			}
-		}
-		//chart.render();
-}
-
-function dashboard1() {
+function dashboard1() { 
 	//var chk = isArray(dataPoints);
 	//console.log(dataPoints);
 	//$("#tree").html("This is Content");
@@ -149,35 +118,24 @@ function dashboard1() {
 			var nodeData = chart.get(nodeId);
             var employeeName = nodeData["name"];
 			$("#myModal1").modal(); 
-			$(".modal-title").html("อัพโหลดรูปภาพของ : "+employeeName);
+			$(".modal-title").html("ไอดี : "+employeeName);
 			$("#hiddeid").val(nodeData["id"]);
+			
 			$('#myModal1').on('hidden.bs.modal', function (e) {
 						//changpage(content,'orgchart.php?ran='+random,'ผังครอบครัว');
 						//console.log(dataPoints);
 						sessionStorage.setItem("reloading", "true");
 						sessionStorage.setItem("urlreload",'orgchart.php');
+						sessionStorage.setItem("objsess1",dataPoints);
 						document.location.reload();
 						//dashboard2(dataPoints);
 			});
 		}
 		function profiless(nodeId){
-			$("#myModal1").modal();
+			$("#myModal1").modal(); 
 		}
-		function changpasswdss(nodeId){
-			var nodeData = chart.get(nodeId);
-            var employeeName = nodeData["name"];
-			$("#myModal3").modal(); 
-			$(".modal-title").html("เปลี่ยนรหัสผ่านของ : "+employeeName);
-			$("#hiddeid").val(nodeData["id"]);
-			$('#myModal13').on('hidden.bs.modal', function (e) {
-						//changpage(content,'orgchart.php?ran='+random,'ผังครอบครัว');
-						//console.log(dataPoints);
-						sessionStorage.setItem("reloading", "true");
-						sessionStorage.setItem("urlreload",'orgchart.php');
-						document.location.reload();
-						//dashboard2(dataPoints);
-			});
-			
+		function changpasswdss(nodId){
+			$("#myModal1").modal(); 
 		}
 		function marrys(nodeId){
 			$("#myModal1").modal(); 
@@ -186,7 +144,6 @@ function dashboard1() {
 			$("#myModal1").modal(); 
 		}
 	//end function
-
 }
 function changpage(target,Url,txt){
 	var textshow = jQuery(txt).text();
@@ -208,16 +165,19 @@ function changpage(target,Url,txt){
 		});
 }
 function changpage2(target,Url,txt){
-//	var textshow = jQuery(txt).text();
-showanimation(2);
-//console.log("form changpage2");
+	var textshow = jQuery(txt).text();
 	$.ajax({
 			url: Url,
 			type: "POST",
+			beforeSend : function()
+			{
+				$("#content").html('');
+			},
 			success: function(result)
 			{
+				//console.log(result);
 				$("#content").html(result);
-				$("h2").text(txt);
+				$("h2").text(textshow);
 				$(".hero-area").css("display","none");
 				$(".call-to-action-area").css("display","none");
 				$(".top-features-area").css("display","none");
@@ -227,6 +187,38 @@ showanimation(2);
 		});
 }
 
+function addData(data) {
+		var dps = data;
+
+		for (var i = 0; i < dps.length; i++) {
+			var vals1 = dps[i][0];
+			var vals2 = dps[i][1];
+			var vals3 = dps[i][2];
+			var vals4 = dps[i][3];
+			var vals5 = dps[i][4];
+			var vals6 = dps[i][5];
+			
+			if(vals2==null){
+				dataPoints.push({
+				id:   vals1,
+				pid: vals3,
+				name:  vals4,
+				title: vals5,
+				img:  vals6
+			});
+			}else{
+				dataPoints.push({
+				id:   vals1,
+				tags: vals2,	
+				pid: vals3,
+				name:  vals4,
+				title: vals5,
+				img:  vals6
+			});
+			}		
+		}
+		//chart.render();
+	}
 function chartorg(txt){
 					$(".hero-area").css("display","none");
 					$(".call-to-action-area").css("display","none");
@@ -282,15 +274,6 @@ function chartorg(txt){
 	
 }
 
-function showanimation(ID){
-	switch(ID){
-		case 1 :
-			document.getElementById('se-pre-con').style.display = 'block';
-		break;
-		case 2 :
-			document.getElementById('se-pre-con').style.display = 'none';			
-		break;
-	}
-}
+//$.getJSON("getdatatojson.php", addData);
 
 

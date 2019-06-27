@@ -8,7 +8,7 @@
 <body>
 
 <!-- The Modal -->
-<div class="modal" id="myModal6">
+<div class="modal" id="myModal4">
   <div class="modal-dialog">
     <div class="modal-content">
 
