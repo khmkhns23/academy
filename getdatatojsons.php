@@ -2,9 +2,9 @@
 include "include/connect.php";
 include "include/functions.php";
 //$arr = dashboard();
-$arr = dashboards();
-//print_r($arr);
-
+$arr = dashboard($_GET['id']);
+//print_r($arr['ID']);
+/*
 $array = array();
 
 foreach($arr AS $key => $values){
@@ -19,9 +19,9 @@ foreach($arr AS $key => $values){
 		$arr3 = array($lists1,$lists2,$lists3,$lists4,$lists5,$lists6);
 		$array2 = (empty($lists2)?$arr3:$arr2);
 		array_push($array,$array2);
-}
+}*/
 
-$out = array_values($array);
+$out = array_values($arr);
 echo json_encode($out);
 
 ?>

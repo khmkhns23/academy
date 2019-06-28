@@ -37,7 +37,7 @@
 					  <!-- Left-aligned media object -->
 					  <div class="media">
 						<div class="media-left">
-						  <img src="" class="media-object" style="width:60px">
+						  <img src="" id="imgs" class="media-object" style="width:60px">
 						</div>
 						<div class="media-body">
 							

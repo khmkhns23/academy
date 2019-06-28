@@ -35,28 +35,35 @@ function dashboard2(){
 }
 
 
-function dashboard(){
+function dashboard($id){
 
 if ($GLOBALS['conn']->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 } 
 
-$sql = "SELECT * FROM tbfamiry";
+$sql = "SELECT * FROM tableuserfamily where ID = $id";
 $results = $GLOBALS['conn']->query($sql);
 $arr 	= array();
 $i =0;
     // output data of each row
     while($result = $results->fetch_assoc()) {
-        $arr[$i] = array(
+	//  while($result = $results->fetch_array()) {
+		foreach($result as $key => $value)
+			{
+				$arr[$key] = $key .":". $value;
+				//$arr[$key] = $key;
+			}
+        /*$arr[$i] = array(
 				'id' => $result['id'],
 				'tags' => $result['tags'],
 				'pid' => $result['pid'],
 				'name' => $result['name'],
 				'title' => $result['title'],
 				'img' => $result['img']
-			);
-		$i++;
+			);*/
+		//$i++;
     }
+	
  return $arr;
 $GLOBALS['conn']->close();  
 }

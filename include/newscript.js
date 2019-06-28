@@ -1,6 +1,9 @@
 var randoms = Math.floor(Math.random() * 100);
 var dataPoints = [];
+var dataprofile = [];
+
 $.getJSON("getdatatojson.php?ran="+randoms, addData);
+$.getJSON("getdatatojsons.php?id=1&ran="+randoms, addDataprofile);
 //$.getJSON("getdatatojson.php?ran="+randoms, addData);
 function isObject (value) {
 	return value && typeof value === 'object' && value.constructor === Object;
@@ -41,7 +44,14 @@ function addData(data) {
 		}
 		//chart.render();
 }
-
+function addDataprofile(data){
+	var dps = data;
+	for (var key in dps) {
+		dataprofile.push(dps[key]);
+	//	console.log("key " + key + " has value " + dps[key]);		
+	}
+	//console.log(dataprofile);
+}
 function dashboard1() {
 	//var chk = isArray(dataPoints);
 	//console.log(dataPoints);
@@ -159,11 +169,25 @@ function dashboard1() {
 			});
 		}
 		function profiless(nodeId){
+			
+			/*$.getJSON("getdatatojsons.php?id="+nodeId+"&ran="+randoms, addDataprofile);
+			var tempparray;
+			console.log(dataprofile.length);
+			//var res = dataprofile.split(",");
+			for(var i =0;i<dataprofile.length;i++){
+				tempparray = dataprofile[i];
+				console.log(tempparray);
+			}*/
+			$.getJSON("getdatatojsons.php?id="+nodeId+"&ran="+randoms, function (data) {
+				  console.log(data);
+			 });
+			console.log(dataprofile.length);
+			
 			var nodeData = chart.get(nodeId);
             var employeeName = nodeData["name"];
 			var img = nodeData["img"];
 			$("#myModal2").modal();
-			$("img").attr("src",img);
+			$("#imgs").attr("src",img);
 			$(".modal-title").html("แก้ไขข้อมูลส่วนตัว : "+employeeName);
 			$("#thfirstname").val(employeeName);
 			$("#thlastname").val(nodeData["title"]);
