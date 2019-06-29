@@ -37,7 +37,7 @@
     			<input type="password" class="form-control" id="cfnewpwd" name="cfnewpwd">
 			</div>
 			<div class="form-group">
-			  <input type="button" class="btn btn-primary" id="chngpwd" name="chngpwd" value="Submit">
+			  <input type="button" class="btn btn-primary" id="chngpwd" name="chngpwd" value="เปลี่ยนรหัสผ่าน">
 			</div>
 		  </form>
 
@@ -60,9 +60,7 @@
 			var oldpwd = $("#oldpwd").val();
 			var newpwd = $("#newpwd").val();
 			var cfnewpwd = $("#cfnewpwd").val();
-			
-			//var data = "oldpwd="+oldpwd+"&newpwd="+newpwd+"&cfnewpwd="+cfnewpwd;
-			//var fd = new FormData();
+	
 			var idss = $("#hiddeid").val();
 			var data2 = $("#formchangepwd input").serialize();
 				data2 += "&idnode="+idss;
@@ -72,12 +70,15 @@
 				type: "POST",
 				data: data2,
 				success: function(response){
-					console.log(response);
-					if(response != 0){
-						console.log('ok');
-					}else{
-						alert('file not uploaded');
-					}
+					//console.log(response);
+					showdialog(response);
+					$('#dialog').modal('show');
+					$('#dialog').on('shown.bs.modal', function(){
+						$(this).find('button').focus();
+					});
+					$('#dialog').on('hidden.bs.modal', function () {
+						$('#myModal3').modal('hide');
+					});
 				},
 			});
 		});

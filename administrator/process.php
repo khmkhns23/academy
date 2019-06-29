@@ -20,6 +20,13 @@
 			echo $return;
 			break;
 			
+			
+		case "addwife" :
+			$return = addwifedata($_POST);
+			//echo $return;
+			print_r($return);
+			break;
+			
 	}
 
 

@@ -53,19 +53,20 @@
                                         </ul>
                                     </li>-->
                                     <li><a href="#" onClick="changpage(content,'orgchart.php',this)">ผังครอบครัว</a></li>
-                                    <li><a href="#" onClick="changpage(content,'sample.php',this)">ประวัติตระกูลแซ่</a></li>
-                                    <li><a href="#" onClick="changpage(content,'sample.php',this)">ประเพณีวัฒนธรรม</a></li>
-                                    <li><a href="#" onClick="changpage(content,'sample.php',this)">เหตุการณ์สำคัญ</a></li>
-									<li><a href="#" onClick="changpage(content,'orgchart.php',this)">กติกาข้อพิพาก</a></li>
+                                    <li><a href="#" onClick="changpage(content,'showcontent.php?idc=1',this)">ประวัติตระกูลแซ่</a></li>
+                                    <li><a href="#" onClick="changpage(content,'showcontent.php?idc=2',this)">ประเพณีวัฒนธรรม</a></li>
+                                    <li><a href="#" onClick="changpage(content,'showcontent.php?idc=3',this)">เหตุการณ์สำคัญ</a></li>
+									<li><a href="#" onClick="changpage(content,'showcontent.php?idc=4',this)">กติกาข้อพิพาก</a></li>
                                     <li><a href="#">รายงาน</a>
 										<ul class="dropdown">
+											<li><a href="#" onClick="changpage(content,'administrator/managecontent.php',this)">Admin จัดการเนื้อหาภายใน</a></li>
                                             <li><a href="#">Admin จัดการหน้าเพจ</a></li>
                                             <li><a href="#">Admin จัดการแผนผัง</a></li>
                                             <li><a href="#">Admin จัดการผู้ใช้งาน</a></li>
 
                                         </ul>
 									</li>
-                                    <li><a href="#" onClick="changpage(content,'orgchart.php',this)">คณะผู้บริหาร</a></li>
+                                    <li><a href="#" onClick="changpage(content,'managergens.php',this)">คณะผู้บริหาร</a></li>
                                     
                                 </ul>
                             </div>

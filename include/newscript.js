@@ -122,7 +122,7 @@ function dashboard1() {
                     onClick: changpasswdss
                 },
 				details: { text: "รายละเอียด",
-						   onClick: changpasswdss
+						   onClick: details
 						 },
             	//edit: {text:"<h5 onclick = alert('ok');>Edit</h5>"},
             	//add: {text:"Add"},
@@ -237,18 +237,79 @@ function dashboard1() {
 			$("#myModal3").modal(); 
 			$(".modal-title").html("เปลี่ยนรหัสผ่านของ : "+employeeName);
 			$("#hiddeid").val(nodeData["id"]);
-			$('#myModal13').on('hidden.bs.modal', function (e) {
-						//changpage(content,'orgchart.php?ran='+random,'ผังครอบครัว');
+			
+		}
+		function details(nodeId){
+			$("#myModal4").modal();
+			$.ajax({
+				url: "getdatatojsons.php?id="+nodeId,
+				type: "POST",
+				beforeSend: function(){
+					showanimation(1);
+				},
+				success: function(result)
+					{
+					showanimation(2);	
+						var myObj = JSON.parse(result);
+						//console.log(myObj);
+						
+						//$("#hidenid").val(myObj[0].ID);
+						$("#thfullname").html(myObj[1].THFirstName +" "+ myObj[2].THLastName);
+						
+						$("#tholdlastnames").html(myObj[3].THOldLastName);
+						
+						$("#enfullname").html(myObj[4].ENFirstName +" "+myObj[5].ENLastName);
+						
+					//	$("#nicname").html(myObj[6].NicName);
+							$("#nicnamep").html("Nic");
+						
+						$("#idfatherp").html(myObj[7].IDfather);
+						$("#idmotherp").html(myObj[8].IDmother);
+						
+						$("#idhusbandp").html(myObj[9].IDhusBand);
+						$("#tagsp").html(myObj[10].tags);
+						
+						$("#sexp").html(myObj[11].Sex);
+						$("#birthdayp").html(myObj[12].Birthday);
+						
+						$("#placeofbirthp").html(myObj[13].PlaceOfBirth);
+						$("#nationalityp").html(myObj[14].Nationality);
+						
+						$("#addressp").html(myObj[15].Address);
+						$("#provincep").html(myObj[16].Province);
+						
+						$("#countryp").html(myObj[17].Country);
+						$("#telephonep").html(myObj[18].Telephone);
+						
+						$("#emailp").html(myObj[19].Email);
+						$("#lineidp").html(myObj[20].LineID);
+						
+						//$("#tholdlastname").val(myObj[21].img);
+						$("#imgsp").attr("src",myObj[21].img);
+						$("#imgsp2").attr("src",myObj[21].img);
+						
+						$("#otherid1p").html(myObj[22].OtherID1);
+						
+						$("#ortherid2p").html(myObj[23].OrtherID2);
+						$("#deathdayp").html(myObj[24].Deathday);
+						
+						$("#introducep").html(myObj[25].Introduce);
+						$("#numsgenp").html(myObj[26].NumsGEN);
+					}
+				});
+		}
+		function marrys(nodeId){
+			var nodeData = chart.get(nodeId);
+			var employeeName = nodeData["name"];
+			$("#myModal5").modal();
+			$(".modal-title").html("เพิ่มข้อมูลภรรยาของ : "+employeeName);
+			$("#hiddenwife").val(nodeData["id"]);
+			$('#myModal1').on('hidden.bs.modal', function (e) {
 						//console.log(dataPoints);
 						sessionStorage.setItem("reloading", "true");
 						sessionStorage.setItem("urlreload",'orgchart.php');
 						document.location.reload();
-						//dashboard2(dataPoints);
 			});
-			
-		}
-		function marrys(nodeId){
-			$("#myModal1").modal(); 
 		}
 		function babys(nodeId){
 			$("#myModal1").modal(); 
@@ -262,9 +323,13 @@ function changpage(target,Url,txt){
 	$.ajax({
 			url: Url,
 			type: "POST",
+			beforeSend: function(){
+				showanimation(1);
+			},
 			success: function(result)
 			{
 				//console.log(result);
+				showanimation(2);
 				$("#content").html(result);
 				$("h2").text(textshow);				
 				$(".hero-area").css("display","none");
@@ -301,18 +366,6 @@ function chartorg(txt){
 					$(".top-features-area").css("display","none");
 					$(".breadcumb-area").css("display","block");
 	
-	
-	//$.getJSON("getdatatojsons.php", addData2);	
-	
-	/*var dataPoints2 = [
-						{ id: 1, name: "Denny Curtis", title: "CEO", img: "https://balkangraph.com/js/img/2.jpg" },
-						{ id: 2, pid: 1, name: "Ashley Barnett", title: "Sales Manager", img: "https://balkangraph.com/js/img/3.jpg" },
-						{ id: 3, pid: 1, name: "Caden Ellison", title: "Dev Manager", img: "https://balkangraph.com/js/img/4.jpg" },
-						{ id: 4, pid: 2, name: "Elliot Patel", title: "Sales", img: "https://balkangraph.com/js/img/5.jpg" },
-						{ id: 5, pid: 2, name: "Lynn Hussain", title: "Sales", img: "https://balkangraph.com/js/img/6.jpg" },
-						{ id: 6, pid: 3, name: "Tanner May", title: "Developer", img: "https://balkangraph.com/js/img/7.jpg" },
-						{ id: 7, pid: 3, name: "Fran Parsons", title: "Developer", img: "https://balkangraph.com/js/img/8.jpg" }
-					 ];*/
     var chart = new OrgChart(document.getElementById("tree"), {
         template: "derek",
         enableDragDrop: true,
@@ -335,15 +388,7 @@ function chartorg(txt){
             img_0: "img",
             field_number_children: "field_number_children"
         },
-        /*nodes: [
-            { id: 1, name: "Denny Curtis", title: "CEO", img: "https://balkangraph.com/js/img/2.jpg" },
-            { id: 2, pid: 1, name: "Ashley Barnett", title: "Sales Manager", img: "https://balkangraph.com/js/img/3.jpg" },
-            { id: 3, pid: 1, name: "Caden Ellison", title: "Dev Manager", img: "https://balkangraph.com/js/img/4.jpg" },
-            { id: 4, pid: 2, name: "Elliot Patel", title: "Sales", img: "https://balkangraph.com/js/img/5.jpg" },
-            { id: 5, pid: 2, name: "Lynn Hussain", title: "Sales", img: "https://balkangraph.com/js/img/6.jpg" },
-            { id: 6, pid: 3, name: "Tanner May", title: "Developer", img: "https://balkangraph.com/js/img/7.jpg" },
-            { id: 7, pid: 3, name: "Fran Parsons", title: "Developer", img: "https://balkangraph.com/js/img/8.jpg" }
-        ]*/
+        
 		nodes: dataPoints2
     });
 	

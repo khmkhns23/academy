@@ -14,23 +14,57 @@
 
       <!-- Modal Header -->
       <div class="modal-header">
-        <h4 class="modal-title">Modal Heading</h4>
+        <h4 class="modal-title">รายละเอียด</h4>
         <button type="button" class="close" data-dismiss="modal">&times;</button>
       </div>
 
       <!-- Modal body -->
       <div class="modal-body">
-      
-		  <form action="/action_page.php">
-			<p>Custom file:</p>
-			<div class="custom-file mb-3">
-			  <input type="file" class="custom-file-input" id="customFile" name="filename">
-			  <label class="custom-file-label" for="customFile">Choose file</label>
+
+		<div class="container">
+		  
+		  <!-- Left-aligned media object -->
+		  <div class="media">
+			<div class="media-left">
+			  <img src="img/img_avatar1.png" class="media-object" style="width:60px" id="imgsp">
 			</div>
-			<div class="mt-3">
-			  <button type="submit" class="btn btn-primary">Submit</button>
+			<div class="media-body">
+			  <h4 class="media-heading" id="thfullname"></h4>
+			  <div id="tholdlastnames"></div>
+				<div id="enfullname"></div>
+				<div id="nicnamep"></div>
+				<div id="idfatherp"></div>
+				<div id="idmotherp"></div>
+				<div id="idhusbandp"></div>
+				<div id="tagsp"></div>
+				<div id="sexp"></div>
+				<div id="birthdayp"></div>
+				<div id="placeofbirthp"></div>
+				<div id="nationalityp"></div>
+				
 			</div>
-		  </form>
+		  </div>
+		  <hr>
+		  <!-- Right-aligned media object -->
+		  <div class="media">
+			<div class="media-body">
+			  <div id="addressp"></div>
+			  <div id="provincep"></div>
+			  <div id="countryp"></div>
+			  <div id="telephonep"></div>
+			  <div id="emailp"></div>
+				<div id="lineidp"></div>
+				<div id="otherid1p"></div>
+				<div id="ortherid2p"></div>
+				<div id="deathdayp"></div>
+				<div id="introducep"></div>
+				<div id="numsgenp"></div>
+			</div>
+			<div class="media-right">
+			  <img  class="media-object" style="width:60px" id="imgsp2">
+			</div>
+		  </div>
+		</div>
 
       </div>
 

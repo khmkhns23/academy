@@ -87,8 +87,29 @@ $i =0;
 $GLOBALS['conn']->close();  
 }
 function changpwd($argpwd,$argnew1,$argnew2,$idnode){
-	$return = "$argpwd,$argnew1,$argnew2,$idnode";
-	return $return;
+	$sql = "SELECT ID FROM tableuserfamily WHERE ID = $idnode AND PwdUser = '".md5($argpwd)."'";
+	$result = $GLOBALS['conn']->query($sql);
+	if($result->num_rows <> 0){
+		$msg = "";
+		$pwd1 = filter_var($argnew1, FILTER_SANITIZE_STRING);
+		$pwd2 = filter_var($argnew2, FILTER_SANITIZE_STRING);
+		if($pwd1 !== $pwd2){
+			$msg .= "รหัสผ่านใหม่ไม่เหมือนกัน<br>";
+		}else{
+			$pwdgen = md5($pwd1);
+			$sqlchang = "UPDATE tableuserfamily SET PwdUser = '$pwdgen' WHERE ID = $idnode";
+			$resultchang = $GLOBALS['conn']->query($sqlchang);
+			if($resultchang){
+				$msg .= "เปลี่ยนรหัสผ่านเรียบร้อย";
+			}else{
+				$msg .="เกิดข้อผิดพลาดในการเปลี่ยนรหัสผ่าน";
+			}
+		}
+	}else{
+		$msg = "คุณใส่รหัสเดิมไม่ถูกต้อง";
+	}
+	//return $sql;
+	return $msg;
 }
 
 function updateprofile($postrec){
@@ -117,7 +138,77 @@ function updateprofile($postrec){
 	return $rowcount;
 }
 
-
+function addwifedata($getaddwife){
+	$arr 	= array();
+	$i=0;
+	$msg = "";
+	foreach ($getaddwife as $param_name => $param_val) {
+				$msg.= "Param: $param_name; Value: $param_val<br />\n";
+			//$arr[$i] = ($param_val == null)?"-":$param_val;
+				$para[$i] = filter_var($param_val, FILTER_SANITIZE_STRING);
+		$i++;
+	}
+	$tags = gettags($para[0]);
+	$sqlinsertwife = "INSERT INTO tableuserfamily (THFirstName,THLastName,THOldLastName,ENFirstName,ENLastName,NicName,IDhusBand,tags,Sex,img) VALUES ('$para[1]','$para[2]','$para[3]','$para[4]','$para[5]','$para[6]','$para[0]','$tags','F','img/upload/avatar.png')";
+	$resultmarry = $GLOBALS['conn']->query($sqlinsertwife);
+		if($resultmarry){
+			$return = "เพิ่มข้อมูลภรรยาเรียบร้อย";
+		}else{
+			$return = "ไม่สามารถเพิ่มข้อมูลภรรยาได้";
+		}
+	return $return;
+}
+function gettags($idhusband){
+	$sql = "SELECT tags FROM tableuserfamily WHERE ID = '$idhusband' ";
+	$resulthus = $GLOBALS['conn']->query($sql);
+	//$resulthuss = $resulthus->num_rows; 
+	$rep = "";
+	$resultttt = $resulthus->fetch_array();
+	if($resultttt[0] == "-"){
+		$sql = "SELECT MAX(tags) FROM tableuserfamily";
+		$results = $GLOBALS['conn']->query($sql);
+		$result = $results->fetch_array();
+		$rep = intval(str_replace("f","",$result[0]));
+		$tags = "f".($rep+1);
+		$sqlupdatehus = "UPDATE tableuserfamily SET tags = '$tags' WHERE ID = '$idhusband'";
+		$resulthus = $GLOBALS['conn']->query($sqlupdatehus);
+	}else{
+		$tags = $resultttt[0];
+	}
+	return $tags;
+}
+function listcontent(){
+	$sql = "SELECT * FROM tablecontent";
+	$result = $GLOBALS['conn']->query($sql);
+	$arr = [];
+	$i = 0;
+	while($data = $result->fetch_assoc() ){
+		$arr[$i] = array(
+				'id' => $data['ID'],
+				'img1' => $data['img1'],
+				'img2' => $data['img2'],
+				'img3' => $data['img3'],
+				'title' => $data['title'],
+				'subtitle' => $data['subtitle'],
+				'content' => $data['content'],
+				'creat_time' => $data['creat_time'],
+				'update_time' => $data['update_time'],
+				'creat_by' => $data['creat_by']
+			);
+		$i++;
+	}
+	return $arr;
+}
+function datacontent($idcontent){
+	$sql = "SELECT * FROM tablecontent WHERE ID='$idcontent'";
+	$result = $GLOBALS['conn']->query($sql);
+	$data = $result->fetch_assoc();
+	
+	$arr = array('id'=>$data['ID'],'img1'=>$data['img1'],'img2'=>$data['img2'],'img3'=>$data['img3'],'title'=>$data['title'],'subtitle'=>$data['subtitle'],'content'=>$data['content'],'creat_time'=>$data['creat_time'],'update_time'=>$data['update_time'],'creat_by'=>$data['creat_by']);
+	
+	return $arr;
+	
+}
 
 
 
