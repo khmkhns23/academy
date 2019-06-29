@@ -3,7 +3,7 @@ include "include/connect.php";
 include "include/functions.php";
 //$arr = dashboard();
 $arr = dashboard($_GET['id']);
-//print_r($arr['ID']);
+//print_r($arr);
 /*
 $array = array();
 
@@ -22,6 +22,6 @@ foreach($arr AS $key => $values){
 }*/
 
 $out = array_values($arr);
-echo json_encode($out);
-
+//echo json_encode($out);
+echo json_encode($arr);
 ?>

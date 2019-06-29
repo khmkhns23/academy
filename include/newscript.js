@@ -169,28 +169,66 @@ function dashboard1() {
 			});
 		}
 		function profiless(nodeId){
-			
-			/*$.getJSON("getdatatojsons.php?id="+nodeId+"&ran="+randoms, addDataprofile);
-			var tempparray;
-			console.log(dataprofile.length);
-			//var res = dataprofile.split(",");
-			for(var i =0;i<dataprofile.length;i++){
-				tempparray = dataprofile[i];
-				console.log(tempparray);
-			}*/
-			$.getJSON("getdatatojsons.php?id="+nodeId+"&ran="+randoms, function (data) {
-				  console.log(data);
-			 });
-			console.log(dataprofile.length);
-			
 			var nodeData = chart.get(nodeId);
             var employeeName = nodeData["name"];
 			var img = nodeData["img"];
 			$("#myModal2").modal();
 			$("#imgs").attr("src",img);
 			$(".modal-title").html("แก้ไขข้อมูลส่วนตัว : "+employeeName);
-			$("#thfirstname").val(employeeName);
-			$("#thlastname").val(nodeData["title"]);
+			
+				$.ajax({
+				url: "getdatatojsons.php?id="+nodeId,
+				type: "POST",
+				success: function(result)
+					{
+						var myObj = JSON.parse(result);
+						//console.log(myObj);
+						$("#hidenid").val(myObj[0].ID);
+						$("#thfirstname").val(myObj[1].THFirstName);
+						$("#thlastname").val(myObj[2].THLastName);
+						
+						$("#tholdlastname").val(myObj[3].THOldLastName);
+						$("#enfirstname").val(myObj[4].ENFirstName);
+						
+						$("#enlastname").val(myObj[5].ENLastName);
+						$("#nicname").val(myObj[6].NicName);
+						
+						$("#idfather").val(myObj[7].IDfather);
+						$("#idmother").val(myObj[8].IDmother);
+						
+						$("#idhusband").val(myObj[9].IDhusBand);
+						$("#tags").val(myObj[10].tags);
+						
+						$("#sex").val(myObj[11].Sex);
+						$("#birthday").val(myObj[12].Birthday);
+						
+						$("#placeofbirth").val(myObj[13].PlaceOfBirth);
+						$("#nationality").val(myObj[14].Nationality);
+						
+						$("#address").val(myObj[15].Address);
+						$("#province").val(myObj[16].Province);
+						
+						$("#country").val(myObj[17].Country);
+						$("#telephone").val(myObj[18].Telephone);
+						
+						$("#email").val(myObj[19].Email);
+						$("#lineid").val(myObj[20].LineID);
+						
+					//	$("#tholdlastname").val(myObj[21].img);
+						$("#otherid1").val(myObj[22].OtherID1);
+						
+						$("#ortherid2").val(myObj[23].OrtherID2);
+						$("#deathday").val(myObj[24].Deathday);
+						
+						$("#introduce").text(myObj[25].Introduce);
+						$("#numsgen").val(myObj[26].NumsGEN);
+						
+						
+					}
+				});
+			
+			
+			
 			
 		}
 		function changpasswdss(nodeId){
@@ -311,7 +349,16 @@ function chartorg(txt){
 	
 	
 }
-
+function showdialog(rx){
+	var txt ='<div class="modal fade" id="dialog" role="dialog">';
+    	txt +='<div class="modal-dialog"><div class="modal-content">';
+        txt +='<div class="modal-header"><h4 class="modal-title">ข้อความแสดงการทำงาน</h4><button type="button" class="close" data-dismiss="modal">&times;</button></div>';
+        txt +='<div class="modal-body"><h3>'+ rx +'</h3></div>';
+        txt +='<div class="modal-footer"><button type="button" class="btn btn-success" data-dismiss="modal"><i class="glyphicon glyphicon-remove"></i> Close</button></div>';
+      	txt +='</div></div></div>';
+		$("#showcontentmodal").html(txt);
+		//location.reload();
+}
 function showanimation(ID){
 	switch(ID){
 		case 1 :

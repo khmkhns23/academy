@@ -74,8 +74,7 @@
 				success: function(response){
 					console.log(response);
 					if(response != 0){
-						echo 
-						"1";
+						console.log('ok');
 					}else{
 						alert('file not uploaded');
 					}
