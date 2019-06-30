@@ -60,10 +60,10 @@
                                     <li><a href="#">รายงาน</a>
 										<ul class="dropdown">
 											<li><a href="#" onClick="changpage(content,'administrator/managecontent.php',this)">Admin จัดการเนื้อหาภายใน</a></li>
-                                            <li><a href="#">Admin จัดการหน้าเพจ</a></li>
+                                            <li><a href="#" onClick="changpage(content,'administrator/managegensadmin.php',this)">Admin จัดการ คณก.รุ่น</a></li>
                                             <li><a href="#">Admin จัดการแผนผัง</a></li>
                                             <li><a href="#">Admin จัดการผู้ใช้งาน</a></li>
-
+											<li><a href="#" onClick="changpage(content,'managergens2.php',this)">คณะผู้บริหาร</a></li>
                                         </ul>
 									</li>
                                     <li><a href="#" onClick="changpage(content,'managergens.php',this)">คณะผู้บริหาร</a></li>

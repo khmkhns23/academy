@@ -76,6 +76,8 @@ function dashboard1() {
 	var childden = '<svg class="svg-icon" width="24" height="24" viewBox="0 0 20 20"><path d="M15.573,11.624c0.568-0.478,0.947-1.219,0.947-2.019c0-1.37-1.108-2.569-2.371-2.569s-2.371,1.2-2.371,2.569c0,0.8,0.379,1.542,0.946,2.019c-0.253,0.089-0.496,0.2-0.728,0.332c-0.743-0.898-1.745-1.573-2.891-1.911c0.877-0.61,1.486-1.666,1.486-2.812c0-1.79-1.479-3.359-3.162-3.359S4.269,5.443,4.269,7.233c0,1.146,0.608,2.202,1.486,2.812c-2.454,0.725-4.252,2.998-4.252,5.685c0,0.218,0.178,0.396,0.395,0.396h16.203c0.218,0,0.396-0.178,0.396-0.396C18.497,13.831,17.273,12.216,15.573,11.624 M12.568,9.605c0-0.822,0.689-1.779,1.581-1.779s1.58,0.957,1.58,1.779s-0.688,1.779-1.58,1.779S12.568,10.427,12.568,9.605 M5.06,7.233c0-1.213,1.014-2.569,2.371-2.569c1.358,0,2.371,1.355,2.371,2.569S8.789,9.802,7.431,9.802C6.073,9.802,5.06,8.447,5.06,7.233 M2.309,15.335c0.202-2.649,2.423-4.742,5.122-4.742s4.921,2.093,5.122,4.742H2.309z M13.346,15.335c-0.067-0.997-0.382-1.928-0.882-2.732c0.502-0.271,1.075-0.429,1.686-0.429c1.828,0,3.338,1.385,3.535,3.161H13.346z"></path></svg>';
 	
 	var deletes = '<svg class="svg-icon" width="24" height="24" viewBox="0 0 20 20"><path fill="none" d="M16.588,3.411h-4.466c0.042-0.116,0.074-0.236,0.074-0.366c0-0.606-0.492-1.098-1.099-1.098H8.901c-0.607,0-1.098,0.492-1.098,1.098c0,0.13,0.033,0.25,0.074,0.366H3.41c-0.606,0-1.098,0.492-1.098,1.098c0,0.607,0.492,1.098,1.098,1.098h0.366V16.59c0,0.808,0.655,1.464,1.464,1.464h9.517c0.809,0,1.466-0.656,1.466-1.464V5.607h0.364c0.607,0,1.1-0.491,1.1-1.098C17.688,3.903,17.195,3.411,16.588,3.411z M8.901,2.679h2.196c0.202,0,0.366,0.164,0.366,0.366S11.3,3.411,11.098,3.411H8.901c-0.203,0-0.366-0.164-0.366-0.366S8.699,2.679,8.901,2.679z M15.491,16.59c0,0.405-0.329,0.731-0.733,0.731H5.241c-0.404,0-0.732-0.326-0.732-0.731V5.607h10.983V16.59z M16.588,4.875H3.41c-0.203,0-0.366-0.164-0.366-0.366S3.208,4.143,3.41,4.143h13.178c0.202,0,0.367,0.164,0.367,0.366S16.79,4.875,16.588,4.875zM6.705,14.027h6.589c0.202,0,0.366-0.164,0.366-0.366s-0.164-0.367-0.366-0.367H6.705c-0.203,0-0.366,0.165-0.366,0.367S6.502,14.027,6.705,14.027z M6.705,11.83h6.589c0.202,0,0.366-0.164,0.366-0.365c0-0.203-0.164-0.367-0.366-0.367H6.705c-0.203,0-0.366,0.164-0.366,0.367C6.339,11.666,6.502,11.83,6.705,11.83z M6.705,9.634h6.589c0.202,0,0.366-0.164,0.366-0.366c0-0.202-0.164-0.366-0.366-0.366H6.705c-0.203,0-0.366,0.164-0.366,0.366C6.339,9.47,6.502,9.634,6.705,9.634z"></path></svg>';
+	
+	var upvideo = '<svg class="svg-icon" width="24" height="24" viewBox="0 0 20 20"><path d="M18.175,4.142H1.951C1.703,4.142,1.5,4.344,1.5,4.592v10.816c0,0.247,0.203,0.45,0.451,0.45h16.224c0.247,0,0.45-0.203,0.45-0.45V4.592C18.625,4.344,18.422,4.142,18.175,4.142 M4.655,14.957H2.401v-1.803h2.253V14.957zM4.655,12.254H2.401v-1.803h2.253V12.254z M4.655,9.549H2.401V7.747h2.253V9.549z M4.655,6.846H2.401V5.043h2.253V6.846zM14.569,14.957H5.556V5.043h9.013V14.957z M17.724,14.957h-2.253v-1.803h2.253V14.957z M17.724,12.254h-2.253v-1.803h2.253V12.254zM17.724,9.549h-2.253V7.747h2.253V9.549z M17.724,6.846h-2.253V5.043h2.253V6.846z"></path></svg>';
 	//end webcall
 	
 	
@@ -137,23 +139,38 @@ function dashboard1() {
                     icon: childden,
                     onClick: babys
                 },
-				sendrequest: {
+				/*sendrequest: {
                     text: "เชื่อมต่อครอบครัว",
                     icon: webcallMeIcon,
                     onClick: changpasswdss
+                },*/
+				sendrequest: {
+                    text: "อัพโหลดวิดีโอ",
+                    icon: upvideo,
+                    onClick: uploadvideo
                 },
-				remove: {text:"ลบ"}
+				remove: {
+					text:"ลบ",
+					onClick: delpoint
+						}
             },
      
 		nodes: dataPoints
     });
 	
 	//function
-		 function callHandler(nodeId) {
+		 function uploadvideo(nodeId) {
             var nodeData = chart.get(nodeId);
             var employeeName = nodeData["name"];
-            window.open('https://webcall.me/' + employeeName, employeeName, 'width=340px, height=670px, top=50px, left=50px');
-			// console.log(nodeData["id"]);
+			$("#myModalvideo").modal(); 
+			$(".modal-title").html("อัพโหลดวิดีโอของ : "+employeeName);
+			$("#hiddeidvideo").val(nodeData["id"]);
+			$('#myModalvideo').on('hidden.bs.modal', function (e) {
+						//console.log(dataPoints);
+						sessionStorage.setItem("reloading", "true");
+						sessionStorage.setItem("urlreload",'orgchart.php');
+						document.location.reload();
+			});
         }
 		function uploadpicss(nodeId){
 			var nodeData = chart.get(nodeId);
@@ -312,7 +329,43 @@ function dashboard1() {
 			});
 		}
 		function babys(nodeId){
-			$("#myModal1").modal(); 
+			var nodeData = chart.get(nodeId);
+			$("#myModal6").modal(); 
+			$("#hiddenbaby").val(nodeData["id"]);
+			/*$('#myModal6').on('hidden.bs.modal', function (e) {
+						//console.log(dataPoints);
+						sessionStorage.setItem("reloading", "true");
+						sessionStorage.setItem("urlreload",'orgchart.php');
+						document.location.reload();
+			});*/
+		}
+		function delpoint(nodeId){
+			var nodeData = chart.get(nodeId);
+			var datas = "id="+nodeData["id"];
+			$.ajax({
+			url: "administrator/process.php?typeprocess=delpoint",
+			type: "POST",
+			data: datas,
+			beforeSend: function(){
+				showanimation(1);
+			},
+			success: function(result)
+			{
+				showanimation(2);
+				showdialog("ลบข้อมูลเรียบร้อย");
+				$('#dialog').modal('show');
+				$('#dialog').on('shown.bs.modal', function(){
+						$(this).find('button').focus();
+				});
+				$('#dialog').on('hidden.bs.modal', function () {
+						sessionStorage.setItem("reloading", "true");
+						sessionStorage.setItem("urlreload",'orgchart.php');
+						document.location.reload();
+				});	
+				
+						
+			}
+		});
 		}
 	//end function
 
@@ -342,13 +395,15 @@ function changpage(target,Url,txt){
 }
 function changpage2(target,Url,txt){
 //	var textshow = jQuery(txt).text();
-showanimation(2);
 //console.log("form changpage2");
 	$.ajax({
 			url: Url,
 			type: "POST",
+			beforeSend: function(){
+				showanimation(1);
+			},
 			success: function(result)
-			{
+			{	showanimation(2);
 				$("#content").html(result);
 				$("h2").text(txt);
 				$(".hero-area").css("display","none");

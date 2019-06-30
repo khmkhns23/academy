@@ -12,7 +12,16 @@ function updatepicuser($id,$pathimg){
 	return $rowcount;
 }
 
-
+function delpoint($postget){
+	$sql = "DELETE FROM tableuserfamily WHERE ID ='$postget'";
+	$results = $GLOBALS['conn']->query($sql);
+	if($results){
+		$rowcount = 1;
+	}else{
+		$rowcount = 0;
+	}
+	return $rowcount;
+}
 function dashboard2(){
 	
 	$sql = "SELECT * FROM tbfamiry LIMIT 0,25";
@@ -137,13 +146,70 @@ function updateprofile($postrec){
 	}
 	return $rowcount;
 }
+function updatemg($postmg){
+	$arr 	= array();
+	$i=0;
+	$msg = "";
+	foreach ($postmg as $param_name => $param_val) {
+				//$msg.= "Param: $param_name; Value: $param_val<br />\n";
+			$arr[$i] = ($param_val == null)?"-":$param_val;
+		$i++;
+		}
+	
+	$sql = "UPDATE tablemanagerofgens SET title = '$arr[1]',detail='$arr[2]',numsgen='$arr[3]',";
+	$sql .= "update_at= NOW()";
+	$sql .=" WHERE ID = '$arr[0]'";
+	
+	$results = $GLOBALS['conn']->query($sql);
+	if($results){
+		$rowcount = 1;
+	}else{
+		$rowcount = 0;
+	}
+	return $rowcount;
+	
+	
+}
+function updatecontent($postct){
+	$arr 	= array();
+	$i=0;
+	$msg = "";
+	foreach ($postct as $param_name => $param_val) {
+			$arr[$i] = ($param_val == null)?"-":$param_val;
+		$i++;
+		}
+	$sqlupdatect = "UPDATE tablecontent SET title = '$arr[1]',subtitle = '$arr[2]',content = '$arr[3]',update_time = NOW() WHERE ID = '$arr[0]'";
+	$results = $GLOBALS['conn']->query($sqlupdatect);
+	if($results){
+		$rowcount = 1;
+	}else{
+		$rowcount = 0;
+	}
+	return $rowcount;
+	
+}
+function addbabydata($getdata){
+	$i=0;
+	foreach ($getdata as $param_name => $param_val) {
+			$para[$i] = filter_var($param_val, FILTER_SANITIZE_STRING);
+		$i++;
+	}
 
+	$sqlinsertbaby = "INSERT INTO tableuserfamily (THFirstName,THLastName,THOldLastName,ENFirstName,ENLastName,NicName,IDfather,img) VALUES ('$para[1]','$para[2]','$para[3]','$para[4]','$para[5]','$para[6]','$para[0]','img/upload/avatar.png')";
+	$resultbaby = $GLOBALS['conn']->query($sqlinsertbaby);
+		if($resultbaby){
+			$return = "เพิ่มข้อมูลภรรยาเรียบร้อย";
+		}else{
+			$return = "ไม่สามารถเพิ่มข้อมูลภรรยาได้";
+		}
+	return $return;
+}
 function addwifedata($getaddwife){
 	$arr 	= array();
 	$i=0;
 	$msg = "";
 	foreach ($getaddwife as $param_name => $param_val) {
-				$msg.= "Param: $param_name; Value: $param_val<br />\n";
+			//	$msg.= "Param: $param_name; Value: $param_val<br />\n";
 			//$arr[$i] = ($param_val == null)?"-":$param_val;
 				$para[$i] = filter_var($param_val, FILTER_SANITIZE_STRING);
 		$i++;
@@ -155,6 +221,21 @@ function addwifedata($getaddwife){
 			$return = "เพิ่มข้อมูลภรรยาเรียบร้อย";
 		}else{
 			$return = "ไม่สามารถเพิ่มข้อมูลภรรยาได้";
+		}
+	return $return;
+}
+function addmanager($gatdatamg){
+	$i =0;
+	foreach($gatdatamg as $param_name => $param_val ){
+		$para[$i] = filter_var($param_val, FILTER_SANITIZE_STRING);
+		$i++;
+	}
+	$sql = "INSERT INTO tablemanagerofgens (title,detail,img,numsgen,creat_at) VALUES ('$para[0]','$para[1]','$para[3]','$para[2]',NOW())";
+	$result = $GLOBALS['conn']->query($sql);
+		if($result)	{
+			$return = "เพิ่มข้อมูลเรียบร้อย";
+		}else{
+			$return = "ไม่สามารถเพิ่มข้อมูลได้";
 		}
 	return $return;
 }
@@ -209,8 +290,73 @@ function datacontent($idcontent){
 	return $arr;
 	
 }
+function listmanagergens(){
+	$sql = "SELECT * FROM tablemanagerofgens";
+	$result = $GLOBALS['conn']->query($sql);
+	$arr = [];
+	$i = 0;
+	while($data = $result->fetch_assoc() ){
+		$arr[$i] = array(
+				'id' => $data['ID'],
+				'title' => $data['title'],
+				'detail' => $data['detail'],
+				'img' => $data['img'],
+				'numsgen' => $data['numsgen'],
+				'creat_time' => $data['creat_at'],
+				'update_time' => $data['update_at'],
+				'creat_by' => $data['creat_by']
+			);
+		$i++;
+	}
+	return $arr;
+}
+function datamanager($idmanager){
+	$sql = "SELECT * FROM tablemanagerofgens WHERE ID='$idmanager'";
+	$result = $GLOBALS['conn']->query($sql);
+	$data = $result->fetch_assoc();
+	
+	$arr = array('id'=>$data['ID'],'img'=>$data['img'],'title'=>$data['title'],'detail'=>$data['detail'],'numsgen'=>$data['numsgen'],'creat_time'=>$data['creat_at'],'update_time'=>$data['update_at'],'creat_by'=>$data['creat_by']);
+	
+	return $arr;
+	
+}
+function datagensnum(){
+	$sqlcountgent = "SELECT MAX(numsgen) AS maxgen FROM tablemanagerofgens";
+	$result = $GLOBALS['conn']->query($sqlcountgent);
+	$countgens = $result->fetch_assoc();
+	$returns = $countgens['maxgen'];
+	
+	return $returns;
+	
+}
+function getdatabygens($idgens){
 
-
+		$sqlgetdata = "SELECT * FROM tablemanagerofgens WHERE numsgen = '$idgens'";
+		$result = $GLOBALS['conn']->query($sqlgetdata);
+		$i = 0;
+		while($data = $result->fetch_assoc() ){
+			$arr[$i][] = array(
+					'id' => $data['ID'],
+					'title' => $data['title'],
+					'detail' => $data['detail'],
+					'img' => $data['img'],
+					'numsgen' => $data['numsgen']
+				);
+		}
+	return $arr;
+}
+function updatepiccontent($id,$field,$pathimg){
+	$imgss = "img".$field;
+	
+	$sql = "UPDATE `tablecontent` SET $imgss = '$pathimg' WHERE ID = $id";
+	$results = $GLOBALS['conn']->query($sql);
+	if($results){
+		$rowcount = 1;
+	}else{
+		$rowcount = 0;
+	}
+	return $rowcount;
+}
 
 
 

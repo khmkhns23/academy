@@ -19,13 +19,32 @@
 			$return = updateprofile($_POST);
 			echo $return;
 			break;
-			
-			
+		case "delpoint"	:
+			$return = delpoint($_POST['id']);
+			echo($return);
+			break;
 		case "addwife" :
 			$return = addwifedata($_POST);
 			//echo $return;
 			print_r($return);
 			break;
+		case "updatecontent" :
+			$return = updatecontent($_POST);
+			echo($return);
+			break;
+		case "updatemanager" :
+			$return = updatemg($_POST);
+			echo($return);
+			break;
+		case "addmanager" :
+			$return = addmanager($_POST);
+			echo($return);
+			break;
+		case "addbaby" :
+			$return = addbabydata($_POST);
+			echo($return);
+			break;
+			
 			
 	}
 

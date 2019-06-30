@@ -38,7 +38,8 @@ $(document).ready(function() {
 		include "administrator/changpwds.php";
 		include "administrator/detail.php";
 		include "administrator/marrys.php";
-		//include "administrator/babys.php";
+		include "administrator/babys.php";
+		include "administrator/uploadsvideo.php";
 	?>
 </body>
 </html>

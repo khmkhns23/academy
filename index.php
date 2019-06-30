@@ -1,6 +1,8 @@
 <?php
 	include"include/connect.php";
 	include"include/functions.php";
+$timenow = date("Y-m-d H:i:s",time());
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -19,8 +21,10 @@
     <link rel="icon" href="img/core-img/favicon.ico">
 
     <!-- Core Stylesheet -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="style.css">
+<!--	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+-->    
+	
+	<link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="css/newcss.css">
 	<script src="js/jquery/jquery-2.2.4.min.js"></script>
 	<script>

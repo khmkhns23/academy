@@ -1,12 +1,19 @@
 <?php
 	include"../include/connect.php";
 	include"../include/functions.php";
-	$data = listcontent();
+	$data = listmanagergens();
 
 	//print_r($data);
 ?>
-
+<style>
+	table{
+		font-size: 16px;
+	}
+</style>
 <div class="container">
+	<div class="row"><div class="col-lg-10"></div>
+		<div class="col-lg-2"><input type="button" class="btn btn-primary" onClick="creatgens()" value="เพิ่ม คณก. รุ่น"></div>
+	</div>
   <h2>Table</h2>
   <p>The .table-responsive class creates a responsive table which will scroll horizontally on small devices (under 768px). When viewing on anything larger than 768px wide, there is no difference:</p>                                                                                      
   <div class="table-responsive">          
@@ -14,7 +21,8 @@
     <thead>
       <tr>
         <th>#</th>
-        <th>หัวข้อ</th>
+        <th>ชื่อ</th>
+		<th>คณก.รุ่นที่</th> 
         <th>วันที่สร้าง</th>
         <th>วันที่แก้ไข</th>
         <th>สร้างโดย</th>
@@ -25,11 +33,10 @@
 		$i = 1;
 		$msg = "";
 			foreach($data AS $key=>$value)	{
-				$msg .="<tr><td>$i</td><td><b onclick='showformedit($value[id])' class='pointer'>$value[title]</b></td>";
+				$msg .="<tr><td>$i</td><td><b onclick='showformeditmg($value[id])' class='pointer'>$value[title]</b></td><td>$value[numsgen]</td>";
 				$msg .="<td>$value[creat_time]</td><td>$value[update_time]</td><td>$value[creat_by]</td></tr>";
 				$i++;
 			}
-				$msg .="<tr><td>$i</td><td><b onclick='showformgens()' class='pointer'>จัดการเนื้อหา คณก.รุ่น</b></td><td>-</td><td>-</td><td>administrator</td></tr>";
 		echo ($msg);
        ?>
     </tbody>
@@ -37,11 +44,11 @@
   </div>
 </div>
 <script>
-	function showformedit(idedit){
+	function showformeditmg(idedit){
 		//console.log(idedit);
-		$("#Modalcontent").modal();
+		$("#Modalmanager").modal();
 		$.ajax({
-				url: "getdatatojsonscontent.php?id="+idedit,
+				url: "getdatatojsonsmanager.php?id="+idedit,
 				type: "POST",
 				beforeSend: function(){
 					showanimation(1);
@@ -51,13 +58,11 @@
 						showanimation(2);
 						var myObj = JSON.parse(result);
 						//console.log(myObj.id);
-						$("#subtitle").val(myObj.subtitle);
-						$("#hidenid").val(myObj.id);
-						$("#titlecontent").val(myObj.title);
-						$("#imgsct1").attr("src",myObj.img1);
-						$("#imgsct2").attr("src",myObj.img2);
-						$("#imgsct3").attr("src",myObj.img3);
-						$("#detailcontent").val(myObj.content);
+						$("#hidenidmg").val(myObj.id);
+						$("#titlemg").val(myObj.title);
+						$("#imgsmg").attr("src",myObj.img);
+						$("#numsgen").val(myObj.numsgen);
+						$("#detailmg").val(myObj.detail);
 						
 					}
 		});
@@ -65,9 +70,13 @@
 		
 		
 	}
+	function creatgens(){
+		$("#Modaladdmanager").modal();
+	}
 </script>
 <?php
- include "content.php";
+ include "contentmanager.php";
+include "addmanager.php";
 	
 ?>
 
