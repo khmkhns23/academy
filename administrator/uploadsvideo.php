@@ -86,7 +86,7 @@
 				},
 				success: function(response){
 					if(response != 0){
-						console.log(response);
+					//	console.log(response);
 						showanimation(2);
 						/*
 						showdialog("อัพโหลดข้อมูลเรียบร้อย");
