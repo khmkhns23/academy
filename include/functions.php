@@ -358,6 +358,29 @@ function updatepiccontent($id,$field,$pathimg){
 	return $rowcount;
 }
 
+function checklogin($usr,$pwd){
+	$pwdencode = md5($pwd);
+	$sql = "SELECT ID,THFirstName,THLastName,Telephone,Email,LineID,Typeuser FROM tableuserfamily WHERE Email = '$usr' AND PwdUser = '$pwdencode'";
+	$results = $GLOBALS['conn']->query($sql);
+	$data = $results->fetch_assoc();
+	if($results->num_rows > 0){
+		$rowcount = 1;
+			$_SESSION['sessuser'] = $data['Email'];
+			$_SESSION['sessid'] = $data['ID'];
+			$_SESSION['sessfirstname'] = $data['THFirstName'];
+			$_SESSION['sesslastname'] = $data['THLastName'];
+			$_SESSION['sesstelephone'] = $data['Telephone'];
+			$_SESSION['sesslineid'] = $data['LineID'];
+			$_SESSION['sesstypeuser'] = $data['Typeuser'];
+	}else{
+		$rowcount = 0;
+	}
+	//return $sql;
+	return $rowcount;
+}
+function logoutprocess(){
+	session_destroy();
+}
 
 
 

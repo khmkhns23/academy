@@ -1,4 +1,5 @@
 <?php
+session_start();
 header("Cache-Control: no-cache, must-revalidate"); header("Pragma: no-cache"); 
 ?>
 <!doctype html>
@@ -19,11 +20,23 @@ header("Cache-Control: no-cache, must-revalidate"); header("Pragma: no-cache");
 
 <script>
 $(document).ready(function() {
-	/*var randoms = Math.floor(Math.random() * 100);
-	var dataPoints = [];
-	$.getJSON("getdatatojson.php?ran="+randoms, addData);
-	console.log(dataPoints);*/
-	dashboard1();
+	//dashboard1();
+var variable = "<?php $sess = (isset($_SESSION['sesstypeuser'])?$_SESSION['sesstypeuser']:""); echo($sess);?>" ;
+
+	var variablejs = parseInt(variable);
+	switch(variablejs){
+		case 1 :
+			dashboard1();
+		break;
+		case 2 :
+			dashboard2();
+		break;
+		case 3 :
+			dashboard3();
+		break;	
+		default :
+			dashboard3();
+	}
 		
 });
 </script>

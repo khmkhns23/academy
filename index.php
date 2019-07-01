@@ -30,7 +30,7 @@ $timenow = date("Y-m-d H:i:s",time());
 	<script>
 	$(document).ready(function(){
 	  $("#myBtn").click(function(){
-		$("#myModal").modal(); 
+		$("#myModallogin").modal(); 
 	  });
 		var reloading = sessionStorage.getItem("reloading");
 		var urlreload = sessionStorage.getItem("urlreload");
@@ -131,7 +131,7 @@ $timenow = date("Y-m-d H:i:s",time());
   	
 	
   <!-- Modal -->
-  <div class="modal fade" id="myModal" role="dialog">
+  <div class="modal fade" id="myModallogin" role="dialog">
     <div class="modal-dialog">
     
       <!-- Modal content-->
@@ -142,19 +142,17 @@ $timenow = date("Y-m-d H:i:s",time());
           
         </div>
         <div class="modal-body" style="padding:40px 50px;">
-          <form role="form">
+          <form role="form" action="administrator/loginprocess.php" method="post" id="formlogin">
             <div class="form-group">
-              <label for="usrname"><span class="glyphicon glyphicon-user"></span> Username</label>
+              <label for="usrname"><span class="glyphicon glyphicon-user" value=""></span> Username</label>
               <input type="text" class="form-control" id="usrname" placeholder="Enter email">
             </div>
             <div class="form-group">
               <label for="psw"><span class="glyphicon glyphicon-eye-open"></span> Password</label>
-              <input type="text" class="form-control" id="psw" placeholder="Enter password">
+              <input type="password" class="form-control" id="psw" placeholder="Enter password">
             </div>
-            <div class="checkbox">
-              <label><input type="checkbox" value="" checked>Remember me</label>
-            </div>
-              <button type="submit" class="btn btn-success btn-block"><span class="glyphicon glyphicon-off"></span> Login</button>
+            
+              <input type="button" class="btn btn-success btn-block" value="Login" onClick="validatelogin()">
           </form>
         </div>
         <div class="modal-footer">
@@ -186,10 +184,88 @@ $timenow = date("Y-m-d H:i:s",time());
     <!-- Active js -->
     <script src="js/active.js"></script>
 	<script src="include/newscript.js"></script>
-	
-	
+	<script src="include/newscript2.js"></script>
+	<script src="include/newscript3.js"></script>
 	<script src="https://balkangraph.com/js/latest/OrgChart.js"></script>
-	
+	<script>
+		function strip_html_tags(str)
+			{
+			   if ((str===null) || (str==='')){
+				   return false;
+			   }else{
+				    str = str.toString();
+			  		return str.replace(/<[^>]*>/g, ''); 
+			   }
+			}
+		function validatelogin(){
+			//
+			//var dataln = $("#formlogin").serialize();
+			var usernames = $("#usrname").val();
+			var passwsords = $("#psw").val();
+			//console.log(usernames+passwsords)
+			 username = strip_html_tags(usernames);
+			 password = strip_html_tags(passwsords);
+			
+			checklogin(username,password);
+			
+		}
+		function checklogin(usr,pwd){
+			var url = $("#formlogin").attr("action");
+			var datamg = "usr="+usr+"&pwd="+pwd;
+			$.ajax({
+			url: url,
+			type: "POST",
+			data: datamg,
+			beforeSend: function(){
+				showanimation(1);
+			},
+			success: function(result)
+			{
+				//console.log(result);
+				showanimation(2);
+				if(result == 1){
+					showdialog("ยินดีต้อนรับเข้าสู่ระบบ");
+						$('#dialog').modal('show');
+						$('#dialog').on('shown.bs.modal', function(){
+								$(this).find('button').focus();
+						});
+						$('#dialog').on('hidden.bs.modal', function () {
+								$('#myModallogin').modal('hide');
+								document.location.reload();
+						});
+				}else{
+					showdialog("รหัสผ่านไม่ถูกต้อง");
+						$('#dialog').modal('show');
+						$('#dialog').on('shown.bs.modal', function(){
+								$(this).find('button').focus();
+						});
+				}
+				
+			}	
+		});
+		}
+		function logoutprocess(){
+			$.ajax({
+			url: "administrator/logout.php",
+			type: "POST",
+			beforeSend: function(){
+				showanimation(1);
+			},
+			success: function(result)
+			{
+				//console.log(result);
+				showanimation(2);
+					showdialog("ออกจากระบบเรียบร้อยแล้ว");
+						$('#dialog').modal('show');
+						$('#dialog').on('shown.bs.modal', function(){
+								$(this).find('button').focus();
+						});
+					document.location.reload();
+			}	
+		});
+		}
+		
+	</script>
 </body>
 
 </html>

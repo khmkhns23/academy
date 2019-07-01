@@ -1,4 +1,4 @@
-function dashboard2() {
+function dashboard3() {
 	//var chk = isArray(dataPoints);
 	//console.log(dataPoints);
 	//$("#tree").html("This is Content");
@@ -71,34 +71,8 @@ function dashboard2() {
                 },
 				details: { text: "รายละเอียด",
 						   onClick: details
-						 },
-            	//edit: {text:"<h5 onclick = alert('ok');>Edit</h5>"},
-            	//add: {text:"Add"},
+						 }
             	
-				getmarry: {
-                    text: "แต่งงาน",
-                    icon: getmarrys2,
-                    onClick: marrys
-                },
-				havechild: {
-                    text: "เพิ่มบุตร",
-                    icon: childden,
-                    onClick: babys
-                },
-				/*sendrequest: {
-                    text: "เชื่อมต่อครอบครัว",
-                    icon: webcallMeIcon,
-                    onClick: changpasswdss
-                },*/
-				sendrequest: {
-                    text: "อัพโหลดวิดีโอ",
-                    icon: upvideo,
-                    onClick: uploadvideo
-                },
-				remove: {
-					text:"ลบ",
-					onClick: delpoint
-						}
             },
      
 		nodes: dataPoints
@@ -106,21 +80,7 @@ function dashboard2() {
 	
 		
 	//function
-function uploadvideo(nodeId) {
-            var nodeData = chart.get(nodeId);
-            var employeeName = nodeData["name"];
-			$("#myModalvideo").modal(); 
-			$(".modal-title").html("อัพโหลดวิดีโอของ : "+employeeName);
-			$("#hiddeidvideo").val(nodeData["id"]);
-		    $("#imgvd").css("display","none");
-			/*$('#myModalvideo').on('hidden.bs.modal', function (e) {
-						//console.log(dataPoints);
-						sessionStorage.setItem("reloading", "true");
-						sessionStorage.setItem("urlreload",'orgchart.php');
-						document.location.reload();
-			});*/
-			 //console.log(nodeData["id"]);
-        }
+
 function uploadpicss(nodeId){
 			var nodeData = chart.get(nodeId);
             var employeeName = nodeData["name"];
@@ -142,26 +102,7 @@ function changpasswdss(nodeId){
 			$("#hiddeid").val(nodeData["id"]);
 			
 		}
-function marrys(nodeId){
-			var nodeData = chart.get(nodeId);
-			var employeeName = nodeData["name"];
-			$("#myModal5").modal();
-			$(".modal-title").html("เพิ่มข้อมูลภรรยาของ : "+employeeName);
-			$("#hiddenwife").val(nodeData["id"]);
-			$('#myModal1').on('hidden.bs.modal', function (e) {
-						//console.log(dataPoints);
-						sessionStorage.setItem("reloading", "true");
-						sessionStorage.setItem("urlreload",'orgchart.php');
-						document.location.reload();
-			});
-	}
-function babys(nodeId){
-			var nodeData = chart.get(nodeId);
-			var employeeName = nodeData["name"];
-			$("#myModal6").modal(); 
-			$(".modal-title").html("เพิ่มข้อมูลบุตรของ : "+employeeName);
-			$("#hiddenbaby").val(nodeData["id"]);
-	}
+
 	//end function
 
 }

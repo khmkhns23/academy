@@ -158,8 +158,9 @@ function dashboard1() {
 		nodes: dataPoints
     });
 	
+		
 	//function
-		 function uploadvideo(nodeId) {
+function uploadvideo(nodeId) {
             var nodeData = chart.get(nodeId);
             var employeeName = nodeData["name"];
 			$("#myModalvideo").modal(); 
@@ -172,8 +173,9 @@ function dashboard1() {
 						sessionStorage.setItem("urlreload",'orgchart.php');
 						document.location.reload();
 			});*/
+			 //console.log(nodeData["id"]);
         }
-		function uploadpicss(nodeId){
+function uploadpicss(nodeId){
 			var nodeData = chart.get(nodeId);
             var employeeName = nodeData["name"];
 			$("#myModal1").modal(); 
@@ -186,70 +188,7 @@ function dashboard1() {
 						document.location.reload();
 			});
 		}
-		function profiless(nodeId){
-			var nodeData = chart.get(nodeId);
-            var employeeName = nodeData["name"];
-			var img = nodeData["img"];
-			$("#myModal2").modal();
-			$("#imgs").attr("src",img);
-			$(".modal-title").html("แก้ไขข้อมูลส่วนตัว : "+employeeName);
-			
-				$.ajax({
-				url: "getdatatojsons.php?id="+nodeId,
-				type: "POST",
-				success: function(result)
-					{
-						var myObj = JSON.parse(result);
-						//console.log(myObj);
-						$("#hidenid").val(myObj[0].ID);
-						$("#thfirstname").val(myObj[1].THFirstName);
-						$("#thlastname").val(myObj[2].THLastName);
-						
-						$("#tholdlastname").val(myObj[3].THOldLastName);
-						$("#enfirstname").val(myObj[4].ENFirstName);
-						
-						$("#enlastname").val(myObj[5].ENLastName);
-						$("#nicname").val(myObj[6].NicName);
-						
-						$("#idfather").val(myObj[7].IDfather);
-						$("#idmother").val(myObj[8].IDmother);
-						
-						$("#idhusband").val(myObj[9].IDhusBand);
-						$("#tags").val(myObj[10].tags);
-						
-						$("#sex").val(myObj[11].Sex);
-						$("#birthday").val(myObj[12].Birthday);
-						
-						$("#placeofbirth").val(myObj[13].PlaceOfBirth);
-						$("#nationality").val(myObj[14].Nationality);
-						
-						$("#address").val(myObj[15].Address);
-						$("#province").val(myObj[16].Province);
-						
-						$("#country").val(myObj[17].Country);
-						$("#telephone").val(myObj[18].Telephone);
-						
-						$("#email").val(myObj[19].Email);
-						$("#lineid").val(myObj[20].LineID);
-						
-					//	$("#tholdlastname").val(myObj[21].img);
-						$("#otherid1").val(myObj[22].OtherID1);
-						
-						$("#ortherid2").val(myObj[23].OrtherID2);
-						$("#deathday").val(myObj[24].Deathday);
-						
-						$("#introduce").text(myObj[25].Introduce);
-						$("#numsgen").val(myObj[26].NumsGEN);
-						
-						
-					}
-				});
-			
-			
-			
-			
-		}
-		function changpasswdss(nodeId){
+function changpasswdss(nodeId){
 			var nodeData = chart.get(nodeId);
             var employeeName = nodeData["name"];
 			$("#myModal3").modal(); 
@@ -257,66 +196,7 @@ function dashboard1() {
 			$("#hiddeid").val(nodeData["id"]);
 			
 		}
-		function details(nodeId){
-			$("#myModal4").modal();
-			$.ajax({
-				url: "getdatatojsons.php?id="+nodeId,
-				type: "POST",
-				beforeSend: function(){
-					showanimation(1);
-				},
-				success: function(result)
-					{
-					showanimation(2);	
-						var myObj = JSON.parse(result);
-						//console.log(myObj);
-						
-						//$("#hidenid").val(myObj[0].ID);
-						$("#thfullname").html(myObj[1].THFirstName +" "+ myObj[2].THLastName);
-						
-						$("#tholdlastnames").html(myObj[3].THOldLastName);
-						
-						$("#enfullname").html(myObj[4].ENFirstName +" "+myObj[5].ENLastName);
-						
-					//	$("#nicname").html(myObj[6].NicName);
-							$("#nicnamep").html("Nic");
-						
-						$("#idfatherp").html(myObj[7].IDfather);
-						$("#idmotherp").html(myObj[8].IDmother);
-						
-						$("#idhusbandp").html(myObj[9].IDhusBand);
-						$("#tagsp").html(myObj[10].tags);
-						
-						$("#sexp").html(myObj[11].Sex);
-						$("#birthdayp").html(myObj[12].Birthday);
-						
-						$("#placeofbirthp").html(myObj[13].PlaceOfBirth);
-						$("#nationalityp").html(myObj[14].Nationality);
-						
-						$("#addressp").html(myObj[15].Address);
-						$("#provincep").html(myObj[16].Province);
-						
-						$("#countryp").html(myObj[17].Country);
-						$("#telephonep").html(myObj[18].Telephone);
-						
-						$("#emailp").html(myObj[19].Email);
-						$("#lineidp").html(myObj[20].LineID);
-						
-						//$("#tholdlastname").val(myObj[21].img);
-						$("#imgsp").attr("src",myObj[21].img);
-						$("#imgsp2").attr("src",myObj[21].img);
-						
-						$("#otherid1p").html(myObj[22].OtherID1);
-						
-						$("#ortherid2p").html(myObj[23].OrtherID2);
-						$("#deathdayp").html(myObj[24].Deathday);
-						
-						$("#introducep").html(myObj[25].Introduce);
-						$("#numsgenp").html(myObj[26].NumsGEN);
-					}
-				});
-		}
-		function marrys(nodeId){
+function marrys(nodeId){
 			var nodeData = chart.get(nodeId);
 			var employeeName = nodeData["name"];
 			$("#myModal5").modal();
@@ -328,21 +208,75 @@ function dashboard1() {
 						sessionStorage.setItem("urlreload",'orgchart.php');
 						document.location.reload();
 			});
-		}
-		function babys(nodeId){
+	}
+function babys(nodeId){
 			var nodeData = chart.get(nodeId);
+			var employeeName = nodeData["name"];
 			$("#myModal6").modal(); 
+			$(".modal-title").html("เพิ่มข้อมูลบุตรของ : "+employeeName);
 			$("#hiddenbaby").val(nodeData["id"]);
-			/*$('#myModal6').on('hidden.bs.modal', function (e) {
-						//console.log(dataPoints);
-						sessionStorage.setItem("reloading", "true");
-						sessionStorage.setItem("urlreload",'orgchart.php');
-						document.location.reload();
-			});*/
+	}
+	//end function
+
+}
+
+function profiless(nodeId){
+			$("#myModal2").modal();
+				$.ajax({
+				url: "getdatatojsons.php?id="+nodeId,
+				type: "POST",
+				success: function(result)
+					{
+						var myObj = JSON.parse(result);
+						$("#imgs").attr("src",myObj[22].img);
+						$(".modal-title").html("แก้ไขข้อมูลส่วนตัว : "+myObj[2].THFirstName);
+						
+						//console.log(myObj);
+						$("#hidenid").val(myObj[0].ID);
+						$("#thfirstname").val(myObj[2].THFirstName);
+						$("#thlastname").val(myObj[3].THLastName);
+						
+						$("#tholdlastname").val(myObj[4].THOldLastName);
+						$("#enfirstname").val(myObj[5].ENFirstName);
+						
+						$("#enlastname").val(myObj[6].ENLastName);
+						$("#nicname").val(myObj[7].NicName);
+						
+						$("#idfather").val(myObj[8].IDfather);
+						$("#idmother").val(myObj[9].IDmother);
+						
+						$("#idhusband").val(myObj[10].IDhusBand);
+						$("#tags").val(myObj[11].tags);
+						
+						$("#sex").val(myObj[12].Sex);
+						$("#birthday").val(myObj[13].Birthday);
+						
+						$("#placeofbirth").val(myObj[14].PlaceOfBirth);
+						$("#nationality").val(myObj[15].Nationality);
+						
+						$("#address").val(myObj[16].Address);
+						$("#province").val(myObj[17].Province);
+						
+						$("#country").val(myObj[18].Country);
+						$("#telephone").val(myObj[19].Telephone);
+						
+						$("#email").val(myObj[20].Email);
+						$("#lineid").val(myObj[21].LineID);
+						
+					//	$("#tholdlastname").val(myObj[21].img);
+						$("#otherid1").val(myObj[23].OtherID1);
+						
+						$("#ortherid2").val(myObj[24].OrtherID2);
+						$("#deathday").val(myObj[25].Deathday);
+						
+						$("#introduce").text(myObj[26].Introduce);
+						$("#numsgen").val(myObj[27].NumsGEN);
+					}
+				});	
 		}
-		function delpoint(nodeId){
-			var nodeData = chart.get(nodeId);
-			var datas = "id="+nodeData["id"];
+function delpoint(nodeId){
+			//var nodeData = chart.get(nodeId);
+			var datas = "id="+nodeId;
 			$.ajax({
 			url: "administrator/process.php?typeprocess=delpoint",
 			type: "POST",
@@ -366,11 +300,68 @@ function dashboard1() {
 				
 						
 			}
-		});
-		}
-	//end function
-
+});
 }
+function details(nodeId){
+			//console.log(nodeId);
+			$("#myModal4").modal();
+			$.ajax({
+				url: "getdatatojsons.php?id="+nodeId,
+				type: "POST",
+				beforeSend: function(){
+					showanimation(1);
+				},
+				success: function(result)
+					{
+					showanimation(2);	
+						var myObj = JSON.parse(result);
+						//console.log(myObj);
+						//$("#hidenid").val(myObj[0].ID);
+						$(".modal-title").html("ข้อมูลส่วนตัว : "+myObj[2].THFirstName);
+						$("#thfullname").html(myObj[2].THFirstName +" "+ myObj[3].THLastName);
+						
+						$("#tholdlastnames").html(myObj[4].THOldLastName);
+						
+						$("#enfullname").html(myObj[5].ENFirstName +" "+myObj[6].ENLastName);
+						
+						//$("#nicname").html(myObj[6].NicName);
+						$("#nicnamep").html(myObj[7].NicName);
+						
+						$("#idfatherp").html(myObj[8].IDfather);
+						$("#idmotherp").html(myObj[9].IDmother);
+						
+						$("#idhusbandp").html(myObj[10].IDhusBand);
+						$("#tagsp").html(myObj[11].tags);
+						
+						$("#sexp").html(myObj[12].Sex);
+						$("#birthdayp").html(myObj[13].Birthday);
+						
+						$("#placeofbirthp").html(myObj[14].PlaceOfBirth);
+						$("#nationalityp").html(myObj[15].Nationality);
+						
+						$("#addressp").html(myObj[16].Address);
+						$("#provincep").html(myObj[17].Province);
+						
+						$("#countryp").html(myObj[18].Country);
+						$("#telephonep").html(myObj[19].Telephone);
+						
+						$("#emailp").html(myObj[20].Email);
+						$("#lineidp").html(myObj[21].LineID);
+						
+						//$("#tholdlastname").val(myObj[21].img);
+						$("#imgsp").attr("src",myObj[22].img);
+						$("#imgsp2").attr("src",myObj[22].img);
+						
+						$("#otherid1p").html(myObj[23].OtherID1);
+						
+						$("#ortherid2p").html(myObj[24].OrtherID2);
+						$("#deathdayp").html(myObj[25].Deathday);
+						
+						$("#introducep").html(myObj[26].Introduce);
+						$("#numsgenp").html(myObj[27].NumsGEN);
+					}
+				});
+		}
 function changpage(target,Url,txt){
 	var textshow = jQuery(txt).text();
 	//console.log(textshow);

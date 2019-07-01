@@ -7,10 +7,18 @@
                     <div class="col-12 h-100">
                         <div class="header-content h-100 d-flex align-items-center justify-content-between">
                             <div class="academy-logo">
-                                <a href="index.html"><img src="img/core-img/logo.png" alt=""></a>
+                                <!--<a href="index.html"><img src="img/core-img/logo.png" alt=""></a>--><h3>สมาคมตระกูลแซ่</h3>
                             </div>
                             <div class="login-content">
-								<a href="#" >Register </a> / <a href="#" id="myBtn">Login</a>
+								<?php
+									if(isset($_SESSION['sessid'])){
+										echo"<h6>ยินดีต้อนรับ ". $_SESSION['sessuser'] ." / <a href=\"#\" >ลืมรหัสผ่าน </a> / <a href=\"#\" onclick=\"logoutprocess();\" >ออกจากระบบ</a></h6>";
+									}else{
+										echo"<h6><a href=\"#\" >ลงทะเบียนผู้ดูแลผังครอบครัว </a> / <a href=\"#\" id=\"myBtn\">เข้าสู่ระบบผู้ดูแลผังครอบครัว</a></h6>";
+									}
+								
+								?>
+								
                             </div>
                         </div>
                     </div>
@@ -57,16 +65,16 @@
                                     <li><a href="#" onClick="changpage(content,'showcontent.php?idc=2',this)">ประเพณีวัฒนธรรม</a></li>
                                     <li><a href="#" onClick="changpage(content,'showcontent.php?idc=3',this)">เหตุการณ์สำคัญ</a></li>
 									<li><a href="#" onClick="changpage(content,'showcontent.php?idc=4',this)">กติกาข้อพิพาก</a></li>
+									<li><a href="#" onClick="changpage(content,'managergens.php',this)">คณะผู้บริหาร</a></li>
                                     <li><a href="#">รายงาน</a>
 										<ul class="dropdown">
-											<li><a href="#" onClick="changpage(content,'administrator/managecontent.php',this)">Admin จัดการเนื้อหาภายใน</a></li>
-                                            <li><a href="#" onClick="changpage(content,'administrator/managegensadmin.php',this)">Admin จัดการ คณก.รุ่น</a></li>
-                                            <li><a href="#">Admin จัดการแผนผัง</a></li>
-                                            <li><a href="#">Admin จัดการผู้ใช้งาน</a></li>
-											<li><a href="#" onClick="changpage(content,'managergens2.php',this)">คณะผู้บริหาร</a></li>
+											<li><a href="#">รายงาน๑</a></li>
+                                            <li><a href="#">รายงาน๒</a></li>
+											
+											
                                         </ul>
 									</li>
-                                    <li><a href="#" onClick="changpage(content,'managergens.php',this)">คณะผู้บริหาร</a></li>
+                                    
                                     
                                 </ul>
                             </div>

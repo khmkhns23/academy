@@ -6,7 +6,7 @@
                     <div class="col-12 col-sm-6 col-lg-3">
                         <div class="footer-widget mb-100">
                             <div class="widget-title">
-                                <a href="#"><img src="img/core-img/logo2.png" alt=""></a>
+								<a href="#"><h4 style="color: white">สมาคมตระกูลแซ่</h4>
                             </div>
                             <p>Cras vitae turpis lacinia, lacinia lacus non, fermentum nisi. Donec et sollicitudin est, in euismod erat. Ut at erat et arcu pulvinar cursus a eget.</p>
                             <div class="footer-social-info">
@@ -19,26 +19,32 @@
                         </div>
                     </div>
                     <!-- Footer Widget Area -->
+				<?php
+					if(isset($_SESSION['sessid']) AND ($_SESSION['sesstypeuser'] == 1)){
+				?>
                     <div class="col-12 col-sm-6 col-lg-3">
                         <div class="footer-widget mb-100">
                             <div class="widget-title">
-                                <h6>Usefull Links</h6>
+                                <h6>เมนูผู้ดูแลระบบ</h6>
                             </div>
                             <nav>
                                 <ul class="useful-links">
-                                    <li><a href="#">Home</a></li>
-                                    <li><a href="#">Services &amp; Features</a></li>
-                                    <li><a href="#">Accordions and tabs</a></li>
+                                    <li><a href="index">หน้าหลัก</a></li>
+                                    <li><a href="#" onClick="changpage(content,'administrator/managecontent.php',this)">จัดการเนื้อหาระบบ</a></li>
+                                    <li><a href="#" onClick="changpage(content,'administrator/managegensadmin.php',this)">จัดการเนื้อหา คณก. รุ่น</a></li>
                                     <li><a href="#">Menu ideas</a></li>
+									
+									
                                 </ul>
                             </nav>
                         </div>
                     </div>
+				<?php } ?>	
                     <!-- Footer Widget Area -->
                     <div class="col-12 col-sm-6 col-lg-3">
                         <div class="footer-widget mb-100">
                             <div class="widget-title">
-                                <h6>Gallery</h6>
+                                <h6>แกลเลอรี่</h6>
                             </div>
                             <div class="gallery-list d-flex justify-content-between flex-wrap">
                                 <a href="img/bg-img/gallery1.jpg" class="gallery-img" title="Gallery Image 1"><img src="img/bg-img/gallery1.jpg" alt=""></a>
@@ -54,7 +60,7 @@
                     <div class="col-12 col-sm-6 col-lg-3">
                         <div class="footer-widget mb-100">
                             <div class="widget-title">
-                                <h6>Contact</h6>
+                                <h6>ติดต่อเรา</h6>
                             </div>
                             <div class="single-contact d-flex mb-30">
                                 <i class="icon-placeholder"></i>
