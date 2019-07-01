@@ -27,7 +27,7 @@
 				   echo 0;
 				}else{
 				   if(move_uploaded_file($_FILES['filevd']['tmp_name'],$location3)){
-					   echo $location31;
+					   echo strip_tags($location31);
 					  //echo 1;
 				   }else{
 					  echo 0;
