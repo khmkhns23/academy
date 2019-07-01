@@ -21,7 +21,7 @@
       <!-- Modal body -->
       <div class="modal-body">
       	<div class="form-group">
-			<input type="hidden" id="hiddeid" value="0">
+			<input type="hidden" id="hiddeidvideo" name="hiddeidvideo" value="0">
 			  <form method="post" action="" enctype="multipart/form-data" id="myformvideo">
 					<div class='preview' style="padding: 5px">
 						<!--<img src="" id="imgvd" width="100" height="100">-->
@@ -60,7 +60,7 @@
 			var files = $('#filevd')[0].files[0];
 			var filesize = files.size;
 			fd.append('filevd',files);
-			var idss = $("#hiddeid").val();
+			var idss = $("#hiddeidvideo").val();
 			var integer = parseInt((filesize/1024), 10);
 			var Url = encodeURI("administrator/uploadsvideo2.php?idss="+idss);
 
