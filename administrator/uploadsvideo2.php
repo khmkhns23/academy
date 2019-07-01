@@ -4,6 +4,7 @@
 
 				$filename = $_FILES['filevd']['name'];
 				$filesize = $_FILES['filevd']['size'];
+
 				$idss = $_GET['idss'];
 			//	$location = "../upload/".$filename;
 			//	$location2 = "administrator/upload/".$filename;
@@ -18,14 +19,16 @@
 				if( !in_array(strtolower($imageFileType),$valid_extensions) ) {
 				   $uploadOk = 0;
 				}
-				if($filesize > 20480){
+				//if($filesize > 20971520){
+				/*if($filesize > 209715){
 				   $uploadOk = 0;
-				}
+				}*/
 				if($uploadOk == 0){
 				   echo 0;
 				}else{
 				   if(move_uploaded_file($_FILES['filevd']['tmp_name'],$location3)){
-					  echo 1;
+					   echo $location31;
+					  //echo 1;
 				   }else{
 					  echo 0;
 				   }

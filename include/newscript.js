@@ -165,12 +165,13 @@ function dashboard1() {
 			$("#myModalvideo").modal(); 
 			$(".modal-title").html("อัพโหลดวิดีโอของ : "+employeeName);
 			$("#hiddeidvideo").val(nodeData["id"]);
-			$('#myModalvideo').on('hidden.bs.modal', function (e) {
+		    $("#imgvd").css("display","none");
+			/*$('#myModalvideo').on('hidden.bs.modal', function (e) {
 						//console.log(dataPoints);
 						sessionStorage.setItem("reloading", "true");
 						sessionStorage.setItem("urlreload",'orgchart.php');
 						document.location.reload();
-			});
+			});*/
         }
 		function uploadpicss(nodeId){
 			var nodeData = chart.get(nodeId);

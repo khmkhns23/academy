@@ -198,9 +198,9 @@ function addbabydata($getdata){
 	$sqlinsertbaby = "INSERT INTO tableuserfamily (THFirstName,THLastName,THOldLastName,ENFirstName,ENLastName,NicName,IDfather,img) VALUES ('$para[1]','$para[2]','$para[3]','$para[4]','$para[5]','$para[6]','$para[0]','img/upload/avatar.png')";
 	$resultbaby = $GLOBALS['conn']->query($sqlinsertbaby);
 		if($resultbaby){
-			$return = "เพิ่มข้อมูลภรรยาเรียบร้อย";
+			$return = "เพิ่มข้อมูลเรียบร้อย";
 		}else{
-			$return = "ไม่สามารถเพิ่มข้อมูลภรรยาได้";
+			$return = "ไม่สามารถเพิ่มข้อมูลได้";
 		}
 	return $return;
 }
