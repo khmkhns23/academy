@@ -62,10 +62,10 @@
 			fd.append('filevd',files);
 			var idss = $("#hiddeid").val();
 			var integer = parseInt((filesize/1024), 10);
-			
+			var Url = "administrator/uploadsvideo2.php?idss="+idss;
 
 			$.ajax({
-				url: 'administrator/uploadsvideo2.php?idss='+idss,
+				url: Url,
 				type: 'post',
 				data: fd,
 				contentType: false,
