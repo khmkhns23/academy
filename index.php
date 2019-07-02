@@ -1,6 +1,7 @@
 <?php
 	include"include/connect.php";
 	include"include/functions.php";
+	
 $timenow = date("Y-m-d H:i:s",time());
 
 ?>
@@ -31,12 +32,19 @@ $timenow = date("Y-m-d H:i:s",time());
 	$(document).ready(function(){
 	  $("#myBtn").click(function(){
 		$("#myModallogin").modal(); 
+		  		  
 	  });
+	  $("#aforgetpwd").click(function(){
+		 // console.log('ok');
+		  $('#myModallogin').modal('hide');
+		  $('#myModallogin').on('hidden.bs.modal', function (e) {
+			  	$("#forgerpwdModal").modal(); 	
+		  });
+						 
+	 });
 		var reloading = sessionStorage.getItem("reloading");
 		var urlreload = sessionStorage.getItem("urlreload");
 		
-		var reloading2 = sessionStorage.getItem("reloading2");
-		var urlreload2 = sessionStorage.getItem("urlreload2");
 			
       if(reloading){
           $(".hero-area").css("display","none");
@@ -47,18 +55,39 @@ $timenow = date("Y-m-d H:i:s",time());
 				  showanimation(1);
 				  setTimeout(function(){ changpage2(content,urlreload,'ผังครอบครัว'); },2000);
       		}
-	  if(reloading2){
-		 // showanimation(1);
-		  console.log("not ok");
-		  	showdialog("คุณไม่ได้เข้าสู่ระบบ");	
-		    setTimeout(function(){ changpage2(content,urlreload2,'ผังครอบครัว'); },2000);
-	  }
+	
       		sessionStorage.removeItem("reloading");
 			sessionStorage.removeItem("urlreload");
-			sessionStorage.removeItem("reloading2");
-			sessionStorage.removeItem("urlreload2");
-				
-	});
+		
+		
+		$("#forgetpwd").click(function(){
+			//	console.log('click btn chngpwd');
+			var oldpwd = $("#oldpwd").val();
+			var newpwd = $("#newpwd").val();
+			var cfnewpwd = $("#cfnewpwd").val();
+	
+			var idss = $("#hiddeid").val();
+			var data2 = $("#formchangepwd input").serialize();
+				data2 += "&idnode="+idss;
+				//console.log(data2);
+			$.ajax({
+				url: 'administrator/process.php?typeprocess=changpwd',
+				type: "POST",
+				data: data2,
+				success: function(response){
+					//console.log(response);
+					showdialog(response);
+					$('#dialog').modal('show');
+					$('#dialog').on('shown.bs.modal', function(){
+						$(this).find('button').focus();
+					});
+					$('#dialog').on('hidden.bs.modal', function () {
+						$('#myModal3').modal('hide');
+					});
+					},
+				});
+		});		
+});
 
 	</script>
 </head>
@@ -168,8 +197,8 @@ $timenow = date("Y-m-d H:i:s",time());
         </div>
         <div class="modal-footer">
           <button type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
-          <p>Not a member? <a href="#">Sign Up</a></p>
-          <p>Forgot <a href="#">Password?</a></p>
+          <p>ไม่ได้เป็นสมาชิก ? <a href="#" onClick="registerform();">ลงทะเบียน</a></p>
+          <p>ลืม <a href="#" id="aforgetpwd">รหัสผ่าน?</a></p>
         </div>
       </div>
       
@@ -181,6 +210,7 @@ $timenow = date("Y-m-d H:i:s",time());
 	<div id="showcontentmodal"></div>
     <!-- ##### Footer Area Start ##### -->
    <?php include"include/footer.php"; ?>
+	<?php include"administrator/forgetpwdform.php"; ?>
     <!-- ##### Footer Area Start ##### -->
 
     <!-- ##### All Javascript Script ##### -->
@@ -235,6 +265,7 @@ $timenow = date("Y-m-d H:i:s",time());
 				//console.log(result);
 				showanimation(2);
 				if(result == 1){
+					
 					showdialog("ยินดีต้อนรับเข้าสู่ระบบ");
 						$('#dialog').modal('show');
 						$('#dialog').on('shown.bs.modal', function(){
@@ -265,6 +296,7 @@ $timenow = date("Y-m-d H:i:s",time());
 			success: function(result)
 			{
 				//console.log(result);
+				sessionStorage.removeItem("sessid");
 				showanimation(2);
 					showdialog("ออกจากระบบเรียบร้อยแล้ว");
 						$('#dialog').modal('show');
@@ -275,8 +307,15 @@ $timenow = date("Y-m-d H:i:s",time());
 			}	
 		});
 		}
-		
+/*		
+function forgetpasswordform(){
+	 
+	$("#myModallogin").modal('hide');
+	$('#myModallogin').on('hidden.bs.modal', function (e) {
+		console.log('after hide');
+			$("#forgerpwdModal").modal('show');
+	});	
+}*/
 	</script>
 </body>
-
 </html>

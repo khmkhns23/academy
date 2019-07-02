@@ -377,6 +377,25 @@ function checklogin($usr,$pwd){
 	//return $sql;
 	return $rowcount;
 }
+function getreport(){
+	$sql = "SELECT * FROM tableuserfamily";
+	$results = $GLOBALS['conn']->query($sql);
+	$arr = [];
+	$i = 0;
+	while($data = $results->fetch_assoc() ){
+		$arr[$i] = array(
+				'id' => $data['ID'],
+				'thfirstname' => $data['THFirstName'],
+				'thlastname' => $data['THLastName'],
+				'province' => $data['Province'],
+				'nicname' => $data['NicName'],
+				'telephone' => $data['Telephone']
+			);
+		$i++;
+	}
+	return $arr;	
+	
+}
 function logoutprocess(){
 	session_destroy();
 }

@@ -50,16 +50,7 @@
                             <div class="classynav">
                                 <ul>
                                     <li><a href="index.php">หน้าแรก</a></li>
-                                    <!--<li><a href="#">Pages</a>
-                                        <ul class="dropdown">
-                                            <li><a href="index.html">Home</a></li>
-                                            <li><a href="about-us.html">About Us</a></li>
-                                            <li><a href="course.html">Course</a></li>
-                                            <li><a href="blog.html">Blog</a></li>
-                                            <li><a href="contact.html">Contact</a></li>
-                                            <li><a href="elements.html">Elements</a></li>
-                                        </ul>
-                                    </li>-->
+                                   
                                     <li><a href="#" onClick="changpage(content,'orgchart.php',this)">ผังครอบครัว</a></li>
                                     <li><a href="#" onClick="changpage(content,'showcontent.php?idc=1',this)">ประวัติตระกูลแซ่</a></li>
                                     <li><a href="#" onClick="changpage(content,'showcontent.php?idc=2',this)">ประเพณีวัฒนธรรม</a></li>
@@ -68,8 +59,8 @@
 									<li><a href="#" onClick="changpage(content,'managergens.php',this)">คณะผู้บริหาร</a></li>
                                     <li><a href="#">รายงาน</a>
 										<ul class="dropdown">
-											<li><a href="#">รายงาน๑</a></li>
-                                            <li><a href="#">รายงาน๒</a></li>
+											<li><a href="#" onClick="showreport(1)">รายงาน ๑</a></li>
+                                            <li><a href="#" onClick="showreport(2)">รายงาน ๒</a></li>
 											
 											
                                         </ul>

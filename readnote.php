@@ -10,11 +10,9 @@
 	1.register
 	2.connect to another family
 	3.upload Video
-	4.report1 , report2
-	5.forgetPassword
-	6.modal login when user guest try to edit
-	
-	*everybody might to login before to edit profile
+	4.report1 , report2 can Export to xls -> 80 percent
+	5.forgetPassword ->50 percent
+
 	
 </body>
 </html>
