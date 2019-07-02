@@ -22,8 +22,10 @@ header("Cache-Control: no-cache, must-revalidate"); header("Pragma: no-cache");
 $(document).ready(function() {
 	//dashboard1();
 var variable = "<?php $sess = (isset($_SESSION['sesstypeuser'])?$_SESSION['sesstypeuser']:""); echo($sess);?>" ;
-
-	var variablejs = parseInt(variable);
+var variablejs = parseInt(variable);
+//sessionStorage.setItem("reloading", "true");
+sessionStorage.setItem("sessid",variablejs);
+	
 	switch(variablejs){
 		case 1 :
 			dashboard1();

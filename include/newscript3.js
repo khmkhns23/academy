@@ -1,4 +1,21 @@
+var sessid = sessionStorage.getItem("sessid");
+
+function showdialog(rx){
+	var txt ='<div class="modal fade" id="dialog" role="dialog">';
+    	txt +='<div class="modal-dialog"><div class="modal-content">';
+        txt +='<div class="modal-header"><h4 class="modal-title">ข้อความแสดงการทำงาน</h4><button type="button" class="close" data-dismiss="modal">&times;</button></div>';
+        txt +='<div class="modal-body"><h3>'+ rx +'</h3></div>';
+        txt +='<div class="modal-footer"><button type="button" class="btn btn-success" data-dismiss="modal"><i class="glyphicon glyphicon-remove"></i> Close</button></div>';
+      	txt +='</div></div></div>';
+		$("#showcontentmodal").html(txt);
+	console.log(txt);
+		//location.reload();
+}
+function showdialog2(rx){
+	console.log(rx);
+}
 function dashboard3() {
+	
 	//var chk = isArray(dataPoints);
 	//console.log(dataPoints);
 	//$("#tree").html("This is Content");
@@ -77,11 +94,35 @@ function dashboard3() {
      
 		nodes: dataPoints
     });
-	
+	//console.log(sessid);
 		
 	//function
 
 function uploadpicss(nodeId){
+	//console.log(sessid);
+		if(isNaN(sessid)){
+			showdialog("คุณยังไม่ได้เข้าสู่ระบบ");
+			/*$('#myModal1').on('hidden.bs.modal', function (e) {
+				$("#myModallogin").modal();
+			*/
+			console.log("not ok");
+			//return false;
+			//});
+				
+		}
+			/*var nodeData = chart.get(nodeId);
+            var employeeName = nodeData["name"];
+			$("#myModal1").modal(); 
+			$(".modal-title").html("อัพโหลดรูปภาพของ : "+employeeName);
+			$("#hiddeid").val(nodeData["id"]);
+			$('#myModal1').on('hidden.bs.modal', function (e) {
+						//console.log(dataPoints);
+						sessionStorage.setItem("reloading", "true");
+						sessionStorage.setItem("urlreload",'orgchart.php');
+						document.location.reload();
+			});*/
+		}
+	function uploadpicss2(nodeId){
 			var nodeData = chart.get(nodeId);
             var employeeName = nodeData["name"];
 			$("#myModal1").modal(); 

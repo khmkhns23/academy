@@ -209,8 +209,6 @@ function addwifedata($getaddwife){
 	$i=0;
 	$msg = "";
 	foreach ($getaddwife as $param_name => $param_val) {
-			//	$msg.= "Param: $param_name; Value: $param_val<br />\n";
-			//$arr[$i] = ($param_val == null)?"-":$param_val;
 				$para[$i] = filter_var($param_val, FILTER_SANITIZE_STRING);
 		$i++;
 	}
@@ -245,7 +243,7 @@ function gettags($idhusband){
 	//$resulthuss = $resulthus->num_rows; 
 	$rep = "";
 	$resultttt = $resulthus->fetch_array();
-	if($resultttt[0] == "-"){
+	if($resultttt[0] == ""){
 		$sql = "SELECT MAX(tags) FROM tableuserfamily";
 		$results = $GLOBALS['conn']->query($sql);
 		$result = $results->fetch_array();
@@ -257,6 +255,7 @@ function gettags($idhusband){
 		$tags = $resultttt[0];
 	}
 	return $tags;
+	//return($resultttt[0]);
 }
 function listcontent(){
 	$sql = "SELECT * FROM tablecontent";
