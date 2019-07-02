@@ -47,6 +47,7 @@ sessionStorage.setItem("sessid",variablejs);
 
 <body>
 	<div id="tree"></div>
+	<div id="showcontentmodal2"></div>
 	<?php
 		include "administrator/uploads.php";
 		include "administrator/profiles.php";

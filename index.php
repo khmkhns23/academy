@@ -34,6 +34,9 @@ $timenow = date("Y-m-d H:i:s",time());
 	  });
 		var reloading = sessionStorage.getItem("reloading");
 		var urlreload = sessionStorage.getItem("urlreload");
+		
+		var reloading2 = sessionStorage.getItem("reloading2");
+		var urlreload2 = sessionStorage.getItem("urlreload2");
 			
       if(reloading){
           $(".hero-area").css("display","none");
@@ -44,8 +47,16 @@ $timenow = date("Y-m-d H:i:s",time());
 				  showanimation(1);
 				  setTimeout(function(){ changpage2(content,urlreload,'ผังครอบครัว'); },2000);
       		}
+	  if(reloading2){
+		 // showanimation(1);
+		  console.log("not ok");
+		  	showdialog("คุณไม่ได้เข้าสู่ระบบ");	
+		    setTimeout(function(){ changpage2(content,urlreload2,'ผังครอบครัว'); },2000);
+	  }
       		sessionStorage.removeItem("reloading");
 			sessionStorage.removeItem("urlreload");
+			sessionStorage.removeItem("reloading2");
+			sessionStorage.removeItem("urlreload2");
 				
 	});
 

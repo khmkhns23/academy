@@ -1,20 +1,13 @@
 var sessid = sessionStorage.getItem("sessid");
 
-function showdialog(rx){
-	var txt ='<div class="modal fade" id="dialog" role="dialog">';
-    	txt +='<div class="modal-dialog"><div class="modal-content">';
-        txt +='<div class="modal-header"><h4 class="modal-title">ข้อความแสดงการทำงาน</h4><button type="button" class="close" data-dismiss="modal">&times;</button></div>';
-        txt +='<div class="modal-body"><h3>'+ rx +'</h3></div>';
-        txt +='<div class="modal-footer"><button type="button" class="btn btn-success" data-dismiss="modal"><i class="glyphicon glyphicon-remove"></i> Close</button></div>';
-      	txt +='</div></div></div>';
-		$("#showcontentmodal").html(txt);
-	console.log(txt);
-		//location.reload();
-}
-function showdialog2(rx){
-	console.log(rx);
-}
+
+
+
 function dashboard3() {
+//document.write('<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>');
+	
+//	document.write('<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">');
+	//document.write('<script src="js/bootstrap/bootstrap.min.js"></script>');
 	
 	//var chk = isArray(dataPoints);
 	//console.log(dataPoints);
@@ -101,11 +94,14 @@ function dashboard3() {
 function uploadpicss(nodeId){
 	//console.log(sessid);
 		if(isNaN(sessid)){
-			showdialog("คุณยังไม่ได้เข้าสู่ระบบ");
+			sessionStorage.setItem("reloading2", "true");
+			sessionStorage.setItem("urlreload",'orgchart.php');
+			location.reload();
+			//showdialog("คุณยังไม่ได้เข้าสู่ระบบ");
 			/*$('#myModal1').on('hidden.bs.modal', function (e) {
 				$("#myModallogin").modal();
 			*/
-			console.log("not ok");
+			//console.log("not ok");
 			//return false;
 			//});
 				
