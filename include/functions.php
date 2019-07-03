@@ -389,12 +389,81 @@ function getreport(){
 				'thlastname' => $data['THLastName'],
 				'province' => $data['Province'],
 				'nicname' => $data['NicName'],
-				'telephone' => $data['Telephone']
+				'telephone' => $data['Telephone'],
+				'numsgen' => $data['NumsGEN']
 			);
 		$i++;
 	}
 	return $arr;	
 	
+}
+function getreportorderby($orderby){
+	$sql = "SELECT * FROM tableuserfamily ORDER BY $orderby";
+	$results = $GLOBALS['conn']->query($sql);
+	$arr = [];
+	$i = 0;
+	while($data = $results->fetch_assoc() ){
+		$arr[$i] = array(
+				'id' => $data['ID'],
+				'thfirstname' => $data['THFirstName'],
+				'thlastname' => $data['THLastName'],
+				'province' => $data['Province'],
+				'nicname' => $data['NicName'],
+				'telephone' => $data['Telephone'],
+				'numsgen' => $data['NumsGEN']
+			);
+		$i++;
+	}
+	return $arr;	
+	
+}
+function getreportbysex($sex){
+	$sql = "SELECT * FROM tableuserfamily WHERE sex LIKE '$sex'";
+	$results = $GLOBALS['conn']->query($sql);
+	$arr = [];
+	$i = 0;
+	$count = $results->num_rows;
+	while($data = $results->fetch_assoc() ){
+		//$j = $i+1;
+		$arr[$i] = array(
+				'id' => $data['ID'],
+				'thfirstname' => $data['THFirstName'],
+				'thlastname' => $data['THLastName'],
+				'province' => $data['Province'],
+				'telephone' => $data['Telephone'],
+				'sum' => $count
+			);
+		$i++;
+	}
+	return $arr;
+}
+function registeruser($getdata){
+	$i=0;
+	foreach ($getdata as $param_name => $param_val) {
+			$para[$i] = filter_var($param_val, FILTER_SANITIZE_STRING);
+		$i++;
+	}
+	$famalyidmax = getfamilyIDmax();
+	$pwdencode = md5($para[6]);
+	$sqlregister = "INSERT INTO tableuserfamily (THFirstName,THLastName,ENFirstName,ENLastName,NicName,Email,PwdUser,Typeuser,FamilyID) VALUES ('$para[0]','$para[1]','$para[2]','$para[3]','$para[4]','$para[5]','$pwdencode','2','$famalyidmax')";
+	$resultbaby = $GLOBALS['conn']->query($sqlregister);
+		if($resultbaby){
+			$return = 1;
+		}else{
+			$return = 0;
+		}
+	return $return;
+	
+	
+	
+	
+}
+function getfamilyIDmax(){
+	$sql = "SELECT MAX(FamilyID) AS maxid FROM tableuserfamily";
+	$results = $GLOBALS['conn']->query($sql);
+	$data = $results->fetch_assoc();
+	$return = $data['maxid']+1;
+	return $return;
 }
 function logoutprocess(){
 	session_destroy();

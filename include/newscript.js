@@ -469,12 +469,24 @@ function showreport(type){
 	switch(type){
 		case 1:
 			Url = "administrator/showreport.php?type="+type;
-			textshow = "รายงาน";
+			textshow = "รายงานทั้งหมด";
 		break;
 		case 2:
 			Url = "administrator/showreport.php?type="+type;
-			textshow = "รายงานนัดกลุ่มตามนามสกุล";
+			textshow = "รายงานจัดกลุ่มตามนามสกุล";
 		break;
+		case 3:
+			Url = "administrator/showreportsex.php";
+			textshow = "รายงานจัดกลุ่มตามเพศ";
+		break;
+		case 4:
+			Url = "administrator/showreport.php?type="+type;
+			textshow = "รายงานจัดกลุ่มตามจังหวัด";
+		break;
+		case 5:
+			Url = "administrator/showreport.php?type="+type;
+			textshow = "รายงานจัดกลุ่มตามรุ่น";
+		break;	
 		default:
 			
 	}
@@ -499,6 +511,14 @@ function showreport(type){
 			}
 		});
 	
+}
+function openpages(urllink){
+	window.open(urllink);
+}
+function registerform(){
+	$("#myModallogin").modal('hide');
+	$("#myModalregister").modal('show');
+	//console.log('click');
 }
 function showanimation(ID){
 	switch(ID){

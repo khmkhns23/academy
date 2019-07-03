@@ -5,19 +5,26 @@
 switch($_GET['type']){
 	case 1 :
 		$data = getreport();
+		$title = "ตารางทั้งหมด";
 		break;
 	case 2 :
 		$data = getreportorderby("THLastName");
+		$title = "ตารางเรียงตามนามสกุล";
 		break;
 	case 4 :
 		$data = getreportorderby("Province");
+		$title = "ตารางเรียงตามจังหวัด";
 		break;
 	case 5 :
 		$data = getreportorderby("NumsGEN");
+		$title = "ตารางเรียงตามรุ่น";
 		break;
 }
 	
-	
+$strExcelFileName = $title.".xls";
+header("Content-Type: application/x-msexcel; name=\"$strExcelFileName\"");
+header("Content-Disposition: inline; filename=\"$strExcelFileName\"");
+header("Pragma:no-cache");	
 
 ?>
 <style>
@@ -26,9 +33,8 @@ switch($_GET['type']){
 	}
 </style>
 <div class="container">
-  <h2>Table</h2>
-  <p>คำอธิบาย : </p>
-  <p><input type="button" value="Export To Excel" class="btn btn-success" onClick="openpages('administrator/showreportxls.php?type=<?php echo($_GET['type']);?>');"></p>    
+  <h2><?php echo($title);?></h2>
+  <p>คำอธิบาย : </p>                                                                                      
   <div class="table-responsive">          
   <table class="table table-striped">
     <thead>

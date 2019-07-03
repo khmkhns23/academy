@@ -14,7 +14,7 @@
 									if(isset($_SESSION['sessid'])){
 										echo"<h6>ยินดีต้อนรับ ". $_SESSION['sessuser'] ." / <a href=\"#\" >ลืมรหัสผ่าน </a> / <a href=\"#\" onclick=\"logoutprocess();\" >ออกจากระบบ</a></h6>";
 									}else{
-										echo"<h6><a href=\"#\" >ลงทะเบียนผู้ดูแลผังครอบครัว </a> / <a href=\"#\" id=\"myBtn\">เข้าสู่ระบบผู้ดูแลผังครอบครัว</a></h6>";
+										echo"<h6><a href=\"#\" onClick=\"registerform();\" >ลงทะเบียนผู้ดูแลผังครอบครัว </a> / <a href=\"#\" id=\"myBtn\">เข้าสู่ระบบผู้ดูแลผังครอบครัว</a></h6>";
 									}
 								
 								?>
@@ -57,15 +57,20 @@
                                     <li><a href="#" onClick="changpage(content,'showcontent.php?idc=3',this)">เหตุการณ์สำคัญ</a></li>
 									<li><a href="#" onClick="changpage(content,'showcontent.php?idc=4',this)">กติกาข้อพิพาก</a></li>
 									<li><a href="#" onClick="changpage(content,'managergens.php',this)">คณะผู้บริหาร</a></li>
+									<?php if(isset($_SESSION['sessid'])) {  ?>
                                     <li><a href="#">รายงาน</a>
 										<ul class="dropdown">
-											<li><a href="#" onClick="showreport(1)">รายงาน ๑</a></li>
-                                            <li><a href="#" onClick="showreport(2)">รายงาน ๒</a></li>
+											<li><a href="#" onClick="showreport(1)">ทั้งหมด</a></li>
 											
+											<li><a href="#" onClick="showreport(5)">แยกตามรุ่น</a></li>                                           
+											<li><a href="#" onClick="showreport(3)">แยกตามเพศ</a></li>
+											<li><a href="#" onClick="showreport(4)">แยกตามจังหวัด</a></li>
+											<li><a href="#" onClick="showreport(2)">แยกตามนามสกุล</a></li>
+                                            
 											
                                         </ul>
 									</li>
-                                    
+                                    <?php } ?>
                                     
                                 </ul>
                             </div>

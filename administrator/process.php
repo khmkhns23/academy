@@ -44,6 +44,10 @@
 			$return = addbabydata($_POST);
 			echo($return);
 			break;
+		case "register" :
+			$return = registeruser($_POST);
+			echo($return);
+			break;
 			
 			
 	}

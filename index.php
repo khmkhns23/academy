@@ -210,7 +210,9 @@ $timenow = date("Y-m-d H:i:s",time());
 	<div id="showcontentmodal"></div>
     <!-- ##### Footer Area Start ##### -->
    <?php include"include/footer.php"; ?>
-	<?php include"administrator/forgetpwdform.php"; ?>
+	<?php include"administrator/forgetpwdform.php"; 
+		  include "administrator/register.php";
+	?>
     <!-- ##### Footer Area Start ##### -->
 
     <!-- ##### All Javascript Script ##### -->
