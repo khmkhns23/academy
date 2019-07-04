@@ -86,7 +86,7 @@ var sessid = sessionStorage.getItem("sessid");
 	//function
 
 function uploadpicss(nodeId){
-	//console.log(sessid);
+	console.log(sessid);
 		if(isNaN(sessid) || !sessid){
 			showdialog("คุณยังไม่ได้เข้าสู่ระบบ");
 			$('#dialog').modal('show');
@@ -125,6 +125,7 @@ function uploadpicss(nodeId){
 			});
 		}*/
 function changpasswdss(nodeId){
+	console.log(sessid);
 			var nodeData = chart.get(nodeId);
             var employeeName = nodeData["name"];
 	if(isNaN(sessid) || !sessid){

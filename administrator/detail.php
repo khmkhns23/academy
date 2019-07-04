@@ -26,11 +26,12 @@
 		  <!-- Left-aligned media object -->
 		  <div class="media">
 			<div class="media-left">
-			  <img src="img/img_avatar1.png" class="media-object" style="width:60px" id="imgsp">
+			  <img src="img/img_avatar1.png" class="media-object" style="width:120px" id="imgsp">
 			</div>
 			<div class="media-body">
 			  <h4 class="media-heading" id="thfullname"></h4>
-			  <div id="tholdlastnames"></div>
+			  	<div id="idss"></div>
+				<div id="tholdlastnames"></div>
 				<div id="enfullname"></div>
 				<div id="nicnamep"></div>
 				<div id="idfatherp"></div>
@@ -61,7 +62,7 @@
 				<div id="numsgenp"></div>
 			</div>
 			<div class="media-right">
-			  <img  class="media-object" style="width:60px" id="imgsp2">
+			  <img  class="media-object" style="width:120px" id="imgsp2">
 			</div>
 		  </div>
 		</div>

@@ -335,47 +335,50 @@ function details(nodeId){
 						//console.log(myObj);
 						//$("#hidenid").val(myObj[0].ID);
 						$(".modal-title").html("ข้อมูลส่วนตัว : "+myObj[2].THFirstName);
-						$("#thfullname").html(myObj[2].THFirstName +" "+ myObj[3].THLastName);
+						$("#idss").html("รหัส : "+myObj[0].ID);
+						$("#thfullname").html("ชื่อสกุล : "+myObj[2].THFirstName +" "+ myObj[3].THLastName);
 						
-						$("#tholdlastnames").html(myObj[4].THOldLastName);
+						$("#tholdlastnames").html("นามสกุลเดิม : "+myObj[4].THOldLastName);
 						
-						$("#enfullname").html(myObj[5].ENFirstName +" "+myObj[6].ENLastName);
+						$("#enfullname").html("ชื่อสกุลอังกฤษ : "+myObj[5].ENFirstName +" "+myObj[6].ENLastName);
 						
 						//$("#nicname").html(myObj[6].NicName);
-						$("#nicnamep").html(myObj[7].NicName);
+						$("#nicnamep").html("ชื่อเล่น : "+myObj[7].NicName);
 						
-						$("#idfatherp").html(myObj[8].IDfather);
-						$("#idmotherp").html(myObj[9].IDmother);
+						$("#idfatherp").html("รหัสบิดา : "+myObj[8].IDfather);
+						$("#idmotherp").html("รหัสมารดา : "+myObj[9].IDmother);
 						
-						$("#idhusbandp").html(myObj[10].IDhusBand);
-						$("#tagsp").html(myObj[11].tags);
+						$("#idhusbandp").html("รหัสสามี : "+myObj[10].IDhusBand);
+						$("#tagsp").html("กลุ่ม : "+myObj[11].tags);
 						
-						$("#sexp").html(myObj[12].Sex);
-						$("#birthdayp").html(myObj[13].Birthday);
+						$("#sexp").html("เพศ : "+myObj[12].Sex);
+						$("#birthdayp").html("วันเดือนปีเกิด : "+myObj[13].Birthday);
 						
-						$("#placeofbirthp").html(myObj[14].PlaceOfBirth);
-						$("#nationalityp").html(myObj[15].Nationality);
+						$("#placeofbirthp").html("สถานที่เกิด : "+myObj[14].PlaceOfBirth);
+						$("#nationalityp").html("สัญชาติ : "+myObj[15].Nationality);
 						
-						$("#addressp").html(myObj[16].Address);
-						$("#provincep").html(myObj[17].Province);
+						$("#addressp").html("ที่อยู่ : "+myObj[16].Address);
+						$("#provincep").html("จังหวัด : "+myObj[17].Province);
 						
-						$("#countryp").html(myObj[18].Country);
-						$("#telephonep").html(myObj[19].Telephone);
+						$("#countryp").html("ประเทศ : "+myObj[18].Country);
+						$("#telephonep").html("เบอร์โทร : "+myObj[19].Telephone);
 						
-						$("#emailp").html(myObj[20].Email);
-						$("#lineidp").html(myObj[21].LineID);
+						$("#emailp").html("อีเมล : "+myObj[20].Email);
+						$("#lineidp").html("ไลน์ไอดี : "+myObj[21].LineID);
 						
 						//$("#tholdlastname").val(myObj[21].img);
 						$("#imgsp").attr("src",myObj[22].img);
+						$("#imgsp").attr("class","img-thumbnail");
 						$("#imgsp2").attr("src",myObj[22].img);
+						$("#imgsp2").attr("class","img-thumbnail");
 						
-						$("#otherid1p").html(myObj[23].OtherID1);
+						$("#otherid1p").html("ไอดีอื่นๆ : "+myObj[23].OtherID1);
 						
-						$("#ortherid2p").html(myObj[24].OrtherID2);
-						$("#deathdayp").html(myObj[25].Deathday);
+						$("#ortherid2p").html("ไอดีอื่นๆ : "+myObj[24].OrtherID2);
+						$("#deathdayp").html("วันที่เสียชีวิต : "+myObj[25].Deathday);
 						
-						$("#introducep").html(myObj[26].Introduce);
-						$("#numsgenp").html(myObj[27].NumsGEN);
+						$("#introducep").html("แนะนำตัว : "+myObj[26].Introduce);
+						$("#numsgenp").html("รุ่น : "+myObj[27].NumsGEN);
 					}
 				});
 		}
