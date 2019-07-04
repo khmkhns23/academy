@@ -20,12 +20,12 @@
 	$mail->Password = "Nmax@240"; // GMAIL password
 	$mail->From = "khmkhns@gmail.com"; // "name@yourdomain.com";
 	//$mail->AddReplyTo = "support@thaicreate.com"; // Reply
-	$mail->FromName = iconv('TIS-620', 'UTF-8', 'เว็บไซต์สมาคมตระกูลแซ่');  // set from Name
-	$msg = iconv('TIS-620', 'UTF-8','ยืนยันการลงทะเบียน <b>ท่านได้ทำการลงทะเบียนใช้งานเว็บไซต์ ชมรมตระกูลแซ่ <br>เพื่อให้การลงทะเบียนสมบูรณ์คุณจะต้องยืนยันการลงทะเบียน ด้วยลิงค์นี้</b><a href=http://academyyut.herokuapp.com');
-	$mail->Subject = iconv('TIS-620', 'UTF-8','ยืนยันการลงทะเบียน'); 
-	$mail->Body = 'msg';
+	$mail->FromName = iconv("TIS-620", "UTF-8", "เว็บไซต์สมาคมตระกูลแซ่");  // set from Name
+	$msg = iconv("TIS-620","UTF-8","ยืนยันการลงทะเบียน <b>ท่านได้ทำการลงทะเบียนใช้งานเว็บไซต์ ชมรมตระกูลแซ่ <br>เพื่อให้การลงทะเบียนสมบูรณ์คุณจะต้องยืนยันการลงทะเบียน ด้วยลิงค์นี้</b><a href='http://academyyut.herokuapp.com'");
+	$mail->Subject = iconv("TIS-620", "UTF-8","ยืนยันการลงทะเบียน"); 
+	$mail->Body = $msg;
 
-	$mail->AddAddress("khm_s@hotmail.com", "Mr.Adisorn Boonsong"); // to Address
+	$mail->AddAddress("khm_s@hotmail.com", "MR.Yuttthasart"); // to Address
 
 	
 	$mail->set('X-Priority', '1'); //Priority 1 = High, 3 = Normal, 5 = low
