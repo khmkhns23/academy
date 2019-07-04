@@ -4,6 +4,9 @@
 </head>
 <body>
 <?php
+	$url = 'http://'.($_SERVER['SERVER_NAME']==='localhost')?'localhost/academy':$_SERER['SERVER_NAME']; 
+
+	
 	require_once('class.phpmailer.php');
 	$mail = new PHPMailer();
 	$mail->IsHTML(true);
@@ -16,9 +19,9 @@
 	$mail->Password = "Nmax@240"; // GMAIL password
 	$mail->From = "khmkhns@gmail.com"; // "name@yourdomain.com";
 	//$mail->AddReplyTo = "support@thaicreate.com"; // Reply
-	$mail->FromName = "Mr.Weerachai Nukitram";  // set from Name
-	$mail->Subject = "Test sending mail."; 
-	$mail->Body = "My Body & <b>My Description</b>";
+	$mail->FromName = "เว็บไซต์สมาคมตระกูลแซ่";  // set from Name
+	$mail->Subject = "ยืนยันการลงทะเบียน"; 
+	$mail->Body = "ยืนยันการลงทะเบียน <b>ท่านได้ทำการลงทะเบียนใช้งานเว็บไซต์ ชมรมตระกูลแซ่ <br>เพื่อให้การลงทะเบียนสมบูรณ์คุณจะต้องยืนยันการลงทะเบียน ด้วยลิงค์นี้</b><a href='http://academyyut.herokuapp.com'";
 
 	$mail->AddAddress("khm_s@hotmail.com", "Mr.Adisorn Boonsong"); // to Address
 

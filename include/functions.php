@@ -446,9 +446,40 @@ function registeruser($getdata){
 	}
 	$famalyidmax = getfamilyIDmax();
 	$pwdencode = md5($para[6]);
-	$sqlregister = "INSERT INTO tableuserfamily (FamilyName,THFirstName,THLastName,ENFirstName,ENLastName,NicName,Email,PwdUser,Typeuser,FamilyID) VALUES ('$para[0]','$para[1]','$para[2]','$para[3]','$para[4]','$para[5]','$para[6]','$pwdencode','2','$famalyidmax')";
-	$resultbaby = $GLOBALS['conn']->query($sqlregister);
-		if($resultbaby){
+	
+	$sqlregister = "INSERT INTO tableuserfamily (FamilyName,THFirstName,THLastName,ENFirstName,ENLastName,NicName,Email,PwdUser,Typeuser,FamilyID,SID,Active) VALUES ('$para[0]','$para[1]','$para[2]','$para[3]','$para[4]','$para[5]','$para[6]','$pwdencode','2','$famalyidmax','".session_id()."','No')";
+	$resultuser = $GLOBALS['conn']->query($sqlregister);
+	$Uid = $conn->insert_id;
+		if($resultuser){
+			$url = 'http://'.($_SERVER['SERVER_NAME']==='localhost')?'localhost/academy':$_SERER['SERVER_NAME']; 
+
+			require_once('class.phpmailer.php');
+			$mail = new PHPMailer();
+			$mail->IsHTML(true);
+			$mail->IsSMTP();
+			$mail->SMTPAuth = true; // enable SMTP authentication
+			$mail->SMTPSecure = "ssl"; // sets the prefix to the servier
+			$mail->Host = "smtp.gmail.com"; // sets GMAIL as the SMTP server
+			$mail->Port = 465; // set the SMTP port for the GMAIL server
+			$mail->Username = "khmkhns@gmail.com"; // GMAIL username
+			$mail->Password = "Nmax@240"; // GMAIL password
+			$mail->From = "khmkhns@gmail.com"; // "name@yourdomain.com";
+			//$mail->AddReplyTo = "support@thaicreate.com"; // Reply
+			$mail->FromName = "เว็บไซต์สมาคมตระกูลแซ่";  // set from Name
+			$mail->Subject = "ยืนยันบัญชีการใช้งาน"; 
+			
+			
+			$strMessage = "ยินดีต้อนรับ : ".$_POST["txtName"]."<br>";
+			$strMessage .= "=================================<br>";
+			$strMessage .= "ยืนยันบัญชีการใช้งาน คลิกที่นี่.<br>";
+			$strMessage .= "$url/activate.php?sid=".session_id()."&uid=".$Uid."<br>";
+			$strMessage .= "=================================<br>";
+			$strMessage .= "เว็บไซต์ ชมรมตระกูลแซ่";
+			
+			$mail->Body = "$strMessage";
+			$mail->AddAddress("khm_s@hotmail.com", "Administrator"); // to Address
+			$mail->set('X-Priority', '1'); //Priority 1 = High, 3 = Normal, 5 = low
+			$mail->Send(); 
 			$return = 1;
 		}else{
 			$return = 0;
