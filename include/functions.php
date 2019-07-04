@@ -450,6 +450,7 @@ function registeruser($getdata){
 	$sqlregister = "INSERT INTO tableuserfamily (FamilyName,THFirstName,THLastName,ENFirstName,ENLastName,NicName,Email,PwdUser,Typeuser,FamilyID,SID,Active) VALUES ('$para[0]','$para[1]','$para[2]','$para[3]','$para[4]','$para[5]','$para[6]','$pwdencode','2','$famalyidmax','".session_id()."','No')";
 	$resultuser = $GLOBALS['conn']->query($sqlregister);
 	$Uid = $GLOBALS['conn']->insert_id;
+	
 		if($resultuser){
 			$url = 'http://'.($_SERVER['SERVER_NAME']==='localhost')?'localhost/academy':$_SERER['SERVER_NAME']; 
 
@@ -479,7 +480,7 @@ function registeruser($getdata){
 			$mail->Body = "$strMessage";
 			$mail->AddAddress("khm_s@hotmail.com", "Administrator"); // to Address
 			$mail->set('X-Priority', '1'); //Priority 1 = High, 3 = Normal, 5 = low
-			$mail->Send(); 
+			//$mail->Send(); 
 			$return = 1;
 		}else{
 			$return = 0;

@@ -126,11 +126,11 @@
 								type: "POST",
 								data: datas,
 								beforeSend: function(){
-									//showanimation(1);
+									showanimation(1);
 								},
 								success: function(response){
-									console.log(response);
-									/*if(response==1){
+									//console.log(response);
+									if(response==1){
 										//showdialog("ได้ทำการลงทะเบียนเรียบร้อย");
 										showanimation(2);
 										$('#myModalinform').modal('show');
@@ -143,7 +143,7 @@
 											//document.location.reload();
 											$('#myModallogin').modal('show');
 										});	
-									}*/
+									}
 									
 								},
 							});
