@@ -53,7 +53,7 @@ $timenow = date("Y-m-d H:i:s",time());
 					$(".breadcumb-area").css("display","block");
           //$(".breadcumb-area").css("display","none");
 				  showanimation(1);
-				  setTimeout(function(){ changpage2(content,urlreload,'ผังครอบครัว'); },2000);
+				  setTimeout(function(){ changpage2(content,urlreload,'ผังครอบครัว'); },3000);
       		}
 	
       		sessionStorage.removeItem("reloading");

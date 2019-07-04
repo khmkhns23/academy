@@ -2,10 +2,10 @@
 	include"../include/connect.php";
 	include"../include/functions.php";
 
-	$getid = isset($_GET['id'])?$_GET['id']:"";
+	$getid = 252;
 
-	$return = gettags($getid);
+	$return = getfamilynameandid($getid);
 
-echo($return);
+print_r($return);
 
 ?>

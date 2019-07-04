@@ -35,7 +35,7 @@ var sessid = sessionStorage.getItem("sessid");
 
     var chart = new OrgChart(document.getElementById("tree"), {
 		collapse: {
-                level: 2
+                level: 3
             },
 		
         template: "diva",
@@ -46,11 +46,16 @@ var sessid = sessionStorage.getItem("sessid");
             img_0: "img"
         },
         tags: {
-            f1: familyGroupTag,
+           f1: familyGroupTag,
             f2: familyGroupTag,
             f3: familyGroupTag,
             f4: familyGroupTag,
-            f5: familyGroupTag
+            f5: familyGroupTag,
+			f6: familyGroupTag,
+            f7: familyGroupTag,
+            f8: familyGroupTag,
+            f9: familyGroupTag,
+            f10: familyGroupTag
         },
 		nodeMenu:{
 			    uppics: {

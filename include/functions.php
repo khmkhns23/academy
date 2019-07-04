@@ -194,8 +194,8 @@ function addbabydata($getdata){
 			$para[$i] = filter_var($param_val, FILTER_SANITIZE_STRING);
 		$i++;
 	}
-
-	$sqlinsertbaby = "INSERT INTO tableuserfamily (THFirstName,THLastName,THOldLastName,ENFirstName,ENLastName,NicName,IDfather,img) VALUES ('$para[1]','$para[2]','$para[3]','$para[4]','$para[5]','$para[6]','$para[0]','img/upload/avatar.png')";
+	$datafather = getfamilynameandid($para[0]);
+	$sqlinsertbaby = "INSERT INTO tableuserfamily (FamilyName,FamilyID,THFirstName,THLastName,THOldLastName,ENFirstName,ENLastName,NicName,IDfather,img) VALUES ('$datafather[0]','$datafather[1]','$para[1]','$para[2]','$para[3]','$para[4]','$para[5]','$para[6]','$para[0]','img/upload/avatar.png')";
 	$resultbaby = $GLOBALS['conn']->query($sqlinsertbaby);
 		if($resultbaby){
 			$return = "เพิ่มข้อมูลเรียบร้อย";
@@ -212,8 +212,9 @@ function addwifedata($getaddwife){
 				$para[$i] = filter_var($param_val, FILTER_SANITIZE_STRING);
 		$i++;
 	}
+	$datafather = getfamilynameandid($para[0]);
 	$tags = gettags($para[0]);
-	$sqlinsertwife = "INSERT INTO tableuserfamily (THFirstName,THLastName,THOldLastName,ENFirstName,ENLastName,NicName,IDhusBand,tags,Sex,img) VALUES ('$para[1]','$para[2]','$para[3]','$para[4]','$para[5]','$para[6]','$para[0]','$tags','F','img/upload/avatar.png')";
+	$sqlinsertwife = "INSERT INTO tableuserfamily (FamilyName,FamilyID,THFirstName,THLastName,THOldLastName,ENFirstName,ENLastName,NicName,IDhusBand,tags,Sex,img) VALUES ('$datafather[0]','$datafather[1]','$para[1]','$para[2]','$para[3]','$para[4]','$para[5]','$para[6]','$para[0]','$tags','F','img/upload/avatar.png')";
 	$resultmarry = $GLOBALS['conn']->query($sqlinsertwife);
 		if($resultmarry){
 			$return = "เพิ่มข้อมูลภรรยาเรียบร้อย";
@@ -243,7 +244,7 @@ function gettags($idhusband){
 	//$resulthuss = $resulthus->num_rows; 
 	$rep = "";
 	$resultttt = $resulthus->fetch_array();
-	if($resultttt[0] == ""){
+	if($resultttt[0] == "" || $resultttt[0] == 0 ){
 		$sql = "SELECT MAX(tags) FROM tableuserfamily";
 		$results = $GLOBALS['conn']->query($sql);
 		$result = $results->fetch_array();
@@ -445,7 +446,7 @@ function registeruser($getdata){
 	}
 	$famalyidmax = getfamilyIDmax();
 	$pwdencode = md5($para[6]);
-	$sqlregister = "INSERT INTO tableuserfamily (THFirstName,THLastName,ENFirstName,ENLastName,NicName,Email,PwdUser,Typeuser,FamilyID) VALUES ('$para[0]','$para[1]','$para[2]','$para[3]','$para[4]','$para[5]','$pwdencode','2','$famalyidmax')";
+	$sqlregister = "INSERT INTO tableuserfamily (FamilyName,THFirstName,THLastName,ENFirstName,ENLastName,NicName,Email,PwdUser,Typeuser,FamilyID) VALUES ('$para[0]','$para[1]','$para[2]','$para[3]','$para[4]','$para[5]','$para[6]','$pwdencode','2','$famalyidmax')";
 	$resultbaby = $GLOBALS['conn']->query($sqlregister);
 		if($resultbaby){
 			$return = 1;
@@ -453,10 +454,17 @@ function registeruser($getdata){
 			$return = 0;
 		}
 	return $return;
+	//return $sqlregister;
 	
 	
 	
-	
+}
+function getfamilynameandid($idfather){
+	$sql = "SELECT FamilyName,FamilyID FROM tableuserfamily WHERE ID = $idfather ";
+	$results = $GLOBALS['conn']->query($sql);
+	$data = $results->fetch_assoc();
+	$arr = array($data['FamilyName'],$data['FamilyID']);
+	return $arr;
 }
 function getfamilyIDmax(){
 	$sql = "SELECT MAX(FamilyID) AS maxid FROM tableuserfamily";

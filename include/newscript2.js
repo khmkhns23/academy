@@ -36,7 +36,7 @@ function dashboard2() {
 
     var chart = new OrgChart(document.getElementById("tree"), {
 		collapse: {
-                level: 2
+                level: 3
             },
 		
         template: "diva",
@@ -51,7 +51,12 @@ function dashboard2() {
             f2: familyGroupTag,
             f3: familyGroupTag,
             f4: familyGroupTag,
-            f5: familyGroupTag
+            f5: familyGroupTag,
+			f6: familyGroupTag,
+            f7: familyGroupTag,
+            f8: familyGroupTag,
+            f9: familyGroupTag,
+            f10: familyGroupTag
         },
 		nodeMenu:{
 			    uppics: {

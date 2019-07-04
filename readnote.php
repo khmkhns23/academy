@@ -10,7 +10,6 @@
 	
 	2.connect to another family
 	3.upload Video
-	4.edit process add baby,marry to add value in feild FamalyID
 	5.forgetPassword ->50 percent
 
 	

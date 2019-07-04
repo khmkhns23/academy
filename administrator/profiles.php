@@ -12,6 +12,9 @@
 			font-size: 14px;
 			padding: 2px;
 		}
+		.modal-content{
+			width: 700px;
+		}
 	</style>
 </head>
 
@@ -179,9 +182,13 @@
 			url: Url,
 			type: "POST",
 			data: datas,
+			beforeSend: function(){
+				showanimation(1);
+			},
 			success: function(result)
 			{
 				//console.log(result);
+				showanimation(2);
 				showdialog("แก้ไขข้อมูลเรียบร้อย");
 				$('#dialog').modal('show');
 				$('#dialog').on('shown.bs.modal', function(){
@@ -189,6 +196,9 @@
 				});
 				$('#dialog').on('hidden.bs.modal', function () {
 						$('#myModal2').modal('hide');
+						sessionStorage.setItem("reloading", "true");
+						sessionStorage.setItem("urlreload",'orgchart.php');
+						document.location.reload();
 				});	
 			}
 		});

@@ -12,9 +12,7 @@
 			font-size: 16px;
 			padding: 2px 10px 2px 10px;
 		}
-		.modal-content{
-			width: 430px;
-		}
+		
 	</style>
 	
 	<style>	
@@ -39,37 +37,37 @@
 	
 <script>
 		$(document).ready(function() {
-			<!-- Real-time Validation -->
-								
-				<!--Name can't be blank-->
+				$('#familynames').on('input', function() {
+					var input=$(this);
+					var is_name=input.val();
+					if(is_name){input.removeClass("invalid").addClass("valid");}
+					else{input.removeClass("valid").addClass("invalid");}
+				});				
 				$('#thfirstnames').on('input', function() {
 					var input=$(this);
 					var is_name=input.val();
 					if(is_name){input.removeClass("invalid").addClass("valid");}
 					else{input.removeClass("valid").addClass("invalid");}
 				});
-				<!--Name can't be blank-->
 				$('#thlastnames').on('input', function() {
 					var input=$(this);
 					var is_name=input.val();
 					if(is_name){input.removeClass("invalid").addClass("valid");}
 					else{input.removeClass("valid").addClass("invalid");}
 				});
-				<!--Name can't be blank-->
+
 				$('#enfirstnames').on('input', function() {
 					var input=$(this);
 					var is_name=input.val();
 					if(is_name){input.removeClass("invalid").addClass("valid");}
 					else{input.removeClass("valid").addClass("invalid");}
 				});
-				<!--Name can't be blank-->
 				$('#enlastnames').on('input', function() {
 					var input=$(this);
 					var is_name=input.val();
 					if(is_name){input.removeClass("invalid").addClass("valid");}
 					else{input.removeClass("valid").addClass("invalid");}
 				});
-				<!--Name can't be blank-->
 				$('#nicnames').on('input', function() {
 					var input=$(this);
 					var is_name=input.val();
@@ -77,7 +75,6 @@
 					else{input.removeClass("valid").addClass("invalid");}
 				});
 				
-				<!--Email must be an email -->
 				$('#emailadd').on('input', function() {
 					var input=$(this);
 					var re = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
@@ -123,7 +120,7 @@
 				else{
 					var Url = $("#register").attr("action");		
 					var datas = $("#register").serializeArray();
-						//console.log(datas);
+					//	console.log(datas);
 						$.ajax({
 								url: Url,
 								type: "POST",
@@ -147,17 +144,7 @@
 											$('#myModallogin').modal('show');
 										});	
 									}
-									/*showdialog(response);
-									$('#dialog').modal('show');
-									$('#dialog').on('shown.bs.modal', function(){
-										$(this).find('button').focus();
-									});
-									$('#dialog').on('hidden.bs.modal', function () {
-										$('#myModal6').modal('hide');
-										sessionStorage.setItem("reloading", "true");
-										sessionStorage.setItem("urlreload",'orgchart.php');
-										document.location.reload();
-									});*/
+									
 								},
 							});
 						}
@@ -187,9 +174,12 @@
       <div class="modal-body">
       
 		  <form action="administrator/process.php?typeprocess=register" method="post" id="register">
-			<div class="row">
-							
-			  
+							<div class="row">
+			  				<div class="col-lg-5"><label>ชื่อครอบครัว * :</label></div>
+								<div class="col-lg-7"><input class="form-control" type="text" id="familynames" name="familynames"></div>
+								
+							</div>
+			  				<div class="row">
 							<div class="col-lg-5"><label>ชื่อไทย * :</label></div>
 								<div class="col-lg-7"><input class="form-control" type="text" id="thfirstnames" name="thfirstnames"></div>
 								
