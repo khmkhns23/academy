@@ -4,7 +4,7 @@
 </head>
 <body>
 <?php
-	$url = 'http://'.($_SERVER['SERVER_NAME']==='localhost')?'localhost/academy':$_SERER['SERVER_NAME']; 
+	//$url = 'http://'.($_SERVER['SERVER_NAME']==='localhost')?'localhost/academy':$_SERER['SERVER_NAME']; 
 
 	
 	require_once('class.phpmailer.php');
