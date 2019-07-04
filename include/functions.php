@@ -449,7 +449,7 @@ function registeruser($getdata){
 	
 	$sqlregister = "INSERT INTO tableuserfamily (FamilyName,THFirstName,THLastName,ENFirstName,ENLastName,NicName,Email,PwdUser,Typeuser,FamilyID,SID,Active) VALUES ('$para[0]','$para[1]','$para[2]','$para[3]','$para[4]','$para[5]','$para[6]','$pwdencode','2','$famalyidmax','".session_id()."','No')";
 	$resultuser = $GLOBALS['conn']->query($sqlregister);
-	$Uid = $conn->insert_id;
+	$Uid = $GLOBALS['conn']->insert_id;
 		if($resultuser){
 			$url = 'http://'.($_SERVER['SERVER_NAME']==='localhost')?'localhost/academy':$_SERER['SERVER_NAME']; 
 
@@ -464,12 +464,12 @@ function registeruser($getdata){
 			$mail->Username = "khmkhns@gmail.com"; // GMAIL username
 			$mail->Password = "Nmax@240"; // GMAIL password
 			$mail->From = "khmkhns@gmail.com"; // "name@yourdomain.com";
-			//$mail->AddReplyTo = "support@thaicreate.com"; // Reply
+			
 			$mail->FromName = "เว็บไซต์สมาคมตระกูลแซ่";  // set from Name
 			$mail->Subject = "ยืนยันบัญชีการใช้งาน"; 
 			
 			
-			$strMessage = "ยินดีต้อนรับ : ".$_POST["txtName"]."<br>";
+			$strMessage = "ยินดีต้อนรับ : ".$para[1]."<br>";
 			$strMessage .= "=================================<br>";
 			$strMessage .= "ยืนยันบัญชีการใช้งาน คลิกที่นี่.<br>";
 			$strMessage .= "$url/activate.php?sid=".session_id()."&uid=".$Uid."<br>";
