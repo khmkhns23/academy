@@ -23,7 +23,7 @@
 	$mail->FromName = "เว็บไซต์สมาคมตระกูลแซ่";  // set from Name
 	$msg = "ยืนยันการลงทะเบียน <b>ท่านได้ทำการลงทะเบียนใช้งานเว็บไซต์ ชมรมตระกูลแซ่ <br>เพื่อให้การลงทะเบียนสมบูรณ์คุณจะต้องยืนยันการลงทะเบียน ด้วยลิงค์นี้</b><a href='http://academyyut.herokuapp.com'";
 	$mail->Subject = "ยืนยันการลงทะเบียน"; 
-	$mail->Body = $msg;
+	$mail->Body = "ยืนยันการลงทะเบียน <b>ท่านได้ทำการลงทะเบียนใช้งานเว็บไซต์ ชมรมตระกูลแซ่ <br>เพื่อให้การลงทะเบียนสมบูรณ์คุณจะต้องยืนยันการลงทะเบียน ด้วยลิงค์นี้</b><a href='http://academyyut.herokuapp.com'";
 
 	$mail->AddAddress("khm_s@hotmail.com", "MR.Yuttthasart"); // to Address
 
