@@ -6,8 +6,12 @@
 
 	switch($gettypeprocess){
 			
-		case "changpwd" :
+		case "resetpass" :
+			$return = resetpass($_POST);
+			echo($return);
+			break;
 			
+		case "changpwd" :
 			$return = changpwd($_POST['oldpwd'],$_POST['newpwd'],$_POST['cfnewpwd'],$_POST['idnode']);
 			echo $return;
 			break;
@@ -48,10 +52,8 @@
 			$return = registeruser($_POST);
 			echo($return);
 			break;
-		case "changpwduser" :
-			$return = changpwduser($_POST);
-			echo($return);
-			break;
+			
+		
 			
 	}
 

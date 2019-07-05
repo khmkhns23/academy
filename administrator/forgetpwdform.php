@@ -5,7 +5,7 @@
 <title>ลืมรหัสผ่าน</title>
 	<style>
 		.model{
-			width: 450px;
+			width: 400px;
 		}
 	</style>
 </head>
@@ -26,7 +26,7 @@
       <!-- Modal body -->
       <div class="modal-body">
       
-		   <form id="formchangepwd" method="post" action="administrator/process.php?typeprocess=changpwduser" >
+		   <form id="formresetpwd" method="post" action="administrator/process.php?typeprocess=resetpass" >
 			    <input type="hidden" id="hiddeid" value="0">
 
 			<div class="form-group">
@@ -34,7 +34,7 @@
     			<input type="text" class="form-control" id="forgetemail" name="forgetemail">
 			</div>
 			<div class="form-group">
-			  <input type="button" class="btn btn-primary" id="forgetpwd" name="forgetpwd" value="ลืมรหัสผ่าน" onClick="sendresetpass();">
+			  <input type="button" class="btn btn-primary" id="forgetpwd" name="forgetpwd" value="ลืมรหัสผ่าน" onClick="sendresetpass()">
 			</div>
 		  </form>
 
@@ -51,19 +51,19 @@
 	
 <script type="text/javascript">
       function sendresetpass(){		  
-		  	var Url = $("#formchangepwd").attr("action");
+		  	var Url = $("#formresetpwd").attr("action");
 			var datas = $("#forgetemail").val();
-
-			$.ajax({
+		  	console.log(datas);
+			/*$.ajax({
 					url: Url,
 					type: "POST",
 					data: datas,
 					beforeSend: function(){
-						showanimation(1);
+						//showanimation(1);
 					},
 					success: function(response){
 						console.log(response);
-						showanimation(2);
+						//showanimation(2);
 						showdialog(response);
 						$('#dialog').modal('show');
 						$('#dialog').on('shown.bs.modal', function(){
@@ -74,10 +74,9 @@
 							//sessionStorage.setItem("reloading", "true");
 							//sessionStorage.setItem("urlreload",'orgchart.php');
 							document.location.reload();
-							
-						});
-					},
-				});
+						});*/
+			/*		},
+				});*/
 	  }
 	
 	

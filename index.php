@@ -60,7 +60,7 @@ $timenow = date("Y-m-d H:i:s",time());
 			sessionStorage.removeItem("urlreload");
 		
 		
-		$("#forgetpwd").click(function(){
+		/*$("#forgetpwd").click(function(){
 			//	console.log('click btn chngpwd');
 			var oldpwd = $("#oldpwd").val();
 			var newpwd = $("#newpwd").val();
@@ -86,7 +86,7 @@ $timenow = date("Y-m-d H:i:s",time());
 					});
 					},
 				});
-		});		
+		});		*/
 });
 
 	</script>

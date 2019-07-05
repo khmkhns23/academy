@@ -12,7 +12,7 @@
                             <div class="login-content">
 								<?php
 									if(isset($_SESSION['sessid'])){
-										echo"<h6>ยินดีต้อนรับ ". $_SESSION['sessuser'] ." / <a href=\"#\" >ลืมรหัสผ่าน </a> / <a href=\"#\" onclick=\"logoutprocess();\" >ออกจากระบบ</a></h6>";
+										echo"<h6>ยินดีต้อนรับ ". $_SESSION['sessuser'] ." / <a href=\"#\" onclick=\"logoutprocess();\" >ออกจากระบบ</a></h6>";
 									}else{
 										echo"<h6><a href=\"#\" onClick=\"registerform();\" >ลงทะเบียนผู้ดูแลผังครอบครัว </a> / <a href=\"#\" id=\"myBtn\">เข้าสู่ระบบผู้ดูแลผังครอบครัว</a></h6>";
 									}

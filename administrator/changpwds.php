@@ -37,7 +37,7 @@
     			<input type="password" class="form-control" id="cfnewpwd" name="cfnewpwd">
 			</div>
 			<div class="form-group">
-			  <input type="button" class="btn btn-primary" id="chngpwd" name="chngpwd" value="เปลี่ยนรหัสผ่าน">
+			  <input type="button" class="btn btn-primary" id="chngpasswd" name="chngpasswd" value="เปลี่ยนรหัสผ่าน" onClick="chngpasswd();" >
 			</div>
 		  </form>
 
@@ -53,9 +53,10 @@
 </div>
 	
 <script type="text/javascript">
-      $(document).ready(function(){
+  /*    $(document).ready(function(){
 
-		$("#chngpwd").click(function(){
+		$("#chngpasswd").click(function()*/
+		function chngpasswd(){
 			//	console.log('click btn chngpwd');
 			var oldpwd = $("#oldpwd").val();
 			var newpwd = $("#newpwd").val();
@@ -81,8 +82,9 @@
 					});
 				},
 			});
-		});
-	});
+		}
+	/*);
+	});*/
   </script>
 </body>
 </html>

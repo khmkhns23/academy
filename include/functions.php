@@ -197,7 +197,8 @@ function addbabydata($getdata){
 	$idfather = getidfather($para[0]);
 	//$damother = getidmother();
 	$datafather = getfamilynameandid($para[0]);
-	$sqlinsertbaby = "INSERT INTO tableuserfamily (FamilyName,FamilyID,THFirstName,THLastName,THOldLastName,ENFirstName,ENLastName,NicName,IDfather,img) VALUES ('$datafather[0]','$datafather[1]','$para[1]','$para[2]','$para[3]','$para[4]','$para[5]','$para[6]','$idfather','img/upload/avatar.png')";
+	$md5pwd = md5(1234);
+	$sqlinsertbaby = "INSERT INTO tableuserfamily (FamilyName,FamilyID,THFirstName,THLastName,THOldLastName,ENFirstName,ENLastName,NicName,IDfather,img,PwdUser) VALUES ('$datafather[0]','$datafather[1]','$para[1]','$para[2]','$para[3]','$para[4]','$para[5]','$para[6]','$idfather','img/upload/avatar.png','$md5pwd')";
 	$resultbaby = $GLOBALS['conn']->query($sqlinsertbaby);
 		if($resultbaby){
 			$return = "เพิ่มข้อมูลเรียบร้อย";
@@ -205,6 +206,7 @@ function addbabydata($getdata){
 			$return = "ไม่สามารถเพิ่มข้อมูลได้";
 		}
 	return $return;
+	//return $sqlinsertbaby;
 }
 function getidfather($id){
 	$sql = "SELECT IDhusBand AS idh FROM tableuserfamily WHERE ID = $id";
@@ -227,7 +229,8 @@ function addwifedata($getaddwife){
 	}
 	$datafather = getfamilynameandid($para[0]);
 	$tags = gettags($para[0]);
-	$sqlinsertwife = "INSERT INTO tableuserfamily (FamilyName,FamilyID,THFirstName,THLastName,THOldLastName,ENFirstName,ENLastName,NicName,IDhusBand,tags,Sex,img) VALUES ('$datafather[0]','$datafather[1]','$para[1]','$para[2]','$para[3]','$para[4]','$para[5]','$para[6]','$para[0]','$tags','F','img/upload/avatar.png')";
+	$md5pwd = md5(1234);
+	$sqlinsertwife = "INSERT INTO tableuserfamily (FamilyName,FamilyID,THFirstName,THLastName,THOldLastName,ENFirstName,ENLastName,NicName,IDhusBand,tags,Sex,img,PwdUser) VALUES ('$datafather[0]','$datafather[1]','$para[1]','$para[2]','$para[3]','$para[4]','$para[5]','$para[6]','$para[0]','$tags','F','img/upload/avatar.png',$md5pwd)";
 	$resultmarry = $GLOBALS['conn']->query($sqlinsertwife);
 		if($resultmarry){
 			$return = "เพิ่มข้อมูลภรรยาเรียบร้อย";
@@ -504,7 +507,7 @@ function registeruser($getdata){
 	
 	
 }
-function changpwduser($post){
+function resetpass($post){
 	$i = 0;
 	foreach ($post as $param_name => $param_val) {
 			$para[$i] = filter_var($param_val, FILTER_SANITIZE_STRING);
@@ -521,7 +524,8 @@ function changpwduser($post){
 		}else{
 			$return = 0;
 		}
-	return $return;
+	//return $return;
+	return $count;
 }
 function getfamilynameandid($idfather){
 	$sql = "SELECT FamilyName,FamilyID FROM tableuserfamily WHERE ID = $idfather ";
