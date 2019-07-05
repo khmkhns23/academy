@@ -507,25 +507,56 @@ function registeruser($getdata){
 	
 	
 }
-function resetpass($post){
+function resetpass(){
 	$i = 0;
-	foreach ($post as $param_name => $param_val) {
-			$para[$i] = filter_var($param_val, FILTER_SANITIZE_STRING);
-		$i++;
-	}
-	$sql = "SELECT Email FROM tableuserfamily WHERE Email LIKE '$para[0]'";
+	$para = $_POST['Email'];
+	$sql = "SELECT Email FROM tableuserfamily WHERE Email LIKE '$para'";
 	$results = $GLOBALS['conn']->query($sql);
 	$data = $results->fetch_assoc();
 	$count = $results->num_rows;
 		if($count>0){
-			$sqlupdate = "UPDATE tableuserfamily SET SID =".session_id();
+			$sqlupdate = "UPDATE tableuserfamily SET SID ='".session_id()."' WHERE Email = '$para'";
 			$resultupdate = $GLOBALS['conn']->query($sqlupdate); 
-			$return = 1;
+			if($resultupdate){
+				$url = 'http://'.($_SERVER['SERVER_NAME']==='localhost')?'localhost/academy':$_SERER['SERVER_NAME']; 
+
+				require_once('class.phpmailer.php');
+				$mail = new PHPMailer();
+				$mail->IsHTML(true);
+				$mail->IsSMTP();
+				$mail->SMTPAuth = true; // enable SMTP authentication
+				$mail->SMTPSecure = "ssl"; // sets the prefix to the servier
+				$mail->Host = "smtp.gmail.com"; // sets GMAIL as the SMTP server
+				$mail->Port = 465; // set the SMTP port for the GMAIL server
+				$mail->Username = "khmkhns@gmail.com"; // GMAIL username
+				$mail->Password = "Nmax@240"; // GMAIL password
+				$mail->From = "khmkhns@gmail.com"; // "name@yourdomain.com";
+
+				$mail->FromName = "เว็บไซต์สมาคมตระกูลแซ่";  // set from Name
+				$mail->Subject = "รีเซ็ทรหัสผ่าน"; 
+
+
+				$strMessage = "สวัสดีคุณ : ".$para."<br>";
+				$strMessage .= "=================================<br>";
+				$strMessage .= "เราได้ทำการรีเซ็ทรหัสผ่านแล้วกรุณาตั้งรหัสผ่านด้วยตัวเอง คลิกที่นี่.<br>";
+				$strMessage .= "$url/resetpwd.php?sid=".session_id()."&email=".$para."<br>";
+				$strMessage .= "=================================<br>";
+				$strMessage .= "เว็บไซต์ ชมรมตระกูลแซ่";
+
+				$mail->Body = "$strMessage";
+				$mail->AddAddress($para, "Administrator"); // to Address
+				$mail->set('X-Priority', '1'); //Priority 1 = High, 3 = Normal, 5 = low
+				$mail->Send(); 
+				
+				$return = 1;
+			}else{
+				$return = 0;
+			}
 		}else{
 			$return = 0;
 		}
-	//return $return;
-	return $count;
+	return $return;
+	//return $sqlupdate;
 }
 function getfamilynameandid($idfather){
 	$sql = "SELECT FamilyName,FamilyID FROM tableuserfamily WHERE ID = $idfather ";

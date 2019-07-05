@@ -47,24 +47,26 @@
 
     </div>
   </div>
+	<div id="showcontentmodal2"></div>
 </div>
 	
 <script type="text/javascript">
       function sendresetpass(){		  
 		  	var Url = $("#formresetpwd").attr("action");
-			var datas = $("#forgetemail").val();
-		  	console.log(datas);
-			/*$.ajax({
+			var datas = "Email="+$("#forgetemail").val();
+		  	//console.log(datas);
+			$.ajax({
 					url: Url,
 					type: "POST",
 					data: datas,
 					beforeSend: function(){
-						//showanimation(1);
+						showanimation(1);
 					},
 					success: function(response){
 						console.log(response);
-						//showanimation(2);
-						showdialog(response);
+						showanimation(2);
+						if(response == 1){
+							showdialog2("ดำเนินการเรียร้อย<br>กรุณาตรวสอบข้อความในอีเมลของท่านเพื่อทำการตั้งรหัสใหม่ผ่านเอง");
 						$('#dialog').modal('show');
 						$('#dialog').on('shown.bs.modal', function(){
 							$(this).find('button').focus();
@@ -74,9 +76,17 @@
 							//sessionStorage.setItem("reloading", "true");
 							//sessionStorage.setItem("urlreload",'orgchart.php');
 							document.location.reload();
-						});*/
-			/*		},
-				});*/
+						});	
+						}else{
+							showdialog2("ไม่สามารถดำเนินการได้");
+							$('#dialog').modal('show');
+							$('#dialog').on('shown.bs.modal', function(){
+								$(this).find('button').focus();
+							});
+						}
+						
+					},
+				});
 	  }
 	
 	
