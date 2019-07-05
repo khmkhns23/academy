@@ -3,6 +3,11 @@
 <head>
 <meta charset="utf-8">
 <title>Untitled Document</title>
+	<style>
+		.modal-content{
+			width: auto;
+		}
+	</style>
 </head>
 
 <body>
@@ -24,10 +29,10 @@
 		   <form id="formchangepwd" method="post" action="" >
 			    <input type="hidden" id="hiddeid" value="0">
 
-			<div class="form-group">
+			<!--<div class="form-group">
 			  	<label for="pwd">รหัสผ่านเก่า :</label>
     			<input type="password" class="form-control" id="oldpwd" name="oldpwd">
-			</div>
+			</div>-->
 			<div class="form-group">
 			  	<label for="pwd">รหัสผ่านใหม่ :</label>
     			<input type="password" class="form-control" id="newpwd" name="newpwd">
@@ -37,7 +42,7 @@
     			<input type="password" class="form-control" id="cfnewpwd" name="cfnewpwd">
 			</div>
 			<div class="form-group">
-			  <input type="button" class="btn btn-primary" id="chngpasswd" name="chngpasswd" value="เปลี่ยนรหัสผ่าน" onClick="chngpasswd();" >
+			  <input type="button" class="btn btn-primary" id="chngpasswd" name="chngpasswd" value="เปลี่ยนรหัสผ่าน" onClick="changpasswd();" >
 			</div>
 		  </form>
 
@@ -53,18 +58,16 @@
 </div>
 	
 <script type="text/javascript">
-  /*    $(document).ready(function(){
-
-		$("#chngpasswd").click(function()*/
-		function chngpasswd(){
+ 
+		function changpasswd(){
 			//	console.log('click btn chngpwd');
-			var oldpwd = $("#oldpwd").val();
+			//var oldpwd = $("#oldpwd").val();
 			var newpwd = $("#newpwd").val();
 			var cfnewpwd = $("#cfnewpwd").val();
 	
 			var idss = $("#hiddeid").val();
-			var data2 = $("#formchangepwd input").serialize();
-				data2 += "&idnode="+idss;
+			//var data2 = $("#formchangepwd input").serialize();
+			var	data2 = "newpwd="+newpwd+"&cfnewpwd="+cfnewpwd+"&idnode="+idss;
 				//console.log(data2);
 			$.ajax({
 				url: 'administrator/process.php?typeprocess=changpwd',
@@ -83,8 +86,6 @@
 				},
 			});
 		}
-	/*);
-	});*/
   </script>
 </body>
 </html>

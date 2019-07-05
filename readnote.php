@@ -10,8 +10,6 @@
 	
 	2.connect to another family
 	3.upload Video
-	5.forgetPassword ->50 percent
-
 	
 </body>
 </html>

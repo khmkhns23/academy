@@ -95,10 +95,10 @@ $i =0;
  return $arr;
 $GLOBALS['conn']->close();  
 }
-function changpwd($argpwd,$argnew1,$argnew2,$idnode){
-	$sql = "SELECT ID FROM tableuserfamily WHERE ID = $idnode AND PwdUser = '".md5($argpwd)."'";
-	$result = $GLOBALS['conn']->query($sql);
-	if($result->num_rows <> 0){
+function changpwd($argnew1,$argnew2,$idnode){
+	//$sql = "SELECT ID FROM tableuserfamily WHERE ID = $idnode AND PwdUser = '".md5($argpwd)."'";
+	//$result = $GLOBALS['conn']->query($sql);
+	//if($result->num_rows <> 0){
 		$msg = "";
 		$pwd1 = filter_var($argnew1, FILTER_SANITIZE_STRING);
 		$pwd2 = filter_var($argnew2, FILTER_SANITIZE_STRING);
@@ -114,9 +114,9 @@ function changpwd($argpwd,$argnew1,$argnew2,$idnode){
 				$msg .="เกิดข้อผิดพลาดในการเปลี่ยนรหัสผ่าน";
 			}
 		}
-	}else{
+	/*}else{
 		$msg = "คุณใส่รหัสเดิมไม่ถูกต้อง";
-	}
+	}*/
 	//return $sql;
 	return $msg;
 }
@@ -230,7 +230,7 @@ function addwifedata($getaddwife){
 	$datafather = getfamilynameandid($para[0]);
 	$tags = gettags($para[0]);
 	$md5pwd = md5(1234);
-	$sqlinsertwife = "INSERT INTO tableuserfamily (FamilyName,FamilyID,THFirstName,THLastName,THOldLastName,ENFirstName,ENLastName,NicName,IDhusBand,tags,Sex,img,PwdUser) VALUES ('$datafather[0]','$datafather[1]','$para[1]','$para[2]','$para[3]','$para[4]','$para[5]','$para[6]','$para[0]','$tags','F','img/upload/avatar.png',$md5pwd)";
+	$sqlinsertwife = "INSERT INTO tableuserfamily (FamilyName,FamilyID,THFirstName,THLastName,THOldLastName,ENFirstName,ENLastName,NicName,IDhusBand,tags,Sex,img,PwdUser) VALUES ('$datafather[0]','$datafather[1]','$para[1]','$para[2]','$para[3]','$para[4]','$para[5]','$para[6]','$para[0]','$tags','F','img/upload/avatar.png','$md5pwd')";
 	$resultmarry = $GLOBALS['conn']->query($sqlinsertwife);
 		if($resultmarry){
 			$return = "เพิ่มข้อมูลภรรยาเรียบร้อย";
@@ -238,6 +238,7 @@ function addwifedata($getaddwife){
 			$return = "ไม่สามารถเพิ่มข้อมูลภรรยาได้";
 		}
 	return $return;
+	//return $sqlinsertwife;
 }
 function addmanager($gatdatamg){
 	$i =0;

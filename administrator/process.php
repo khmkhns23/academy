@@ -12,7 +12,7 @@
 			break;
 			
 		case "changpwd" :
-			$return = changpwd($_POST['oldpwd'],$_POST['newpwd'],$_POST['cfnewpwd'],$_POST['idnode']);
+			$return = changpwd($_POST['newpwd'],$_POST['cfnewpwd'],$_POST['idnode']);
 			echo $return;
 			break;
 			

@@ -59,7 +59,7 @@
 			var fd = new FormData();
 			var files = $('#filevd')[0].files[0];
 			var filesize = files.size;
-			fd.append('filevd',files);
+			fd.append('file',files);
 			var idss = $("#hiddeidvideo").val();
 			var integer = parseInt((filesize/1024), 10);
 			var Url = encodeURI("administrator/uploadsvideo2.php?idss="+idss);
