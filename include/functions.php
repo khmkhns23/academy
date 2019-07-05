@@ -519,7 +519,7 @@ function resetpass(){
 			$sqlupdate = "UPDATE tableuserfamily SET SID ='".session_id()."' WHERE Email = '$para'";
 			$resultupdate = $GLOBALS['conn']->query($sqlupdate); 
 			if($resultupdate){
-				$url = 'http://'.($_SERVER['SERVER_NAME']==='localhost')?'localhost/academy':$_SERER['SERVER_NAME']; 
+				$url = 'http://academyyut.herokuapp.com'; 
 
 				require_once('class.phpmailer.php');
 				$mail = new PHPMailer();
@@ -541,7 +541,7 @@ function resetpass(){
 				$strMessage = "สวัสดีคุณ : ".$para."<br>";
 				$strMessage .= "=================================<br>";
 				$strMessage .= "เราได้ทำการรีเซ็ทรหัสผ่านแล้วกรุณาตั้งรหัสผ่านด้วยตัวเอง คลิกที่นี่.<br>";
-				$strMessage .= "$url/resetpwd.php?sid=".session_id()."&email=".$para."<br>";
+				$strMessage .= "<a href='$url/resetpwd.php?sid=".session_id()."&email=".$para."'>ตั้งรหัสผ่านใหม่</a><br>";
 				$strMessage .= "=================================<br>";
 				$strMessage .= "เว็บไซต์ ชมรมตระกูลแซ่";
 
