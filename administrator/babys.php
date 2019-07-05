@@ -83,9 +83,13 @@
 				url: Url,
 				type: "POST",
 				data: datas,
+				beforeSend: function(){
+					showanimation(1);
+				},
 				success: function(response){
 					//console.log(response);
 					showdialog(response);
+					showanimation(2);
 					$('#dialog').modal('show');
 					$('#dialog').on('shown.bs.modal', function(){
 						$(this).find('button').focus();

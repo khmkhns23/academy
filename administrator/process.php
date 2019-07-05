@@ -48,7 +48,10 @@
 			$return = registeruser($_POST);
 			echo($return);
 			break;
-			
+		case "changpwduser" :
+			$return = changpwduser($_POST);
+			echo($return);
+			break;
 			
 	}
 

@@ -127,13 +127,13 @@ function updateprofile($postrec){
 	$msg = "";
 	foreach ($postrec as $param_name => $param_val) {
 				//$msg.= "Param: $param_name; Value: $param_val<br />\n";
-			$arr[$i] = ($param_val == null)?"-":$param_val;
+			$arr[$i] = ($param_val == null)?"":$param_val;
 		$i++;
 			}
-	
+	$tags = gettags($arr[9]);
 	$sql = "UPDATE tableuserfamily SET THFirstName = '$arr[1]',THLastName='$arr[2]',THOldLastName='$arr[3]',";
 	$sql .="ENFirstName='$arr[4]',ENLastName='$arr[5]',NicName='$arr[6]',IDfather='$arr[7]',IDmother='$arr[8]',IDhusBand='$arr[9]',";
-	$sql .="tags='$arr[10]',Sex='$arr[11]',Birthday='$arr[12]',PlaceOfBirth='$arr[13]',Nationality='$arr[14]',Address='$arr[15]',";
+	$sql .="tags='$tags',Sex='$arr[11]',Birthday='$arr[12]',PlaceOfBirth='$arr[13]',Nationality='$arr[14]',Address='$arr[15]',";
 	$sql .="Province='$arr[16]',Country='$arr[17]',Telephone='$arr[18]',Email='$arr[19]',LineID='$arr[20]',OtherID1='$arr[21]',";
 	$sql .="OrtherID2='$arr[22]',DeathDay='$arr[23]',Introduce='$arr[24]',NumsGEN='$arr[25]'";
 	$sql .=" WHERE ID = '$arr[0]'";
@@ -194,8 +194,10 @@ function addbabydata($getdata){
 			$para[$i] = filter_var($param_val, FILTER_SANITIZE_STRING);
 		$i++;
 	}
+	$idfather = getidfather($para[0]);
+	//$damother = getidmother();
 	$datafather = getfamilynameandid($para[0]);
-	$sqlinsertbaby = "INSERT INTO tableuserfamily (FamilyName,FamilyID,THFirstName,THLastName,THOldLastName,ENFirstName,ENLastName,NicName,IDfather,img) VALUES ('$datafather[0]','$datafather[1]','$para[1]','$para[2]','$para[3]','$para[4]','$para[5]','$para[6]','$para[0]','img/upload/avatar.png')";
+	$sqlinsertbaby = "INSERT INTO tableuserfamily (FamilyName,FamilyID,THFirstName,THLastName,THOldLastName,ENFirstName,ENLastName,NicName,IDfather,img) VALUES ('$datafather[0]','$datafather[1]','$para[1]','$para[2]','$para[3]','$para[4]','$para[5]','$para[6]','$idfather','img/upload/avatar.png')";
 	$resultbaby = $GLOBALS['conn']->query($sqlinsertbaby);
 		if($resultbaby){
 			$return = "เพิ่มข้อมูลเรียบร้อย";
@@ -203,6 +205,17 @@ function addbabydata($getdata){
 			$return = "ไม่สามารถเพิ่มข้อมูลได้";
 		}
 	return $return;
+}
+function getidfather($id){
+	$sql = "SELECT IDhusBand AS idh FROM tableuserfamily WHERE ID = $id";
+	$results = $GLOBALS['conn']->query($sql);
+	$data =  $results->fetch_assoc();
+	if($data['idh'] == null or $data['idh'] == 0){
+		$IDhusband = $id;
+	}else{
+		$IDhusband = $data['idh'];
+	}
+	return $IDhusband;
 }
 function addwifedata($getaddwife){
 	$arr 	= array();
@@ -244,7 +257,7 @@ function gettags($idhusband){
 	//$resulthuss = $resulthus->num_rows; 
 	$rep = "";
 	$resultttt = $resulthus->fetch_array();
-	if($resultttt[0] == "" || $resultttt[0] == 0 ){
+	if(empty($resultttt[0])){
 		$sql = "SELECT MAX(tags) FROM tableuserfamily";
 		$results = $GLOBALS['conn']->query($sql);
 		$result = $results->fetch_array();
@@ -478,7 +491,7 @@ function registeruser($getdata){
 			$strMessage .= "เว็บไซต์ ชมรมตระกูลแซ่";
 			
 			$mail->Body = "$strMessage";
-			$mail->AddAddress("khm_s@hotmail.com", "Administrator"); // to Address
+			$mail->AddAddress($para[6], "Administrator"); // to Address
 			$mail->set('X-Priority', '1'); //Priority 1 = High, 3 = Normal, 5 = low
 			//$mail->Send(); 
 			$return = 1;
@@ -490,6 +503,25 @@ function registeruser($getdata){
 	
 	
 	
+}
+function changpwduser($post){
+	$i = 0;
+	foreach ($post as $param_name => $param_val) {
+			$para[$i] = filter_var($param_val, FILTER_SANITIZE_STRING);
+		$i++;
+	}
+	$sql = "SELECT Email FROM tableuserfamily WHERE Email LIKE '$para[0]'";
+	$results = $GLOBALS['conn']->query($sql);
+	$data = $results->fetch_assoc();
+	$count = $results->num_rows();
+		if($count>0){
+			$sqlupdate = "UPDATE tableuserfamily SET SID =".session_id();
+			$resultupdate = $GLOBALS['conn']->query($sqlupdate); 
+			$return = 1;
+		}else{
+			$return = 0;
+		}
+	return $return;
 }
 function getfamilynameandid($idfather){
 	$sql = "SELECT FamilyName,FamilyID FROM tableuserfamily WHERE ID = $idfather ";

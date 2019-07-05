@@ -26,15 +26,15 @@
       <!-- Modal body -->
       <div class="modal-body">
       
-		   <form id="formchangepwd" method="post" action="" >
+		   <form id="formchangepwd" method="post" action="administrator/process.php?typeprocess=changpwduser" >
 			    <input type="hidden" id="hiddeid" value="0">
 
 			<div class="form-group">
 			  	<label for="pwd">กรอกอีเมล์ที่ได้ลงทะเบียนไว้ :</label>
-    			<input type="password" class="form-control" id="forgetemail" name="forgetemail">
+    			<input type="text" class="form-control" id="forgetemail" name="forgetemail">
 			</div>
 			<div class="form-group">
-			  <input type="button" class="btn btn-primary" id="forgetpwd" name="forgetpwd" value="ลืมรหัสผ่าน">
+			  <input type="button" class="btn btn-primary" id="forgetpwd" name="forgetpwd" value="ลืมรหัสผ่าน" onClick="sendresetpass();">
 			</div>
 		  </form>
 
@@ -50,7 +50,39 @@
 </div>
 	
 <script type="text/javascript">
-      
-  </script>
+      function sendresetpass(){		  
+		  	var Url = $("#formchangepwd").attr("action");
+			var datas = $("#forgetemail").val();
+
+			$.ajax({
+					url: Url,
+					type: "POST",
+					data: datas,
+					beforeSend: function(){
+						showanimation(1);
+					},
+					success: function(response){
+						console.log(response);
+						showanimation(2);
+						showdialog(response);
+						$('#dialog').modal('show');
+						$('#dialog').on('shown.bs.modal', function(){
+							$(this).find('button').focus();
+						});
+						$('#dialog').on('hidden.bs.modal', function () {
+							$('#forgerpwdModal').modal('hide');
+							//sessionStorage.setItem("reloading", "true");
+							//sessionStorage.setItem("urlreload",'orgchart.php');
+							document.location.reload();
+							
+						});
+					},
+				});
+	  }
+	
+	
+	
+	
+</script>
 </body>
 </html>

@@ -241,8 +241,12 @@ function profiless(nodeId){
 				$.ajax({
 				url: "getdatatojsons.php?id="+nodeId,
 				type: "POST",
+				beforeSend: function(){
+					showanimation(1);
+				},	
 				success: function(result)
 					{
+						showanimation(2);
 						var myObj = JSON.parse(result);
 						$("#imgs").attr("src",myObj[22].img);
 						$(".modal-title").html("แก้ไขข้อมูลส่วนตัว : "+myObj[2].THFirstName);

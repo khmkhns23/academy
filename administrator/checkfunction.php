@@ -2,9 +2,9 @@
 	include"../include/connect.php";
 	include"../include/functions.php";
 
-	$getid = 252;
+	$getid = $_GET['id'];
 
-	$return = getfamilynameandid($getid);
+	$return = getidfather($getid);
 
 print_r($return);
 

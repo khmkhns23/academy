@@ -13,7 +13,7 @@ header("Cache-Control: no-cache, must-revalidate"); header("Pragma: no-cache");
 	
 	#tree {
 		width: 100%;
-		height: 100%;
+		height: 150%;
 		
 	}
 	</style>
