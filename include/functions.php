@@ -513,7 +513,7 @@ function changpwduser($post){
 	$sql = "SELECT Email FROM tableuserfamily WHERE Email LIKE '$para[0]'";
 	$results = $GLOBALS['conn']->query($sql);
 	$data = $results->fetch_assoc();
-	$count = $results->num_rows();
+	$count = $results->num_rows;
 		if($count>0){
 			$sqlupdate = "UPDATE tableuserfamily SET SID =".session_id();
 			$resultupdate = $GLOBALS['conn']->query($sqlupdate); 
