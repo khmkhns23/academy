@@ -4,6 +4,8 @@
 	
 $timenow = date("Y-m-d H:i:s",time());
 
+header("Cache-Control: no-cache, must-revalidate");
+
 ?>
 <!DOCTYPE html>
 <html lang="en">

@@ -52,6 +52,10 @@
 			$return = registeruser($_POST);
 			echo($return);
 			break;
+		case "newpwd" :
+			$return = newpwds($_POST);
+			echo($return);
+			break;
 			
 		
 			

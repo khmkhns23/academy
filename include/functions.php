@@ -1,6 +1,6 @@
 <?php
 date_default_timezone_set("Asia/Bangkok");
-
+define("urlweb","http://academyyut.herokuapp.com");
 function updatepicuser($id,$pathimg){
 	$sql = "UPDATE `tableuserfamily` SET img = '$pathimg' WHERE ID = $id";
 	$results = $GLOBALS['conn']->query($sql);
@@ -468,7 +468,7 @@ function registeruser($getdata){
 	$Uid = $GLOBALS['conn']->insert_id;
 	
 		if($resultuser){
-			$url = 'http://'.($_SERVER['SERVER_NAME']==='localhost')?'localhost/academy':$_SERER['SERVER_NAME']; 
+			$url = urlweb; 
 
 			require_once('class.phpmailer.php');
 			$mail = new PHPMailer();
@@ -490,14 +490,14 @@ function registeruser($getdata){
 			$strMessage = "ยินดีต้อนรับ : ".$para[1]."<br>";
 			$strMessage .= "=================================<br>";
 			$strMessage .= "ยืนยันบัญชีการใช้งาน คลิกที่นี่.<br>";
-			$strMessage .= "$url/activate.php?sid=".session_id()."&uid=".$Uid."<br>";
+			$strMessage .= "$url/administrator/activate.php?sid=".session_id()."&uid=".$Uid."<br>";
 			$strMessage .= "=================================<br>";
 			$strMessage .= "เว็บไซต์ ชมรมตระกูลแซ่";
 			
 			$mail->Body = "$strMessage";
 			$mail->AddAddress($para[6], "Administrator"); // to Address
 			$mail->set('X-Priority', '1'); //Priority 1 = High, 3 = Normal, 5 = low
-			//$mail->Send(); 
+			$mail->Send(); 
 			$return = 1;
 		}else{
 			$return = 0;
@@ -519,7 +519,7 @@ function resetpass(){
 			$sqlupdate = "UPDATE tableuserfamily SET SID ='".session_id()."' WHERE Email = '$para'";
 			$resultupdate = $GLOBALS['conn']->query($sqlupdate); 
 			if($resultupdate){
-				$url = 'http://academyyut.herokuapp.com'; 
+				$url = urlweb; 
 
 				require_once('class.phpmailer.php');
 				$mail = new PHPMailer();
@@ -541,7 +541,7 @@ function resetpass(){
 				$strMessage = "สวัสดีคุณ : ".$para."<br>";
 				$strMessage .= "=================================<br>";
 				$strMessage .= "เราได้ทำการรีเซ็ทรหัสผ่านแล้วกรุณาตั้งรหัสผ่านด้วยตัวเอง คลิกที่นี่.<br>";
-				$strMessage .= "<a href='$url/resetpwd.php?sid=".session_id()."&email=".$para."'>ตั้งรหัสผ่านใหม่</a><br>";
+				$strMessage .= "<a href='$url/administrator/resetpwd.php?sid=".session_id()."&email=".$para."'>ตั้งรหัสผ่านใหม่</a><br>";
 				$strMessage .= "=================================<br>";
 				$strMessage .= "เว็บไซต์ ชมรมตระกูลแซ่";
 
@@ -560,6 +560,52 @@ function resetpass(){
 	return $return;
 	//return $sqlupdate;
 }
+function checkuserbysessid($em,$sid){
+		$sql = "SELECT SID,Email FROM tableuserfamily WHERE Email='$em' AND SID='$sid'";
+		$results = $GLOBALS['conn']->query($sql);
+		
+		$count = $results->num_rows;
+	return $count;
+}
+function newpwds($getdata){
+	$i=0;
+	foreach ($getdata as $param_name => $param_val) {
+			$para[$i] = filter_var($param_val, FILTER_SANITIZE_STRING);
+		$i++;
+	}
+	if($para[0] === $para[1]){  //check password math
+		$sqlnewpass = "UPDATE tableuserfamily SET PwdUser ='". md5($para[0])."',Active = 'YES' WHERE Email = '$para[2]'";
+		$results = $GLOBALS['conn']->query($sqlnewpass);
+		if($results){
+			$return = 1;
+		}else{
+			$return = 0;
+		}	
+	}else{
+		$return = 0;
+	}
+	return $return;
+	//return $sqlnewpass;
+}
+function activate($uid,$sesid){
+	$sql = "SELECT SID,ID FROM tableuserfamily WHERE  ID='$uid' AND SID='$sesid'";
+	$results = $GLOBALS['conn']->query($sql);		
+	$count = $results->num_rows;
+	if($count>0){
+		$sqlactivate = "UPDATE tableuserfamily SET Active ='YES' WHERE ID ='$uid'";
+		$results = $GLOBALS['conn']->query($sqlactivate);
+		if($results){
+			$return = 1;
+		}else{
+			$return = 0;
+		}
+	}else{
+			$return = 0;
+	}
+	return $return;
+	//return $sql;
+}
+
 function getfamilynameandid($idfather){
 	$sql = "SELECT FamilyName,FamilyID FROM tableuserfamily WHERE ID = $idfather ";
 	$results = $GLOBALS['conn']->query($sql);
