@@ -472,6 +472,7 @@ function registeruser($getdata){
 
 			require_once('class.phpmailer.php');
 			$mail = new PHPMailer();
+			$mail->CharSet = "utf-8";
 			$mail->IsHTML(true);
 			$mail->IsSMTP();
 			$mail->SMTPAuth = true; // enable SMTP authentication
@@ -522,6 +523,7 @@ function resetpass(){
 
 				require_once('class.phpmailer.php');
 				$mail = new PHPMailer();
+				$mail->CharSet = "utf-8";
 				$mail->IsHTML(true);
 				$mail->IsSMTP();
 				$mail->SMTPAuth = true; // enable SMTP authentication
