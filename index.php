@@ -151,7 +151,7 @@ header("Cache-Control: no-cache, must-revalidate");
     <!-- ##### Top Feature Area End ##### -->
 
     <!-- ##### Course Area Start ##### -->
-    <div class="academy-courses-area section-padding-100-0">
+    <div class="academy-courses-area section-padding-50-0">
         <div class="container" id="content">
             
         </div>

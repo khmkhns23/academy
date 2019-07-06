@@ -400,7 +400,14 @@ function changpage(target,Url,txt){
 				//console.log(result);
 				showanimation(2);
 				$("#content").html(result);
-				$("h2").text(textshow);				
+			if(textshow == "ผังครอบครัว"){
+				//$("h2").text("");	
+			//	$("h2").attr("display","none");
+				$(".bradcumbContent").hide();
+			}else{	
+				$("h2").text(textshow);	
+				$(".bradcumbContent").show();
+			}
 				$(".hero-area").css("display","none");
 				$(".call-to-action-area").css("display","none");
 				$(".top-features-area").css("display","none");

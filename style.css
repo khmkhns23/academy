@@ -899,7 +899,8 @@ img {
     background: -webkit-linear-gradient(to right, #61ba6d, #83c331);
     background: linear-gradient(to right, #61ba6d, #83c331);
     position: absolute;
-    bottom: -60px;
+    /*bottom: -60px;*/
+	bottom: 10px;
     -webkit-transform: translateX(-50%);
     transform: translateX(-50%);
     left: 50%;
