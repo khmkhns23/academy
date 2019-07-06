@@ -59,7 +59,7 @@
 			var fd = new FormData();
 			var files = $('#filevd')[0].files[0];
 			var filesize = files.size;
-			fd.append('file',files);
+			fd.append('filevd',files);
 			var idss = $("#hiddeidvideo").val();
 			var integer = parseInt((filesize/1024), 10);
 			var Url = encodeURI("administrator/uploadsvideo2.php?idss="+idss);
@@ -86,7 +86,7 @@
 				},
 				success: function(response){
 					if(response != 0){
-						//console.log(response);
+						console.log(response);
 						showanimation(2);
 						/*
 						showdialog("อัพโหลดข้อมูลเรียบร้อย");
